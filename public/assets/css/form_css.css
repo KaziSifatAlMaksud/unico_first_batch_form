@@ -1,0 +1,330 @@
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a3a5c;
+    --navy-light: #eef3f8;
+    --navy-mid: #2d5a8e;
+    --border: #c8d4e0;
+    --border-light: #e2eaf2;
+    --text: #1e2d3d;
+    --text-muted: #5a7a9a;
+    --bg: #f4f7fa;
+    --white: #ffffff;
+    --accent: #2d5a8e;
+    --input-bg: #fafcff;
+    --success: #15803d;
+    --danger: #b91c1c;
+    --radius: 6px;
+    --radius-sm: 4px;
+  }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 10px;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .form-card {
+    /* max-width: 1300px; */
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 12px rgba(26,58,92,0.1);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  /* ── HEADER ── */
+  .form-header {
+    /* background: var(--navy); */
+    background: #1c7da3;
+    padding: 12px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    align-items: center;
+  }
+  .form-header .hfield { display: flex; flex-direction: column; gap: 2px; }
+  .form-header .hfield label { font-size: 10px; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.6px; }
+  .form-header .hfield .hval { font-size: 13px; font-weight: 600; color: #fff; }
+  .form-header .hfield input, .form-header .hfield select {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    padding: 3px 8px;
+    font-size: 12px;
+    height: 26px;
+    outline: none;
+  }
+  .form-header .hfield input::placeholder { color: rgba(255,255,255,0.5); }
+  .form-header .hfield select option { background: var(--navy); color: #fff; }
+
+  /* ── SECTIONS ── */
+  .section {
+    border-bottom: 1px solid var(--border-light);
+  }
+  .section-header {
+    background: var(--navy-light);
+    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border-light);
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-header::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 12px;
+    background: var(--navy-mid);
+    border-radius: 2px;
+  }
+  .section-body { padding: 10px 16px; }
+
+  /* ── ROWS ── */
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--border-light);
+  }
+  .form-row:last-child { border-bottom: none; }
+
+  /* ── LABELS ── */
+  .fl {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    min-width: 160px;
+    white-space: nowrap;
+  }
+  .fl-sm { min-width: 80px; }
+  .fl-xs { min-width: 50px; }
+
+  /* ── INPUTS ── */
+  input[type="text"], input[type="date"], input[type="time"], input[type="number"], select, textarea {
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-size: 12px;
+    padding: 3px 8px;
+    height: 28px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--navy-mid);
+    box-shadow: 0 0 0 2px rgba(45,90,142,0.15);
+  }
+  input[type="text"] { min-width: 80px; }
+  select { cursor: pointer; }
+  .inp-sm { width: 70px !important; }
+  .inp-md { width: 120px !important; }
+  .inp-lg { width: 180px !important; }
+  .inp-xl { width: 240px !important; }
+
+  /* ── CHECKBOX ── */
+  .cbgroup { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+  .cblabel {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 11.5px; cursor: pointer; white-space: nowrap;
+    user-select: none;
+  }
+  .cblabel input[type="checkbox"] {
+    width: 14px; height: 14px; cursor: pointer;
+    accent-color: var(--navy);
+    border-radius: 3px;
+  }
+
+  /* ── GCS GRID ── */
+  .gcs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .gcs-cell label { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 4px; font-weight: 600; }
+  .gcs-cell select { width: 100%; }
+  .gcs-total {
+    background: var(--navy);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    min-width: 50px;
+    letter-spacing: 1px;
+  }
+
+  /* ── VITALS ── */
+  .vitals-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .vital-cell label { font-size: 11px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 4px; }
+  .vital-input-wrap { display: flex; align-items: center; gap: 4px; }
+  .vital-input-wrap input { width: 60px; }
+  .vital-input-wrap .unit { font-size: 10px; color: var(--text-muted); white-space: nowrap; }
+  .bp-wrap { display: flex; align-items: center; gap: 4px; }
+  .bp-wrap input { width: 46px; }
+  .bp-sep { color: var(--text-muted); font-weight: 700; }
+
+  /* ── VENTILATOR ── */
+  .vent-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .vent-cell label { font-size: 11px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 3px; }
+  .vent-cell input, .vent-cell select { width: 100%; }
+
+  /* ── ORIENTATION ── */
+  .orient-checks { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .orient-check { display: flex; align-items: center; gap: 5px; font-size: 12px; cursor: pointer; }
+  .orient-check input[type="checkbox"] { accent-color: var(--navy); width: 14px; height: 14px; }
+
+  /* ── AIDS GRID ── */
+  .aids-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .aid-cell label { font-size: 11px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 3px; }
+  .aid-cell select { width: 100%; }
+
+  /* ── VULNERABILITY + DVT ── */
+  .vuln-dvt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 0;
+  }
+  .vuln-col { padding-right: 16px; border-right: 1px solid var(--border); }
+  .dvt-col { padding-left: 16px; }
+
+  .sub-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .vuln-table, .dvt-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .vuln-table th, .dvt-table th {
+    background: var(--navy-light);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 11px;
+    padding: 5px 8px;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  .vuln-table td, .dvt-table td {
+    padding: 4px 8px;
+    border: 1px solid var(--border-light);
+    vertical-align: middle;
+  }
+  .vuln-table select { width: 80px; }
+  .dvt-table .score-cell { font-weight: 700; color: var(--navy); text-align: center; }
+  .dvt-table .tick-cell { text-align: center; }
+  .dvt-table input[type="checkbox"] { accent-color: var(--navy); width: 14px; height: 14px; cursor: pointer; }
+
+  /* ── SUBMIT ── */
+  .form-footer {
+    background: var(--navy-light);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    padding: 8px 24px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    letter-spacing: 0.3px;
+  }
+  .btn-outline {
+    background: var(--white);
+    border-color: var(--border);
+    color: var(--text-muted);
+  }
+  .btn-outline:hover { border-color: var(--navy-mid); color: var(--navy); }
+  .btn-primary {
+    background: var(--navy);
+    color: #fff;
+    border-color: var(--navy);
+  }
+  .btn-primary:hover { background: var(--navy-mid); border-color: var(--navy-mid); }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    top: 20px; right: 20px;
+    background: var(--success);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+    z-index: 9999;
+  }
+  .toast.show { transform: translateX(0); }
+
+    /* MOBILITY TABLE */
+  .mob-table { width: 100%; border-collapse: collapse; font-size: 11.5px; margin-bottom: 4px; }
+  .mob-table td { padding: 4px 8px; border: 1px solid var(--border-light); vertical-align: middle; }
+  .mob-table tr:nth-child(even) td { background: var(--row-alt); }
+  .mob-table td:first-child { font-weight: 600; color: var(--navy); width: 180px; }
+
+
+
+  /* SIGNATURE */
+  .sig-grid { display: grid; color: #1e2d3d; grid-template-columns: 1fr 1fr; gap: 0; }
+  .sig-cell { padding: 10px 14px; border: 1px solid var(--border-light); }
+  .sig-cell label { display: block; font-size: 10.5px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
+  .sig-cell input { width: 100%; border: none; border-bottom: 1px solid var(--border); border-radius: 0; padding: 2px 0; background: transparent; }
+
+
+  @media (max-width: 700px) {
+    .gcs-grid, .vitals-grid { grid-template-columns: repeat(2, 1fr); }
+    .vuln-dvt-grid { grid-template-columns: 1fr; }
+    .vuln-col { border-right: none; padding-right: 0; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .dvt-col { padding-left: 0; }
+    .vent-grid { grid-template-columns: repeat(2, 1fr); }
+  }
