@@ -55,6 +55,17 @@ Route::get('/form_8', function () { return view('Form.form8.form_8');})->name('f
 Route::post('/form8/store', [FormController::class, 'store8'])->name('form8.store');
 Route::get('/form_8_pdf', [FormController::class, 'print_view8'])->name('print_view8');
 
+
+
+Route::get('/form_9', function () { return view('Form.form9.form_9');})->name('form9');
+Route::post('/form9/store', [FormController::class, 'store9'])->name('form9.store');
+Route::get('/form_9_pdf', [FormController::class, 'print_view9'])->name('print_view9');
+
+
+Route::get('/form_10', function () { return view('Form.form10.form_10');})->name('form10');
+Route::post('/form10/store', [FormController::class, 'store10'])->name('form10.store');
+Route::get('/form_10_pdf', [FormController::class, 'print_view10'])->name('print_view10');
+
 // Route::get('/form_1_pdf', function () { return 
 // view('Form.form_1_pdf');
 // })->name('form_1_pdf');

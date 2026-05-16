@@ -10,6 +10,7 @@ use App\Models\NursingAdmission;
 use App\Models\PivcMonitoring;
 use App\Models\NanAssessment;
 use App\Models\AllergyRecord;
+use App\Models\EndOfLifeCareForm;
 
 class FormController extends Controller
 {
@@ -353,6 +354,93 @@ class FormController extends Controller
 
 
 
+     public function store9(Request $request)
+    {
+
+        $validated = $request->validate([
+
+            // Patient Info
+            'patient_name' => 'nullable|string|max:150',
+            'uhid' => 'nullable|string|max:100',
+            'gender' => 'nullable|string|max:20',
+            'age' => 'nullable|integer',
+            'department' => 'nullable|string|max:150',
+            'bed_cabin' => 'nullable|string|max:100',
+            'consultant' => 'nullable|string|max:150',
+
+            // Consultant Row
+            'consultant2' => 'nullable|string|max:150',
+            'dept2' => 'nullable|string|max:150',
+            'consult_date' => 'nullable|date',
+
+            // Plan
+            'plan' => 'nullable|string|max:100',
+            'plan_other' => 'nullable|string|max:255',
+
+            // Insight Fields
+            'aware_diag_pt' => 'nullable|string|max:50',
+            'aware_diag_fam' => 'nullable|string|max:50',
+
+            'recog_dying_pt' => 'nullable|string|max:50',
+            'recog_dying_fam' => 'nullable|string|max:50',
+
+            'comm_bed_pt' => 'nullable|string|max:50',
+            'comm_bed_fam' => 'nullable|string|max:50',
+
+            'plan_exp_pt' => 'nullable|string|max:50',
+            'plan_exp_fam' => 'nullable|string|max:50',
+
+            'understand_pt' => 'nullable|string|max:50',
+            'understand_fam' => 'nullable|string|max:50',
+
+            'psych_pt' => 'nullable|string|max:50',
+            'psych_fam' => 'nullable|string|max:50',
+
+            'clin_psych' => 'nullable|string|max:10',
+
+            'social_pt' => 'nullable|string|max:50',
+            'social_fam' => 'nullable|string|max:50',
+
+            'msw' => 'nullable|string|max:10',
+
+            'relig_pt' => 'nullable|string|max:50',
+            'relig_fam' => 'nullable|string|max:50',
+
+            'trad_needs' => 'nullable|string|max:10',
+            'trad_needs_specify' => 'nullable|string',
+
+            'special_needs' => 'nullable|string|max:10',
+            'special_needs_specify' => 'nullable|string',
+
+            // Doctor Signature
+            'doc_name' => 'nullable|string|max:150',
+            'doc_empid' => 'nullable|string|max:100',
+            'doc_date' => 'nullable|date',
+            'doc_time' => 'nullable',
+
+            // Verified By
+            'ver_name' => 'nullable|string|max:150',
+            'ver_empid' => 'nullable|string|max:100',
+            'ver_date' => 'nullable|date',
+            'ver_time' => 'nullable',
+        ]);
+
+
+        // Handle Checkbox Values
+        $validated['gender'] = $request->gender;
+        $validated['plan'] = $request->plan;
+
+        // Store Data
+        $form = EndOfLifeCareForm::create($validated);
+        return view('Form.form9.form_9_pdf', [
+            'latestEntry' => $form
+        ]);
+
+    }
+
+
+
+
     public function store1(Request $request)
     {
         $arrayFields = [
@@ -610,6 +698,15 @@ class FormController extends Controller
         $latestEntry = AllergyRecord::latest()->first();
 
         return view('Form.form7.form_7_pdf', [
+            'latestEntry' => $latestEntry
+        ]);
+    }
+
+       public function print_view9()
+    {
+        $latestEntry = EndOfLifeCareForm::latest()->first();
+
+        return view('Form.form9.form_9_pdf', [
             'latestEntry' => $latestEntry
         ]);
     }
