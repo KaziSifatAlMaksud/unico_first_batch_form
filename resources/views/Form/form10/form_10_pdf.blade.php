@@ -13,11 +13,10 @@
     background: #ccc;
     display: flex;
     justify-content: center;
-    padding: 10px;
   }
 
   .page {
-    width: 210mm;
+    width: 100%;
     min-height: 297mm;
     background: #fff;
     padding: 5mm 7mm 5mm 7mm;
@@ -44,6 +43,20 @@
     position: relative; top: -1px;
   }
 
+  .cb.checked {
+  background: #000;
+}
+
+  .cb.checked::after {
+    content: "✓";
+    position: absolute;
+    top: -5px;
+    left: 0px;
+    font-size: 10px;
+    color: #fff;
+    font-weight: bold;
+  }
+
   /* ══════════════════════
      HEADER
   ══════════════════════ */
@@ -54,32 +67,6 @@
     margin-bottom: 3px;
   }
 
-  .logo-box {
-    border: 1.5px solid #000;
-    width: 28mm;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 3px 2px;
-    gap: 1px;
-  }
-  .logo-top {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-  }
-  .logo-icon {
-    width: 14px; height: 14px;
-    border: 1.5px solid #000;
-    border-radius: 2px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 5pt; font-weight: 900;
-  }
-  .logo-text .logo-name { font-size: 9pt; font-weight: 900; line-height: 1; }
-  .logo-text .logo-sub  { font-size: 5.5pt; letter-spacing: 0.3px; line-height: 1.2; }
-  .logo-tag { font-size: 4.5pt; color: #555; text-align: center; }
 
   .title-area {
     flex: 1;
@@ -96,11 +83,11 @@
 
   .patient-label-box {
     border: 1.5px solid #000;
-    width: 60mm;
+    width: 40mm;
     flex-shrink: 0;
-    padding: 2px 3px;
+    padding: 1px 2px;
     font-size: 6pt;
-    line-height: 1.55;
+    line-height: 1;
   }
   .patient-label-box .lb-title {
     text-align: center;
@@ -124,17 +111,17 @@
     background: #000;
     color: #fff;
     font-weight: 700;
-    font-size: 8pt;
-    padding: 2px 5px;
+    font-size: 6.5pt;
+    padding: 2px 4px;
   }
 
   /* ══════════════════════
      INFO TABLE
   ══════════════════════ */
   .info-table td {
-    font-size: 7pt;
-    padding: 2px 4px;
-    height: 6.5mm;
+    font-size: 6.5pt;
+    padding: 1px 2px;
+    height: 3.5mm;
   }
   .info-table .lbl { font-weight: 700; }
 
@@ -145,7 +132,7 @@
     background: #000 !important;
     color: #fff;
     font-weight: 700;
-    font-size: 7.5pt;
+    font-size: 6.5pt;
     padding: 2px 5px;
     border-color: #000;
   }
@@ -165,7 +152,7 @@
   /* ══════════════════════
      DATA ROWS
   ══════════════════════ */
-  .data-row td { font-size: 7pt; padding: 2px 4px; height: 7.5mm; }
+  .data-row td { font-size: 7pt; padding: 1px 2px; height: 5.5mm; }
   .data-row.alt td { background: #f5f5f5; }
 
   /* Checkbox item inline */
@@ -204,7 +191,7 @@
   /* ══════════════════════
      TIME OF DEATH
   ══════════════════════ */
-  .tod-table td { font-size: 7pt; padding: 2px 4px; height: 6.5mm; }
+  .tod-table td { font-size: 6.5pt; padding: 2px 4px; height: 4.5mm; }
   .tod-table .lbl { font-weight: 700; }
 
   /* ══════════════════════
@@ -248,38 +235,33 @@
     body { background: none; padding: 0; margin: 0; }
     .page { box-shadow: none; width: 210mm; min-height: 297mm; padding: 5mm 7mm; }
     @page { size: A4; margin: 0; }
-    /* Force black & white - strip backgrounds for ink saving if needed */
-    /* Remove next 4 lines if you want gray shading to print */
-    /* .sec-hdr td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .col-hdr td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .sig-table tr:nth-child(2) td { -webkit-print-color-adjust: exact; print-color-adjust: exact; } */
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
 </head>
 <body>
 <div class="page">
-
+    {{-- @if($latestEntry)
+        <p>
+            @foreach($latestEntry->toArray() as $key => $value)
+                
+                    <strong>{{ $key }} :</strong> {{ $value }}
+                
+            @endforeach
+        </p>
+    @else <p>No data found.</p>
+    @endif --}}
   <!-- ══════════════════════════════════════
        HEADER
   ══════════════════════════════════════ -->
   <div class="header">
 
     <!-- Logo -->
-    <div class="logo-box">
-      <div class="logo-top">
-        <div class="logo-icon">U</div>
-        <div class="logo-text">
-          <div class="logo-name">UNICO</div>
-          <div class="logo-sub">HOSPITALS</div>
-        </div>
-      </div>
-      <div class="logo-tag">Care, as we ought to give</div>
-    </div>
+        <img src="{{ asset('assets/img/unico_icon.jpg') }}" alt="AIIMS Logo" width="80"  class="logo-icon"> 
 
     <!-- Title -->
     <div class="title-area">
-      <h1>PALLIATIVE CARE NOTES (PCN)</h1>
+      <h3>PALLIATIVE CARE NOTES (PCN)</h3>
     </div>
 
     <!-- Patient Label -->
@@ -299,8 +281,8 @@
        PATIENT NAME BAR
   ══════════════════════════════════════ -->
   <div class="name-bar">
-    <span>PATIENT NAME:</span>
-    <span>UHID:</span>
+    <span><strong>PATIENT NAME: </strong> {{ $latestEntry->patient_name  ?? '-' }}</span>
+    <span> <strong>UHID:</strong>  {{ $latestEntry->uhid  ?? '-' }}</span>
   </div>
 
   <!-- ══════════════════════════════════════
@@ -308,26 +290,25 @@
   ══════════════════════════════════════ -->
   <table class="info-table mb3">
     <tr>
-      <td class="lbl" style="width:30%;">Gender: M/F</td>
-      <td style="width:35%;">Age:</td>
-      <td style="width:35%;"></td>
+      <td class="lbl" style="width:50%;" colspan="2"><strong>Gender:</strong>  {{ $latestEntry->gender  ?? '-' }}</td>
+      <td style="width:50%;"><strong>Age:</strong> {{ $latestEntry->age  ?? '-' }}</td>
     </tr>
     <tr>
-      <td class="lbl">Diagnosis:</td>
-      <td colspan="2">Procedure</td>
+      <td class="lbl"><strong>Diagnosis:</strong> {{ $latestEntry->diagnosis   ?? '-' }}</td>
+      <td colspan="2"><strong>Procedure:</strong> {{ $latestEntry->procedure_name   ?? '-' }}</td>
     </tr>
     <tr>
-      <td class="lbl">Consultant:</td>
-      <td colspan="2"></td>
+      <td class="lbl"><strong>Consultant:</strong></td>
+      <td colspan="2">  {{ $latestEntry->consultant   ?? '-' }}</td>
     </tr>
     <tr>
-      <td class="lbl">Unit/Bed:</td>
-      <td colspan="2"></td>
+      <td class="lbl"><strong>Unit/Bed:</strong></td>
+      <td colspan="2">  {{ $latestEntry->unit_bed   ?? '-' }}</td>
     </tr>
     <tr>
-      <td class="lbl">Date of Note:</td>
-      <td>Time:</td>
-      <td></td>
+      <td class="lbl"><strong>Date of Note:</strong> {{ $latestEntry->date_of_note   ?? '-' }}</td>
+      <td><strong>Time:</strong> </td>
+      <td> {{ $latestEntry->time_of_note   ?? '-' }}</td>
     </tr>
   </table>
 
@@ -342,34 +323,71 @@
       <td style="width:28%;">Time Remarks</td>
     </tr>
     <tr class="data-row">
-      <td><span class="cb"></span> Consciousness/GCS</td><td></td><td></td>
+      <td><span class="cb {{ isset($latestEntry->gcs_obs) || $latestEntry->gcs_rem !== '' ? 'checked' : '' }}"></span> Consciousness/GCS</td>
+      <td>
+          {{ $latestEntry->gcs_obs  ?? '-' }}
+      </td>
+      <td>
+          {{ $latestEntry->gcs_rem   ?? '-' }}
+      </td>
     </tr>
     <tr class="data-row alt">
-      <td><span class="cb"></span> Vital Signs: HR/BP/SpO₂/RR</td><td></td><td></td>
+      <td><span class="cb {{ isset($latestEntry->vitals_obs) || $latestEntry->vitals_rem !== '' ? 'checked' : '' }}"></span> Vital Signs: HR/BP/SpO₂/RR</td>
+      <td>
+          {{ $latestEntry->vitals_obs    ?? '-' }}
+      </td>
+      <td>          {{ $latestEntry->vitals_rem     ?? '-' }}</td>
     </tr>
     <tr class="data-row">
-      <td><span class="cb"></span> Temp (°C)</td><td></td><td></td>
+      <td><span class="cb {{ isset($latestEntry->temp_obs) || $latestEntry->temp_rem !== '' ? 'checked' : '' }}"></span> Temp (°C)</td>
+      <td>
+        {{ $latestEntry->temp_obs   ?? '-' }}
+      </td>
+      <td>
+        {{ $latestEntry->temp_rem    ?? '-' }}
+      </td>
     </tr>
     <tr class="data-row alt">
-      <td><span class="cb"></span> Pain/Comfort Score (0-10)</td><td></td><td></td>
+      <td><span class="cb {{ isset($latestEntry->pain_obs) || $latestEntry->pain_rem !== '' ? 'checked' : '' }}"></span> Pain/Comfort Score (0-10)</td>
+      <td>
+        {{ $latestEntry->pain_obs    ?? '-' }}
+      </td>
+      <td>
+        {{ $latestEntry->pain_rem     ?? '-' }}
+      </td>
     </tr>
     <tr class="data-row">
-      <td><span class="cb"></span> Respiratory Status</td>
-      <td>O₂ support, ventilation</td><td></td>
+      <td><span class="cb {{ isset($latestEntry->resp_obs) || $latestEntry->resp_rem !== '' ? 'checked' : '' }}"></span> Respiratory Status</td>
+      <td>O₂ support, ventilation, {{ $latestEntry->resp_obs      ?? '-' }} </td>
+      <td>{{ $latestEntry->resp_rem        ?? '-' }}</td>
     </tr>
     <tr class="data-row alt">
-      <td><span class="cb"></span> Cardiac Status</td>
-      <td>Arrhythmia, inotropes, hemodynamics</td><td></td>
+      <td><span class="cb {{ isset($latestEntry->cardiac_obs) || $latestEntry->cardiac_rem !== '' ? 'checked' : '' }}"></span> Cardiac Status</td>
+      <td>Arrhythmia, inotropes, hemodynamics, {{ $latestEntry->cardiac_obs      ?? '-' }} </td>
+      <td>{{ $latestEntry->cardiac_rem         ?? '-' }}</td>
     </tr>
     <tr class="data-row">
-      <td><span class="cb"></span> Fluid Balance</td>
-      <td>Input/Output</td><td></td>
+      <td><span class="cb {{ isset($latestEntry->fluid_obs) || $latestEntry->fluid_rem !== '' ? 'checked' : '' }}"></span> Fluid Balance</td>
+      <td>Input/Output, {{ $latestEntry->fluid_obs       ?? '-' }} </td>
+      <td>{{ $latestEntry->fluid_rem         ?? '-' }}</td>
     </tr>
     <tr class="data-row alt">
-      <td><span class="cb"></span> Skin/Pressure Areas</td><td></td><td></td>
+      <td><span class="cb {{ isset($latestEntry->skin_obs) || $latestEntry->skin_rem !== '' ? 'checked' : '' }}"></span> Skin/Pressure Areas</td>
+      <td>
+        {{ $latestEntry->skin_obs        ?? '-' }}
+      </td>
+      <td>
+        {{ $latestEntry->skin_rem          ?? '-' }}
+      </td>
     </tr>
     <tr class="data-row">
-      <td><span class="cb"></span> Other Clinical Notes</td><td></td><td></td>
+      <td><span class="cb {{ isset($latestEntry->other_obs) || $latestEntry->other_rem !== '' ? 'checked' : '' }}"></span> Other Clinical Notes</td>
+      <td>
+        {{ $latestEntry->other_obs  ?? '-' }}
+      </td>
+      <td>
+        {{ $latestEntry->other_rem  ?? '-' }}
+      </td>
     </tr>
   </table>
 
@@ -383,47 +401,83 @@
       <td style="width:44%;">Intervention/Medication Response/Relief</td>
       <td style="width:28%;">Remarks</td>
     </tr>
-    <tr class="data-row"><td><span class="cb"></span> Pain</td><td></td><td></td></tr>
-    <tr class="data-row alt"><td><span class="cb"></span> Dyspnea/Labored Breathing</td><td></td><td></td></tr>
-    <tr class="data-row"><td><span class="cb"></span> Anxiety/Restlessness</td><td></td><td></td></tr>
-    <tr class="data-row alt"><td><span class="cb"></span> Nausea/Vomiting</td><td></td><td></td></tr>
-    <tr class="data-row"><td><span class="cb"></span> Secretions/Sputum</td><td></td><td></td></tr>
-    <tr class="data-row alt"><td><span class="cb"></span> Other Symptoms</td><td></td><td></td></tr>
+    
+    <tr class="data-row"><td><span class="cb {{ isset($latestEntry->pain_int) || $latestEntry->pain_int !== '' ? 'checked' : '' }}"></span> Pain</td>
+    <td>{{ $latestEntry->pain_int   ?? '-' }}</td>
+    <td>{{ $latestEntry->pain_rmk   ?? '-' }}</td>
+  </tr>
+    <tr class="data-row alt"><td><span class="cb {{ isset($latestEntry->dysp_int) || $latestEntry->dysp_int !== '' ? 'checked' : '' }} "></span> Dyspnea/Labored Breathing</td><td>{{ $latestEntry->dysp_int    ?? '-' }}</td><td>{{ $latestEntry->dysp_rmk    ?? '-' }}</td></tr>
+    <tr class="data-row"><td><span class="cb {{ isset($latestEntry->anx_int) || $latestEntry->anx_int !== '' ? 'checked' : '' }} "></span> Anxiety/Restlessness</td><td>{{ $latestEntry->anx_int    ?? '-' }}</td><td>{{ $latestEntry->anx_rmk    ?? '-' }}</td></tr>
+    <tr class="data-row alt"><td><span class="cb {{ isset($latestEntry->nausea_int) || $latestEntry->nausea_int !== '' ? 'checked' : '' }} "></span> Nausea/Vomiting</td><td>{{ $latestEntry->nausea_int    ?? '-' }}</td><td>{{ $latestEntry->nausea_rmk    ?? '-' }}</td></tr>
+    <tr class="data-row"><td><span class="cb {{ isset($latestEntry->sec_int) || $latestEntry->sec_int !== '' ? 'checked' : '' }} "></span> Secretions/Sputum</td><td>{{ $latestEntry->sec_int    ?? '-' }}</td><td>{{ $latestEntry->sec_rmk    ?? '-' }}</td></tr>
+    <tr class="data-row alt"><td><span class="cb {{ isset($latestEntry->othersym_int) || $latestEntry->othersym_int !== '' ? 'checked' : '' }} "></span> Other Symptoms</td><td>{{ $latestEntry->othersym_int    ?? '-' }}</td><td>{{ $latestEntry->othersym_rmk    ?? '-' }}</td></tr>
   </table>
 
   <!-- ══════════════════════════════════════
        COMFORT & SUPPORTIVE CARE
   ══════════════════════════════════════ -->
+  @php
+      $comfort = explode(',', $latestEntry->comfort ?? '');
+  @endphp
   <table class="mb2">
-    <tr class="sec-hdr"><td colspan="4">COMFORT &amp; SUPPORTIVE CARE</td></tr>
-    <tr class="comfort-row">
-      <td style="width:25%;"><span class="cb"></span> Positioning for comfort</td>
-      <td style="width:22%;"><span class="cb"></span> Oral/Eye care</td>
-      <td style="width:27%;"><span class="cb"></span> Skin/Pressure area care</td>
-      <td style="width:26%;"><span class="cb"></span> Suctioning as needed</td>
+      <tr class="sec-hdr"><td colspan="4">COMFORT &amp; SUPPORTIVE CARE</td></tr>
+      <tr class="comfort-row">
+        <td style="width:25%;">
+            <span class="cb {{ in_array('positioning', $comfort) ? 'checked' : '' }}"></span>
+            Positioning for comfort
+        </td>
+
+        <td style="width:22%;">
+            <span class="cb {{ in_array('oral_eye', $comfort) ? 'checked' : '' }}"></span>
+            Oral/Eye care
+        </td>
+
+        <td style="width:27%;">
+            <span class="cb {{ in_array('skin_pressure', $comfort) ? 'checked' : '' }}"></span>
+            Skin/Pressure area care
+        </td>
+
+        <td style="width:26%;">
+            <span class="cb {{ in_array('suctioning', $comfort) ? 'checked' : '' }}"></span>
+            Suctioning as needed
+        </td>
     </tr>
     <tr class="comfort-row">
-      <td colspan="2"><span class="cb"></span> Environmental adjustments (light, noise, privacy)</td>
-      <td><span class="cb"></span> Emotional support provided</td>
-      <td><span class="cb"></span> Spiritual/Cultural support</td>
+      <td colspan="2">
+          <span class="cb {{ in_array('env_adj', $comfort) ? 'checked' : '' }}"></span>
+          Environmental adjustments (light, noise, privacy)
+      </td>
+
+      <td>
+          <span class="cb {{ in_array('emotional', $comfort) ? 'checked' : '' }}"></span>
+          Emotional support provided
+      </td>
+
+      <td>
+          <span class="cb {{ in_array('spiritual', $comfort) ? 'checked' : '' }}"></span>
+          Spiritual/Cultural support
+      </td>
     </tr>
   </table>
 
   <!-- ══════════════════════════════════════
        FAMILY SUPPORT & COMMUNICATION
   ══════════════════════════════════════ -->
+  @php
+      $family = explode(',', $latestEntry->family  ?? '');
+  @endphp
   <table class="mb2">
     <tr class="sec-hdr"><td colspan="2">FAMILY SUPPORT &amp; COMMUNICATION</td></tr>
     <tr class="data-row">
-      <td style="width:50%;"><span class="cb"></span> Prognosis and care goals discussed</td>
-      <td><span class="cb"></span> Family presence facilitated</td>
+      <td style="width:50%;"><span class="cb {{ in_array('prognosis', $family) ? 'checked' : '' }}"></span> Prognosis and care goals discussed</td>
+      <td><span class="cb {{ in_array('presence', $family) ? 'checked' : '' }}"></span> Family presence facilitated</td>
     </tr>
     <tr class="data-row alt">
-      <td><span class="cb"></span> Counseling/Emotional support provided</td>
-      <td><span class="cb"></span> Cultural/Religious practices respected</td>
+      <td><span class="cb {{ in_array('counseling', $family) ? 'checked' : '' }}"></span> Counseling/Emotional support provided</td>
+      <td><span class="cb {{ in_array('cultural', $family) ? 'checked' : '' }}"></span> Cultural/Religious practices respected</td>
     </tr>
     <tr class="data-row">
-      <td colspan="2"><span class="cb"></span> Questions/Concerns addressed</td>
+      <td colspan="2"><span class="cb {{ in_array('questions', $family) ? 'checked' : '' }}"></span> Questions/Concerns addressed</td>
     </tr>
   </table>
 
@@ -433,11 +487,8 @@
   <table class="mb2" style="margin-bottom:2px;">
     <tr class="sec-hdr"><td>NURSING/STAFF NOTE</td></tr>
     <tr>
-      <td style="height:32mm; vertical-align:top; padding:3px 4px;">
-        <div style="border-bottom:0.5px dotted #bbb; height:7mm;"></div>
-        <div style="border-bottom:0.5px dotted #bbb; height:7mm;"></div>
-        <div style="border-bottom:0.5px dotted #bbb; height:7mm;"></div>
-        <div style="border-bottom:0.5px dotted #bbb; height:7mm;"></div>
+      <td style="height:auto; vertical-align:top; padding:3px 4px;">
+        {{ $latestEntry->nursing_notes  ?? '-' }}
       </td>
     </tr>
   </table>
@@ -445,12 +496,15 @@
   <!-- ══════════════════════════════════════
        PHYSICIAN ORDERS & ADVANCE DIRECTIVES
   ══════════════════════════════════════ -->
+    @php
+      $directive = explode(',', $latestEntry->directive  ?? '');
+  @endphp
   <table class="mb2">
     <tr class="sec-hdr"><td>PHYSICIAN ORDERS &amp; ADVANCE DIRECTIVES</td></tr>
-    <tr class="data-row"><td><span class="cb"></span> Comfort medications (opioids, sedatives, anticholinergics)</td></tr>
-    <tr class="data-row alt"><td><span class="cb"></span> DNR/DNI status confirmed</td></tr>
-    <tr class="data-row"><td><span class="cb"></span> Limitations of interventions documented</td></tr>
-    <tr class="data-row alt"><td><span class="cb"></span> Orders for symptom relief and comfort care</td></tr>
+    <tr class="data-row"><td><span class="cb {{ in_array('comfort_meds', $directive) ? 'checked' : '' }}"></span> Comfort medications (opioids, sedatives, anticholinergics)</td></tr>
+    <tr class="data-row alt"><td><span class="cb {{ in_array('dnr', $directive) ? 'checked' : '' }}"></span> DNR/DNI status confirmed</td></tr>
+    <tr class="data-row"><td><span class="cb {{ in_array('limitations', $directive) ? 'checked' : '' }}"></span> Limitations of interventions documented</td></tr>
+    <tr class="data-row alt"><td><span class="cb {{ in_array('symptom_orders', $directive) ? 'checked' : '' }}"></span> Orders for symptom relief and comfort care</td></tr>
   </table>
 
   <!-- ══════════════════════════════════════
@@ -459,22 +513,35 @@
   <table class="tod-table mb2">
     <tr class="sec-hdr"><td colspan="2">TIME OF DEATH (If Applicable)</td></tr>
     <tr>
-      <td class="lbl" style="width:50%;">Date</td>
-      <td class="lbl">Time</td>
+      <td class="lbl" style="width:50%;">
+          Date: {{ $latestEntry->death_date  ?? '-' }}
+      </td> 
+      <td class="lbl">
+          Time: {{ $latestEntry->death_time ?? '-' }}
+      </td>
     </tr>
     <tr>
-      <td colspan="2" class="lbl" style="height:7mm;">Verified by Physician</td>
+      <td colspan="2" class="lbl" style="height:7mm;">Verified by Physician:</td> {{ $latestEntry->verifying_physician    ?? '-' }}
     </tr>
     <tr>
       <td>
         Family informed: &nbsp;&nbsp;
-        <span class="cbi"><span class="cb"></span> Yes</span>
-        <span class="cbi"><span class="cb"></span> No</span>
-      </td>
+        <span class="cbi">
+            <span class="cb {{ ($latestEntry->family_informed ?? '') === 'Yes' ? 'checked' : '' }}"></span> Yes
+        </span>
+
+        <span class="cbi">
+            <span class="cb {{ ($latestEntry->family_informed ?? '') === 'No' ? 'checked' : '' }}"></span> No
+        </span>
       <td>
         Post-mortem care initiated: &nbsp;&nbsp;
-        <span class="cbi"><span class="cb"></span> Yes</span>
-        <span class="cbi"><span class="cb"></span> No</span>
+          <span class="cbi">
+            <span class="cb {{ ($latestEntry->postmortem  ?? '') === 'Yes' ? 'checked' : '' }}"></span> Yes
+        </span>
+
+        <span class="cbi">
+            <span class="cb {{ ($latestEntry->postmortem  ?? '') === 'No' ? 'checked' : '' }}"></span> No
+        </span>
       </td>
     </tr>
   </table>
@@ -493,18 +560,18 @@
     <tbody>
       <tr>
         <td class="rlbl" style="background:#fff;">Nurse/Staff</td>
-        <td style="background:#fff;"></td>
-        <td style="background:#fff;"></td>
+        <td style="background:#fff;"> {{ $latestEntry->nurse_sig  ?? '-' }}</td>
+        <td style="background:#fff;"> {{ $latestEntry->nurse_date   ?? '-' }} | {{ $latestEntry->nurse_time    ?? '-' }}</td>
       </tr>
       <tr>
         <td class="rlbl" style="background:#fde8dc;">Consultant/Intensivist</td>
-        <td style="background:#fde8dc;"></td>
-        <td style="background:#fde8dc;"></td>
+        <td style="background:#fde8dc;"> {{ $latestEntry->consult_sig   ?? '-' }}</td>
+        <td style="background:#fde8dc;"> {{ $latestEntry->consult_date2    ?? '-' }} | {{ $latestEntry->consult_time2    ?? '-' }}</td>
       </tr>
       <tr>
         <td class="rlbl" style="background:#fff;">Verified By</td>
-        <td style="background:#fff;"></td>
-        <td style="background:#fff;"></td>
+        <td style="background:#fff;"> {{ $latestEntry->verified_sig   ?? '-' }}</td>
+        <td style="background:#fff;"> {{ $latestEntry->verified_date    ?? '-' }} | {{ $latestEntry->verified_time     ?? '-' }}</td>
       </tr>
     </tbody>
   </table>
@@ -513,7 +580,17 @@
        FOOTER
   ══════════════════════════════════════ -->
   <div class="footer">AF/LES/PCN/v01/Jan2026– AF10</div>
+   <div class="footer">Print By: 'Employee Name', Employee ID, Designation | Printed on: {{ date('Y-m-d H:i:s') }} </div>
+
 
 </div>
+
+
+<script>
+  window.onload = function () {
+    window.print();
+  };
+</script>
 </body>
+
 </html>

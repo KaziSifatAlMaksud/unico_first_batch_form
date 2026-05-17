@@ -11,6 +11,7 @@ use App\Models\PivcMonitoring;
 use App\Models\NanAssessment;
 use App\Models\AllergyRecord;
 use App\Models\EndOfLifeCareForm;
+use App\Models\PalliativeCareNote;
 
 class FormController extends Controller
 {
@@ -439,7 +440,140 @@ class FormController extends Controller
     }
 
 
+   public function store10(Request $request)
+    {
+        // ✅ 1. Validation
+        $request->validate([
+            'patient_name' => 'nullable|string|max:255',
+            'uhid' => 'nullable|string|max:100',
+            'gender' => 'nullable|string|max:10',
+            'age' => 'nullable|integer',
 
+            'procedure_name' => 'nullable|string|max:255',
+            'diagnosis' => 'nullable|string',
+            'consultant' => 'nullable|string|max:255',
+            'unit_bed' => 'nullable|string|max:255',
+
+            'date_of_note' => 'nullable|date',
+            'time_of_note' => 'nullable',
+
+            'death_date' => 'nullable|date',
+            'death_time' => 'nullable',
+
+            'nurse_date' => 'nullable|date',
+            'consult_date2' => 'nullable|date',
+            'verified_date' => 'nullable|date',
+        ]);
+
+        // ✅ 2. ARRAY FIELDS (checkbox / multi-select)
+        $arrayFields = [
+            'comfort',
+            'family',
+            'directive'
+        ];
+
+        // remove array fields first
+        $data = $request->except($arrayFields);
+
+        // convert arrays → comma separated string
+        foreach ($arrayFields as $field) {
+            $data[$field] = $request->has($field)
+                ? implode(',', (array) $request->$field)
+                : null;
+        }
+
+        // optional single checkbox / normal field
+        $data['nursing_notes'] = $request->nursing_notes;
+
+        // Patient status / clinical fields (direct mapping)
+        $data['patient_name'] = $request->patient_name;
+        $data['uhid'] = $request->uhid;
+        $data['gender'] = $request->gender;
+        $data['age'] = $request->age;
+
+        $data['procedure_name'] = $request->procedure_name;
+        $data['diagnosis'] = $request->diagnosis;
+        $data['consultant'] = $request->consultant;
+        $data['unit_bed'] = $request->unit_bed;
+
+        $data['date_of_note'] = $request->date_of_note;
+        $data['time_of_note'] = $request->time_of_note;
+
+        // Clinical observations
+        $data['gcs_obs'] = $request->gcs_obs;
+        $data['gcs_rem'] = $request->gcs_rem;
+
+        $data['vitals_obs'] = $request->vitals_obs;
+        $data['vitals_rem'] = $request->vitals_rem;
+
+        $data['temp_obs'] = $request->temp_obs;
+        $data['temp_rem'] = $request->temp_rem;
+
+        $data['pain_obs'] = $request->pain_obs;
+        $data['pain_rem'] = $request->pain_rem;
+
+        $data['resp_obs'] = $request->resp_obs;
+        $data['resp_rem'] = $request->resp_rem;
+
+        $data['cardiac_obs'] = $request->cardiac_obs;
+        $data['cardiac_rem'] = $request->cardiac_rem;
+
+        $data['fluid_obs'] = $request->fluid_obs;
+        $data['fluid_rem'] = $request->fluid_rem;
+
+        $data['skin_obs'] = $request->skin_obs;
+        $data['skin_rem'] = $request->skin_rem;
+
+        $data['other_obs'] = $request->other_obs;
+        $data['other_rem'] = $request->other_rem;
+
+        // Symptom management
+        $data['pain_int'] = $request->pain_int;
+        $data['pain_rmk'] = $request->pain_rmk;
+
+        $data['dysp_int'] = $request->dysp_int;
+        $data['dysp_rmk'] = $request->dysp_rmk;
+
+        $data['anx_int'] = $request->anx_int;
+        $data['anx_rmk'] = $request->anx_rmk;
+
+        $data['nausea_int'] = $request->nausea_int;
+        $data['nausea_rmk'] = $request->nausea_rmk;
+
+        $data['sec_int'] = $request->sec_int;
+        $data['sec_rmk'] = $request->sec_rmk;
+
+        $data['othersym_int'] = $request->othersym_int;
+        $data['othersym_rmk'] = $request->othersym_rmk;
+
+        // Death info
+        $data['death_date'] = $request->death_date;
+        $data['death_time'] = $request->death_time;
+        $data['verifying_physician'] = $request->verifying_physician;
+        $data['family_informed'] = $request->family_informed;
+        $data['postmortem'] = $request->postmortem;
+
+        // Signatures
+        $data['nurse_sig'] = $request->nurse_sig;
+        $data['nurse_date'] = $request->nurse_date;
+        $data['nurse_time'] = $request->nurse_time;
+
+        $data['consult_sig'] = $request->consult_sig;
+        $data['consult_date2'] = $request->consult_date2;
+        $data['consult_time2'] = $request->consult_time2;
+
+        $data['verified_sig'] = $request->verified_sig;
+        $data['verified_date'] = $request->verified_date;
+        $data['verified_time'] = $request->verified_time;
+
+        // ✅ 3. Save
+        $assessment = PalliativeCareNote::create($data);
+
+        // ✅ 4. Return PDF
+        return view('Form.form10.form_10_pdf', [
+            'latestEntry' => $assessment
+        ]);
+    }
 
     public function store1(Request $request)
     {
@@ -728,7 +862,8 @@ class FormController extends Controller
             'latestEntry' => $latestEntry
         ]);
     }
-     public function print_view4()
+    
+    public function print_view4()
     {
         $latestEntry = NursingAdmission::latest()->first();
 
@@ -737,7 +872,17 @@ class FormController extends Controller
         ]);
     }
 
-         public function print_view5()
+    public function print_view10()
+    {
+        $latestEntry = PalliativeCareNote::latest()->first();
+
+        return view('Form.form10.form_10_pdf', [
+            'latestEntry' => $latestEntry
+        ]);
+    }
+
+
+    public function print_view5()
     {
         $latestEntry = PivcMonitoring::latest()->first();
 
