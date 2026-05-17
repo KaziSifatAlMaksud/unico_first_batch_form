@@ -198,7 +198,7 @@
   }
 
   @media print {
-    body { background: none; padding: 0; }
+    body { background: none; padding: 0; margin: 0; }
     .page { box-shadow: none; width: 210mm; min-height: 297mm; padding: 6mm 8mm; }
     @page { size: A4; margin: 0; }
   }

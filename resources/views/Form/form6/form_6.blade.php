@@ -118,6 +118,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; backgrou
 <body>
 <form id="mainForm" action="{{ route('form6.store') }}"   method="POST" enctype="multipart/form-data">
 @csrf
+<H1 style="text-align: center; font-size: 15px; font-weight: bold;"> NUTRITIONAL ASSESSMENT FOR ADULT – NURSING (NAN) </H1>
 <div class="form-card">
 
   <!-- PATIENT BAR -->

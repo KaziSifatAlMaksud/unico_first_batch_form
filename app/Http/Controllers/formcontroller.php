@@ -12,6 +12,7 @@ use App\Models\NanAssessment;
 use App\Models\AllergyRecord;
 use App\Models\EndOfLifeCareForm;
 use App\Models\PalliativeCareNote;
+use App\Models\CarePlan;
 
 class FormController extends Controller
 {
@@ -676,10 +677,42 @@ class FormController extends Controller
         |--------------------------------------------------------------------------
         */
 
-        NursingAdmission::create($data);
+         $admission = NursingAdmission::create($data);
+
+             foreach ($request->all() as $key => $value) {
+
+                // Find all care_time_X fields
+                if (preg_match('/care_time_(\d+)/', $key, $matches)) {
+
+                    $i = $matches[1];
+
+                    // Skip completely empty rows
+                    if (
+                        empty($request->input("care_time_$i")) &&
+                        empty($request->input("care_diag_$i")) &&
+                        empty($request->input("care_goals_$i")) &&
+                        empty($request->input("care_interv_$i")) &&
+                        empty($request->input("care_eval_$i")) &&
+                        empty($request->input("care_sign_$i"))
+                    ) {
+                        continue;
+                    }
+
+                    CarePlan::create([
+
+                        'admission_id' => $admission->id,
+                        'care_time'   => $request->input("care_time_$i"),
+                        'care_diag'   => $request->input("care_diag_$i"),
+                        'care_goals'  => $request->input("care_goals_$i"),
+                        'care_interv' => $request->input("care_interv_$i"),
+                        'care_eval'   => $request->input("care_eval_$i"),
+                        'care_sign'   => $request->input("care_sign_$i"),
+                    ]);
+                }
+            }
 
         return view('Form.form4.form_4_pdf', [
-            'latestEntry' => NursingAdmission::latest()->first()
+            'latestEntry' => NursingAdmission::with('carePlans')->latest()->first()
         ]);
     }
 
@@ -835,6 +868,14 @@ class FormController extends Controller
             'latestEntry' => $latestEntry
         ]);
     }
+     public function print_view6()
+    {
+        $latestEntry = NanAssessment::latest()->first();
+
+        return view('Form.form6.form_6_pdf', [
+            'latestEntry' => $latestEntry
+        ]);
+    }
 
        public function print_view9()
     {
@@ -865,7 +906,7 @@ class FormController extends Controller
     
     public function print_view4()
     {
-        $latestEntry = NursingAdmission::latest()->first();
+        $latestEntry = NursingAdmission::with('carePlans')->latest()->first();
 
         return view('Form.form4.form_4_pdf', [
             'latestEntry' => $latestEntry

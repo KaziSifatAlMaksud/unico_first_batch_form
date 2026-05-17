@@ -42,14 +42,6 @@
     justify-content: space-between;
     margin-bottom: 3px;
   }
-  .logo-block {
-    border: 1.5px solid #000;
-    padding: 3px 5px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
-  }
   .form-title {
     font-size: 13pt;
     font-weight: 900;
@@ -163,9 +155,9 @@
     @endif
   <!-- ═══ HEADER ═══ -->
   <div class="header">
-    <div class="logo-block">
+    
         <img src="{{ asset('assets/img/unico_icon.jpg') }}" alt="AIIMS Logo" width="100"  class="logo-icon"> 
-    </div>
+    
  
     <div class="form-title">NUTRITIONAL ASSESSMENT<br>FOR ADULT – NURSING (NAN)</div>
 

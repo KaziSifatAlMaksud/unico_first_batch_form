@@ -7,7 +7,7 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --navy: #1a3a5c; --navy-light: #eef3f8; --navy-mid: #2d5a8e;
+  --navy: #207ba2; --navy-light: #eef3f8; --navy-mid: #207ba2;
   --border: #c8d4e0; --border-light: #e2eaf2;
   --text: #1e2d3d; --text-muted: #5a7a9a;
   --bg: #f4f7fa; --white: #ffffff; --input-bg: #fafcff;
@@ -110,6 +110,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; backgr
 <body>
 <form id="mainForm" action="{{ route('form7.store') }}"   method="POST" enctype="multipart/form-data">
 @csrf
+
+<H1 style="text-align: center; font-size: 15px; font-weight: bold;"> ALLERGY RECORD FORM (ALF) </H1>
 <div class="form-card">
 
 

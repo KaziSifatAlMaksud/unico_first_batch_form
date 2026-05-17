@@ -376,7 +376,7 @@ select { cursor: pointer; }
 </style>
 </head>
 <body>
-
+<H1 style="text-align: center; font-size: 15px; font-weight: bold; text-transform: uppercase;"> Nursing Assessment on Admission (NAA) - Cardiac </H1>
 <form id="mainForm" action="{{ route('form4.store') }}"   method="POST" enctype="multipart/form-data">
 @csrf
 
@@ -894,7 +894,7 @@ select { cursor: pointer; }
           </tr>
         </thead>
         <tbody id="carePlanBody">
-          <!-- 8 rows -->
+          <!-- 3 rows -->
           <tr>
             <td><input type="time" name="care_time_1"></td>
             <td><input type="text" name="care_diag_1" placeholder=""></td>
@@ -918,24 +918,7 @@ select { cursor: pointer; }
             <td><input type="text" name="care_interv_3"></td>
             <td><input type="text" name="care_eval_3"></td>
             <td><input type="text" name="care_sign_3"></td>
-          </tr>
-          <tr>
-            <td><input type="time" name="care_time_4"></td>
-            <td><input type="text" name="care_diag_4"></td>
-            <td><input type="text" name="care_goals_4"></td>
-            <td><input type="text" name="care_interv_4"></td>
-            <td><input type="text" name="care_eval_4"></td>
-            <td><input type="text" name="care_sign_4"></td>
-          </tr>
-          <tr>
-            <td><input type="time" name="care_time_5"></td>
-            <td><input type="text" name="care_diag_5"></td>
-            <td><input type="text" name="care_goals_5"></td>
-            <td><input type="text" name="care_interv_5"></td>
-            <td><input type="text" name="care_eval_5"></td>
-            <td><input type="text" name="care_sign_5"></td>
-          </tr>       
-       
+          </tr>  
         </tbody>
       </table>
       <div style="padding:6px 14px;">
@@ -980,7 +963,7 @@ select { cursor: pointer; }
 
 <script>
 /* ── Add Care Plan Row ── */
-let careRowCount = 5;
+let careRowCount = 3;
 function addCarePlanRow() {
   careRowCount++;
   const tbody = document.getElementById('carePlanBody');

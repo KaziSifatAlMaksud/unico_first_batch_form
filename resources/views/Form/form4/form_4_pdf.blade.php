@@ -133,17 +133,7 @@
 </head>
 <body>
 <div class="page">
-
-         @if($latestEntry)
-           <p>
-                @foreach($latestEntry->toArray() as $key => $value)
-                  
-                        <strong>{{ $key }} :</strong> {{ $value }}
-                 
-                @endforeach
-            </p>
-            @else <p>No data found.</p>
-         @endif
+{{ $latestEntry }}
   <!-- ═══ HEADER ═══ -->
   <div class="header">
     <div class="logo-block">
@@ -523,14 +513,21 @@
           <th class="sign-col">SIGN WITH ID</th>
         </tr>
       </thead>
-      <tbody>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tbody>
+          @forelse($latestEntry->care_plans ?? [] as $plan)
+              <tr>
+                  <td>{{ $plan->care_time ?? '-' }}</td>
+                  <td>{{ $plan->care_diag ?? '-' }}</td>
+                  <td>{{ $plan->care_goals ?? '-' }}</td>
+                  <td>{{ $plan->care_interv ?? '-' }}</td>
+                  <td>{{ $plan->care_eval ?? '-' }}</td>
+                  <td>{{ $plan->care_sign ?? '-' }}</td>
+              </tr>
+          @empty
+              <tr>
+                  <td colspan="6">No care plan found</td>
+              </tr>
+          @endforelse
       </tbody>
     </table>
   </div>

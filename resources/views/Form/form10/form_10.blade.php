@@ -7,7 +7,7 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --navy: #1a3a5c;
+  --navy: #207ba2;
   --navy-light: #eef3f8;
   --navy-mid: #2d5a8e;
   --border: #c8d4e0;
@@ -101,7 +101,7 @@ body {
 .patient-bar {
   background: #1c7da3;
   display: grid;
-  grid-template-columns: 1fr 200px;
+  grid-template-columns: .5fr 200px;
 }
 .pb-cell {
   padding: 4px 10px;
@@ -109,7 +109,7 @@ body {
   border-right: 1px solid rgba(255,255,255,0.2);
 }
 .pb-cell:last-child { border-right: none; }
-.pb-cell label { font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 700; text-transform: uppercase; white-space: nowrap; }
+.pb-cell label { font-size: 12px; color: rgba(255,255,255,0.85); font-weight: 700; text-transform: uppercase; white-space: nowrap; }
 .pb-cell input {
   background: rgba(255,255,255,0.15);
   border: 1px solid rgba(255,255,255,0.3);

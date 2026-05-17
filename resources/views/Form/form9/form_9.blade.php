@@ -7,7 +7,7 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --navy: #1a3a5c; --navy-light: #eef3f8; --navy-mid: #2d5a8e;
+  --navy: #1c7da3; --navy-light: #eef3f8; --navy-mid: #2d5a8e;
   --border: #c8d4e0; --border-light: #e2eaf2;
   --text: #1e2d3d; --text-muted: #5a7a9a;
   --bg: #f4f7fa; --white: #ffffff; --input-bg: #fafcff;
@@ -48,7 +48,29 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; backgr
 .plan-row input[type="text"] { height: 22px; padding: 1px 5px; font-size: 10.5px; border: 1px solid var(--border); border-radius: 3px; outline: none; }
 
 /* ── SECTION HEADER ── */
-.sec-hd { background: var(--navy); color: #fff; padding: 5px 12px; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; border-bottom: 1px solid var(--border); }
+.sec-hd {
+    background: var(--navy-light);
+    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border-light);
+    padding: 6px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+  .sec-hd::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 12px;
+    background: var(--navy-mid);
+    border-radius: 2px;
+  }
 
 /* ── INSIGHT ROWS ── */
 .insight-item { border-bottom: 1px solid var(--border-light); }
@@ -104,9 +126,10 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; backgr
 <body>
 <form id="mainForm" action="{{ route('form9.store') }}"   method="POST" enctype="multipart/form-data">
 @csrf
+ <h1 style="text-align: center; font-size: 15px; font-weight: bold;"> END-OF-LIFE CARE FORM (ELF) </h1>
 <div class="form-card">
 
-
+ 
 
   <!-- PATIENT BAR -->
   <div class="patient-bar">

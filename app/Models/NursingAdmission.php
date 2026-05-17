@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\CarePlan;
+
 class NursingAdmission extends Model
 {
     use HasFactory;
@@ -156,4 +158,9 @@ class NursingAdmission extends Model
         'anticoag' => 'array',
         'language' => 'array',
     ];
+
+    public function carePlans()
+    {
+        return $this->hasMany(CarePlan::class, 'admission_id');
+    }
 }

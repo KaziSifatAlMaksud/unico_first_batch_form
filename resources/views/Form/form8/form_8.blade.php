@@ -7,7 +7,7 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --navy: #1a3a5c; --navy-light: #eef3f8; --navy-mid: #2d5a8e;
+  --navy: #207ba2; --navy-light: #eef3f8; --navy-mid: #207ba2;
   --border: #c8d4e0; --border-light: #e2eaf2;
   --text: #1e2d3d; --text-muted: #5a7a9a;
   --bg: #f4f7fa; --white: #ffffff; --input-bg: #fafcff;
