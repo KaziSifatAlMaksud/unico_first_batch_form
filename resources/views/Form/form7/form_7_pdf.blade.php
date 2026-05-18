@@ -381,6 +381,8 @@
   </table>
 
   <div class="footer">AF/RF/ARF/v01/Jan2026 – AF 17</div>
+  <div class="footer">Print By: 'Employee Name', Employee ID, Designation | Printed on: {{ date('Y-m-d H:i:s') }} </div>
+
 
 </div>
 </body>

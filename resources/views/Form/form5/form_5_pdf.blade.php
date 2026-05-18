@@ -459,6 +459,8 @@
   </table>
 
   <div class="footer">NF/NAF/PIVC/v02/Apr2026– NF07</div>
+  <div class="footer">Print By: 'Employee Name', Employee ID, Designation | Printed on: {{ date('Y-m-d H:i:s') }} </div>
+
 
 </div>
 </body>

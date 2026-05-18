@@ -102,20 +102,20 @@
   .ft tr:nth-child(even) td { background: #fafafa; }
   .ft tr:nth-child(even) .rl { background: #ebebeb; }
 
-  .vitals-table th { background: #d0d0d0; font-weight: 700; font-size: 7pt; text-align: center; padding: 2px 3px; }
-  .vitals-table td { font-size: 7pt; height: 7mm; }
+  .vitals-table th { background: #d0d0d0; font-weight: 700; font-size: 7pt; text-align: center; padding: 1px 3px; }
+  .vitals-table td { font-size: 7pt; height: 5mm; }
   .vitals-table .param { font-weight: 700; background: #f0f0f0; width: 22%; }
 
   .lines-table th { background: #d0d0d0; font-weight: 700; font-size: 7pt; text-align: center; padding: 2px 3px; }
-  .lines-table td { font-size: 7pt; height: 6.5mm; }
+  .lines-table td { font-size: 7pt; height: 5mm; }
   .lines-table .dev { font-weight: 700; background: #f0f0f0; width: 22%; }
 
   .med-table th { background: #d0d0d0; font-weight: 700; font-size: 7pt; text-align: center; padding: 2px 3px; }
-  .med-table td { font-size: 7pt; height: 7mm; }
+  .med-table td { font-size: 7pt; height: 5mm; }
 
   .sign-table td { font-size: 7pt; padding: 3px 5px; border: 1px solid #000; }
   .sign-table .s-label { font-weight: 700; background: #f0f0f0; width: 30%; }
-  .sign-table .tall { height: 11mm; vertical-align: top; }
+  .sign-table .tall { height: 6mm; vertical-align: top; }
 
   .footer { margin-top: 3px; font-size: 6pt; color: #444; }
 
@@ -425,33 +425,33 @@
         <td class="rl" style="width:40%;">CBC/Renal/Electrolytes / ABG:</td>
         <td style="width:30%;">
           <span class="cb {{ $latestEntry->inv_cbc   === 'Done'    ? 'checked' : '' }}"></span>Done &nbsp;&nbsp;
-          <span class="cb {{ $latestEntry->inv_cbc_p === 'Pending' ? 'checked' : '' }}"></span>Pending
+         
         </td>
-        <td></td>
+        <td> <span class="cb {{ $latestEntry->inv_cbc_p === 'Pending' ? 'checked' : '' }}"></span>Pending</td>
       </tr>
       <tr>
         <td class="rl">ECG/Echocardiography:</td>
         <td>
           <span class="cb {{ $latestEntry->inv_ecg   === 'Done'    ? 'checked' : '' }}"></span>Done &nbsp;&nbsp;
-          <span class="cb {{ $latestEntry->inv_ecg_p === 'Pending' ? 'checked' : '' }}"></span>Pending
+          
         </td>
-        <td></td>
+        <td><span class="cb {{ $latestEntry->inv_ecg_p === 'Pending' ? 'checked' : '' }}"></span>Pending</td>
       </tr>
       <tr>
         <td class="rl">Imaging (CXR/CT):</td>
         <td>
           <span class="cb {{ $latestEntry->inv_img   === 'Done'    ? 'checked' : '' }}"></span>Done &nbsp;&nbsp;
-          <span class="cb {{ $latestEntry->inv_img_p === 'Pending' ? 'checked' : '' }}"></span>Pending
+          
         </td>
-        <td></td>
+        <td><span class="cb {{ $latestEntry->inv_img_p === 'Pending' ? 'checked' : '' }}"></span>Pending</td>
       </tr>
       <tr>
         <td class="rl">Special Labs (Lactate, Troponin, etc.):</td>
         <td>
           <span class="cb {{ $latestEntry->inv_spl   === 'Done'    ? 'checked' : '' }}"></span>Done &nbsp;&nbsp;
-          <span class="cb {{ $latestEntry->inv_spl_p === 'Pending' ? 'checked' : '' }}"></span>Pending
+         
         </td>
-        <td></td>
+        <td> <span class="cb {{ $latestEntry->inv_spl_p === 'Pending' ? 'checked' : '' }}"></span>Pending</td>
       </tr>
     </table>
   </div>
@@ -546,7 +546,7 @@
     <div class="sec-title">ADMISSION SUMMARY / PLAN</div>
     <table class="ft">
       <tr>
-        <td style="height:18mm; vertical-align:top;">{{ $latestEntry->admission_summary }}</td>
+        <td style="height:auto; vertical-align:top;">{{ $latestEntry->admission_summary }}</td>
       </tr>
     </table>
   </div>
@@ -586,6 +586,7 @@
   </table>
 
   <div class="footer">AF/ICF/IAN/v01/Jan2026 – AF03</div>
+   <div class="footer">Print By: 'Employee Name', Employee ID, Designation | Printed on: {{ date('Y-m-d H:i:s') }} </div>
 
 </div>
 </body>
