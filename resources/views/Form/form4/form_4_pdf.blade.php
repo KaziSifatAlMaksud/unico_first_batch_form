@@ -133,7 +133,7 @@
 </head>
 <body>
 <div class="page">
-{{ $latestEntry }}
+{{-- {{ $latestEntry }} --}}
   <!-- ═══ HEADER ═══ -->
   <div class="header">
     <div class="logo-block">

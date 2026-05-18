@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\AdmissionMedication;
 
 class AdmissionNoteIcu extends Model
 {
@@ -149,4 +150,8 @@ class AdmissionNoteIcu extends Model
         'care_order' => 'array',
         'risk' => 'array',
     ];
+    public function medications()
+    {
+        return $this->hasMany(AdmissionMedication::class, 'admission_id');
+    }
 }

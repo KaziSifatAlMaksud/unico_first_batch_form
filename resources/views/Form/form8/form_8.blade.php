@@ -112,7 +112,9 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; backgr
 </style>
 </head>
 <body>
-<form id="mainForm">
+<form id="mainForm" action="{{ route('form8.store') }}"   method="POST" enctype="multipart/form-data">
+  @csrf
+
 <div class="form-card">
 
   <!-- PATIENT BAR -->
@@ -347,10 +349,10 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; backgr
       </tr>
     </thead>
     <tbody id="medBody">
-      <tr><td><input type="text" name="med1_name"></td><td><input type="text" name="med1_dose"></td><td><input type="text" name="med1_route"></td><td><input type="text" name="med1_indication"></td><td><input type="text" name="med1_notes"></td></tr>
-      <tr><td><input type="text" name="med2_name"></td><td><input type="text" name="med2_dose"></td><td><input type="text" name="med2_route"></td><td><input type="text" name="med2_indication"></td><td><input type="text" name="med2_notes"></td></tr>
-      <tr><td><input type="text" name="med3_name"></td><td><input type="text" name="med3_dose"></td><td><input type="text" name="med3_route"></td><td><input type="text" name="med3_indication"></td><td><input type="text" name="med3_notes"></td></tr>
-      <tr><td><input type="text" name="med4_name"></td><td><input type="text" name="med4_dose"></td><td><input type="text" name="med4_route"></td><td><input type="text" name="med4_indication"></td><td><input type="text" name="med4_notes"></td></tr>
+      <tr><td><input type="text" name="med_name_1"></td><td><input type="text" name="med_dose_1"></td><td><input type="text" name="med_route_1"></td><td><input type="text" name="med_indication_1"></td><td><input type="text" name="med_notes_1"></td></tr>
+      <tr><td><input type="text" name="med_name_2"></td><td><input type="text" name="med_dose_2"></td><td><input type="text" name="med_route_2"></td><td><input type="text" name="med_indication_2"></td><td><input type="text" name="med_notes_2"></td></tr>
+      <tr><td><input type="text" name="med_name_3"></td><td><input type="text" name="med_dose_3"></td><td><input type="text" name="med_route_3"></td><td><input type="text" name="med_indication_3"></td><td><input type="text" name="med_notes_3"></td></tr>
+      <tr><td><input type="text" name="med_name_4"></td><td><input type="text" name="med_dose_4"></td><td><input type="text" name="med_route_4"></td><td><input type="text" name="med_indication_4"></td><td><input type="text" name="med_notes_4"></td></tr>
     </tbody>
   </table>
   <div style="padding:4px 10px;border-bottom:1px solid var(--border);">
@@ -439,7 +441,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; backgr
     <span class="footer-ref">AF/ICF/IAN/v01/Jan2026 – AF03</span>
     <div class="btn-group">
       <button type="button" class="btn btn-outline" onclick="resetForm()">Reset</button>
-      <button type="button" class="btn btn-primary" onclick="submitForm()">Save &amp; Submit</button>
+      <button type="button" class="btn btn-primary" onclick="confirmSubmit()">Save &amp; Submit</button>
     </div>
   </div>
 
@@ -454,17 +456,18 @@ function addMedRow() {
   const tbody = document.getElementById('medBody');
   const tr = document.createElement('tr');
   tr.innerHTML = `
-    <td><input type="text" name="med${medCount}_name"></td>
-    <td><input type="text" name="med${medCount}_dose"></td>
-    <td><input type="text" name="med${medCount}_route"></td>
-    <td><input type="text" name="med${medCount}_indication"></td>
-    <td><input type="text" name="med${medCount}_notes"></td>`;
+    <td><input type="text" name="med_name_${medCount}"></td>
+    <td><input type="text" name="med_dose_${medCount}"></td>
+    <td><input type="text" name="med_route_${medCount}"></td>
+    <td><input type="text" name="med_indication_${medCount}"></td>
+    <td><input type="text" name="med_notes_${medCount}"></td>`;
   tbody.appendChild(tr);
 }
-function submitForm() {
-  const t = document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
+
+function confirmSubmit() {
+    if (confirm("Are you sure you want to submit this form?")) {
+        document.getElementById("mainForm").submit();
+    }
 }
 function resetForm() {
   if (confirm('Reset all form fields?')) document.getElementById('mainForm').reset();

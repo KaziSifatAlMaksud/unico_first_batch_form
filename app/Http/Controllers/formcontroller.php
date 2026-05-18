@@ -13,6 +13,9 @@ use App\Models\AllergyRecord;
 use App\Models\EndOfLifeCareForm;
 use App\Models\PalliativeCareNote;
 use App\Models\CarePlan;
+use App\Models\AdmissionMedication;
+use App\Models\AdmissionNoteIcu;
+
 
 class FormController extends Controller
 {
@@ -354,6 +357,97 @@ class FormController extends Controller
         ]);
     }
 
+
+
+    public function store8(Request $request)
+    {
+        $data = $request->all();
+
+        $arrayFields = [
+            'location',
+            'source',
+            'reason',
+            'status',
+            'vent_mode',
+            'risk',
+            'care_order',
+            'gender',
+        ];
+
+        foreach ($arrayFields as $field) {
+            $data[$field] = $request->has($field)
+                ? json_encode($request->$field)
+                : null;
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Boolean fields (Yes/No or checked = 1)
+        |--------------------------------------------------------------------------
+        */
+        $booleanFields = [
+            'spont_breathing',
+            'intubated',
+            'tracheostomy',
+            'tv',
+            'allergy_yn',
+        ];
+
+        foreach ($booleanFields as $field) {
+            $data[$field] = $request->has($field) ? 1 : 0;
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Save Admission
+        |--------------------------------------------------------------------------
+        */
+        $admission = AdmissionNoteIcu::create($data);
+
+        /*
+        |--------------------------------------------------------------------------
+        | MEDICATIONS (Dynamic rows)
+        |--------------------------------------------------------------------------
+        */
+        foreach ($request->all() as $key => $value) {
+
+            if (preg_match('/med_name_(\d+)/', $key, $matches)) {
+
+                $i = $matches[1];
+
+                // skip empty medication rows
+                if (
+                    empty($request->input("med_name_$i")) &&
+                    empty($request->input("med_dose_$i")) &&
+                    empty($request->input("med_route_$i")) &&
+                    empty($request->input("med_indication_$i")) &&
+                    empty($request->input("med_notes_$i"))
+                ) {
+                    continue;
+                }
+
+                AdmissionMedication::create([
+                    'admission_id'   => $admission->id,
+                    'med_name'       => $request->input("med_name_$i"),
+                    'med_dose'       => $request->input("med_dose_$i"),
+                    'med_route'      => $request->input("med_route_$i"),
+                    'med_indication' => $request->input("med_indication_$i"),
+                    'med_notes'      => $request->input("med_notes_$i"),
+                ]);
+            }
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Return View (PDF or preview)
+        |--------------------------------------------------------------------------
+        */
+        return view('Form.form8.form_8_pdf', [
+            'latestEntry' => AdmissionNoteIcu::with('medications')
+                ->latest()
+                ->first()
+        ]);
+    }
 
 
 
@@ -920,6 +1014,16 @@ class FormController extends Controller
         $latestEntry = NursingAdmission::with('carePlans')->latest()->first();
 
         return view('Form.form4.form_4_pdf', [
+            'latestEntry' => $latestEntry
+        ]);
+    }
+
+    
+    public function print_view8()
+    {
+       
+        $latestEntry = PressureSoreForm::latest()->first();
+        return view('Form.form8.form_8_pdf', [
             'latestEntry' => $latestEntry
         ]);
     }
