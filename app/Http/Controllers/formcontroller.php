@@ -78,6 +78,7 @@ class FormController extends Controller
         $data['feeding_mode'] = $request->input('feeding_mode');
         $data['chewing'] = $request->input('chewing');
         $data['activity'] = $request->input('activity');
+        $data['hepatic_specify'] = $request->input('hepatic_specify');
 
         // Convert arrays to JSON (VERY IMPORTANT)
         $data['gender'] = json_encode($data['gender']);
@@ -725,17 +726,27 @@ class FormController extends Controller
         $photo2 = null;
         $photo3 = null;
 
-        if ($request->hasFile('file1')) {
-            $photo1 = $request->file('file1')->store('pressure_sore', 'public');
+        // Upload Photo 1
+        $photo1 = null;
+        if ($request->hasFile('wound_photo_1')) {
+            $photo1 = $request->file('wound_photo_1')
+                ->store('wound_photos', 'public');
         }
 
-        if ($request->hasFile('file2')) {
-            $photo2 = $request->file('file2')->store('pressure_sore', 'public');
+        // Upload Photo 2
+        $photo2 = null;
+        if ($request->hasFile('wound_photo_2')) {
+            $photo2 = $request->file('wound_photo_2')
+                ->store('wound_photos', 'public');
         }
 
-        if ($request->hasFile('file3')) {
-            $photo3 = $request->file('file3')->store('pressure_sore', 'public');
+        // Upload Photo 3
+        $photo3 = null;
+        if ($request->hasFile('wound_photo_3')) {
+            $photo3 = $request->file('wound_photo_3')
+                ->store('wound_photos', 'public');
         }
+
 
        $assessment = PressureSoreForm::create([
 

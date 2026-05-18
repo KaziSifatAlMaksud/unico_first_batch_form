@@ -521,7 +521,7 @@
   <div class="wound-section">
     <div class="wound-cell">
       <div class="wound-upload" id="wu1">
-        <input type="file" id="file1" accept="image/*" onchange="previewWound(this,'wu1')">
+        <input type="file" id="file1" accept="image/*" name="wound_photo_1" onchange="previewWound(this,'wu1')">
         <div class="wu-icon">📷</div>
         <div class="wu-text">Click to upload photo</div>
         <img id="img1" alt="Wound photo 1">
@@ -530,7 +530,7 @@
     </div>
     <div class="wound-cell">
       <div class="wound-upload" id="wu2">
-        <input type="file" id="file2" accept="image/*" onchange="previewWound(this,'wu2')">
+        <input type="file" id="file2" accept="image/*" name="wound_photo_2"  onchange="previewWound(this,'wu2')">
         <div class="wu-icon">📷</div>
         <div class="wu-text">Click to upload photo</div>
         <img id="img2" alt="Wound photo 2">
@@ -539,7 +539,7 @@
     </div>
     <div class="wound-cell">
       <div class="wound-upload" id="wu3">
-        <input type="file" id="file3" accept="image/*" onchange="previewWound(this,'wu3')">
+        <input type="file" id="file3" accept="image/*" name="wound_photo_3" onchange="previewWound(this,'wu3')">
         <div class="wu-icon">📷</div>
         <div class="wu-text">Click to upload photo</div>
         <img id="img3" alt="Wound photo 3">

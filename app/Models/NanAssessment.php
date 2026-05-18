@@ -40,6 +40,7 @@ class NanAssessment extends Model
         'cardiac_specify',
         'renal_specify',
         'nutr_diag_other',
+        'hepatic_specify',
 
         'gi_overall',
         'appetite',

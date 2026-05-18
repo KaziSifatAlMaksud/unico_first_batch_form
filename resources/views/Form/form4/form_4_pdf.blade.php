@@ -514,20 +514,20 @@
         </tr>
       </thead>
         <tbody>
-          @forelse($latestEntry->care_plans ?? [] as $plan)
-              <tr>
-                  <td>{{ $plan->care_time ?? '-' }}</td>
-                  <td>{{ $plan->care_diag ?? '-' }}</td>
-                  <td>{{ $plan->care_goals ?? '-' }}</td>
-                  <td>{{ $plan->care_interv ?? '-' }}</td>
-                  <td>{{ $plan->care_eval ?? '-' }}</td>
-                  <td>{{ $plan->care_sign ?? '-' }}</td>
-              </tr>
-          @empty
-              <tr>
-                  <td colspan="6">No care plan found</td>
-              </tr>
-          @endforelse
+            @forelse($latestEntry->carePlans as $plan)
+                <tr>
+                    <td>{{ $plan->care_time }}</td>
+                    <td>{{ $plan->care_diag }}</td>
+                    <td>{{ $plan->care_goals }}</td>
+                    <td>{{ $plan->care_interv }}</td>
+                    <td>{{ $plan->care_eval }}</td>
+                    <td>{{ $plan->care_sign }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6">No data found</td>
+                </tr>
+            @endforelse
       </tbody>
     </table>
   </div>

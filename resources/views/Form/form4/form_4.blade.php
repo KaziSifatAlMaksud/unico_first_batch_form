@@ -949,7 +949,7 @@ select { cursor: pointer; }
 
   <!-- ══ FOOTER ══ -->
   <div class="form-footer">
-    <span class="footer-ref">NF/NAF/NAA/v01/Feb2026– NF01</span>
+    <span class="footer-ref"></span>
     <div class="btn-group">
       <button type="button" class="btn btn-outline" onclick="resetForm()">Reset</button>
       <button type="submit" class="btn btn-primary" >Save &amp; Submit</button>

@@ -175,6 +175,14 @@
     color: #333;
   }
 
+  .photo-area img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
   /* ── Print ── */
   @media print {
     body { background: none; padding: 0; margin: 0; }
@@ -479,20 +487,36 @@
   </div>
 
   <!-- ═══ PHOTOS ═══ -->
-  <div class="photo-row">
-    <div class="photo-box">
-      <div class="photo-area"></div>
-      <div class="photo-caption">Wound Photo (In &lt;3 months)</div>
+    <div class="photo-row">
+      
+      <div class="photo-box">
+        <div class="photo-area">
+          @if($latestEntry->wound_photo_1)
+            <img src="{{ asset('storage/' . $latestEntry->wound_photo_1) }}" alt="Photo 1">
+          @endif
+        </div>
+        <div class="photo-caption">Wound Photo (In &lt;3 months)</div>
+      </div>
+
+      <div class="photo-box">
+        <div class="photo-area">
+          @if($latestEntry->wound_photo_2)
+            <img src="{{ asset('storage/' . $latestEntry->wound_photo_2) }}" alt="Photo 2">
+          @endif
+        </div>
+        <div class="photo-caption">Wound Photo (During last dressing)</div>
+      </div>
+
+      <div class="photo-box">
+        <div class="photo-area">
+          @if($latestEntry->wound_photo_3)
+            <img src="{{ asset('storage/' . $latestEntry->wound_photo_3) }}" alt="Photo 3">
+          @endif
+        </div>
+        <div class="photo-caption">Wound Photo (Current)</div>
+      </div>
+
     </div>
-    <div class="photo-box">
-      <div class="photo-area"></div>
-      <div class="photo-caption">Wound Photo (During last dressing)</div>
-    </div>
-    <div class="photo-box">
-      <div class="photo-area"></div>
-      <div class="photo-caption">Wound Photo (Current)</div>
-    </div>
-  </div>
 
   <!-- ═══ SIGN OFF ═══ -->
   <table class="signoff-table">

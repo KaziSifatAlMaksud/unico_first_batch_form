@@ -118,7 +118,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; backgrou
 <body>
 <form id="mainForm" action="{{ route('form6.store') }}"   method="POST" enctype="multipart/form-data">
 @csrf
-<H1 style="text-align: center; font-size: 15px; font-weight: bold;"> NUTRITIONAL ASSESSMENT FOR ADULT – NURSING (NAN) </H1>
+
 <div class="form-card">
 
   <!-- PATIENT BAR -->
@@ -222,6 +222,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; backgrou
         <label class="cblabel"><input type="checkbox" name="nutr_diag" value="Renal"> Renal:</label>
         <input type="text" name="renal_specify" style="width:100px;height:22px;border:none;border-bottom:1px solid var(--border);background:transparent;font-size:11px;outline:none;">
         <label class="cblabel"><input type="checkbox" name="nutr_diag" value="Hepatic"> Hepatic:</label>
+        <input type="text" name="hepatic_specify" style="width:100px;height:22px;border:none;border-bottom:1px solid var(--border);background:transparent;font-size:11px;outline:none;">
         <label class="cblabel"><input type="checkbox" name="nutr_diag" value="Others"> Others:</label>
         <input type="text" name="nutr_diag_other" style="width:120px;height:22px;border:none;border-bottom:1px solid var(--border);background:transparent;font-size:11px;outline:none;">
       </div>
