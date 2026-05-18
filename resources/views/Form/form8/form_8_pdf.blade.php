@@ -128,7 +128,7 @@
 </head>
 <body>
 <div class="page">
-
+ {{ $latestEntry }}
   {{-- ═══ HEADER ═══ --}}
   <div class="header">
     <div class="logo-block">
@@ -470,17 +470,23 @@
         </tr>
       </thead>
       <tbody>
-      @if(!empty($latestEntry) && $latestEntry->medications)
-          @foreach($latestEntry->medications as $med)
-              <tr>
-                  <td>{{ $med->med_name ?? '-' }}</td>
-                  <td>{{ $med->med_dose ?? '-' }}</td>
-                  <td>{{ $med->med_route ?? '-' }}</td>
-                  <td>{{ $med->med_indication ?? '-' }}</td>
-                  <td>{{ $med->med_notes ?? '-' }}</td>
-              </tr>
-          @endforeach
-      @endif
+
+        {{$latestEntry?->medications  }}
+
+      @forelse($latestEntry?->medications ?? [] as $plan)
+          <tr>
+              <td>{{ $plan->med_name ?? '-' }}</td>
+              <td>{{ $plan->med_dose ?? '-' }}</td>
+              <td>{{ $plan->med_route ?? '-' }}</td>
+              <td>{{ $plan->med_indication ?? '-' }}</td>
+              <td>{{ $plan->med_notes ?? '-' }}</td>
+          </tr>
+      @empty
+          <tr>
+              <td colspan="5">No medications found</td>
+          </tr>
+      @endforelse
+          
       </tbody>
     </table>
   </div>

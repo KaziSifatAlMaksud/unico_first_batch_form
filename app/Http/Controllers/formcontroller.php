@@ -1021,11 +1021,9 @@ class FormController extends Controller
     
     public function print_view8()
     {
-       
-        $latestEntry = PressureSoreForm::latest()->first();
-        return view('Form.form8.form_8_pdf', [
-            'latestEntry' => $latestEntry
-        ]);
+        $latestEntry = AdmissionNoteIcu::with('medications')->latest()->first();
+
+        return view('Form.form8.form_8_pdf', compact('latestEntry'));
     }
 
     public function print_view10()

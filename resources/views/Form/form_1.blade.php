@@ -172,13 +172,22 @@
           <label class="cblabel"><input type="checkbox" name="symptoms_rest[]" value="Syncope"> Syncope</label>
           <label class="cblabel"><input type="checkbox" name="symptoms_rest[]" value="Dizziness"> Dizziness</label>
           <label class="cblabel"><input type="checkbox" name="symptoms_rest[]" value="None"> None</label>
-          <label class="cblabel"><input type="checkbox" name="symptoms_rest[]" value="Others"> Others</label>
-          <input type="text" name="symptoms_rest_others" class="inp-lg" placeholder="If others, specify here">
+          <label>
+              <input type="checkbox" onclick="showother1(this)">
+              Others
+            </label>
+
+            <input id="symptoms_rest_others" type="text"
+                  name="symptoms_rest_others"
+                  placeholder="If others, specify"
+                  style="display:none;">
         </div>
       </div>
 
     </div>
   </div>
+
+
 
   <!-- ══════════════════════════════════════════════════════════
        3. VULNERABILITY ASSESSMENT
@@ -219,8 +228,13 @@
           <label class="cblabel"><input type="checkbox" name="comorbidity[]" value="Stroke / TIA"> Stroke / TIA</label>
           <label class="cblabel"><input type="checkbox" name="comorbidity[]" value="Peripheral vascular disease"> Peripheral vascular disease</label>
           <label class="cblabel"><input type="checkbox" name="comorbidity[]" value="COPD / asthma"> COPD / asthma</label>
-          <label class="cblabel"><input type="checkbox" name="comorbidity[]" value="Obesity"> Obesity (BMI
-            <input type="number" name="obesity_bmi" class="inp-sm" placeholder="BMI" style="width:50px;margin-left:3px;">)</label>
+          <label class="cblabel"><input type="checkbox" name="comorbidity[]" value="Obesity" onclick="showother2(this)"> Obesity (BMI
+             <input type="number"
+                name="obesity_bmi"
+                id="obesity_bmi"
+                class="inp-sm"
+                placeholder="BMI"
+                style="width:50px; margin-left:5px; display:none;">)</label>
         </div>
       </div>
       <div class="form-row">
@@ -720,7 +734,16 @@
 </form>
 
 {{-- <div class="toast" id="toast">✓ Form submitted successfully!</div> --}}
-
+<script>
+function showother1(el){
+  const box = document.getElementById('symptoms_rest_others');
+  box.style.display = el.checked ? 'block' : 'none';
+}
+function showother2(el){
+  const box = document.getElementById('obesity_bmi');
+  box.style.display = el.checked ? 'block' : 'none';
+}
+</script>
 <script>
   /* ── Wells DVT Score ── */
 

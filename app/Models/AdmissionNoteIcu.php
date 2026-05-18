@@ -115,8 +115,6 @@ class AdmissionNoteIcu extends Model
         'inv_spl',
         'inv_spl_p',
 
-        // Medications
-        'medications',
 
         // Care Orders
         'care_order',
@@ -145,11 +143,6 @@ class AdmissionNoteIcu extends Model
         'verified_dt',
     ];
 
-    protected $casts = [
-        'medications' => 'array',
-        'care_order' => 'array',
-        'risk' => 'array',
-    ];
     public function medications()
     {
         return $this->hasMany(AdmissionMedication::class, 'admission_id');

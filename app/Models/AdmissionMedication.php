@@ -25,8 +25,9 @@ class AdmissionMedication extends Model
     /**
      * Relationship: Medication belongs to an Admission
      */
+
     public function admission()
     {
-        return $this->belongsTo(AdmissionNoteIcu::class, 'admission_id');
+         return $this->hasMany(AdmissionMedication::class, 'admission_id');
     }
 }
