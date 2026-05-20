@@ -6,7 +6,7 @@ use App\Http\Controllers\DoctorController;
 
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\FormController;
-
+use App\Http\Controllers\PatientRegistrationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +19,11 @@ use App\Http\Controllers\FormController;
 */
 
 
+Route::get('/patientregistration', function () { return view('PatientRegistration.index');})->name('patient_registration');
+
+
+Route::post('/patient-registration/store', [PatientRegistrationController::class, 'store'])
+    ->name('patient.registration.store');
 
 Route::get('/form_1', function () { return view('Form.form_1');})->name('form1');
 Route::post('/form1/store', [FormController::class, 'store1'])->name('store_admission');
