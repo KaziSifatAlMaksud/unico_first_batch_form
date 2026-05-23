@@ -1,22 +1,22 @@
 /* ════════════════════════════════════════
    STEP Married
 ════════════════════════════════════════ */
-    const marital = document.getElementById('marital');
-                const spouseField = document.getElementById('spouseField');
-                const spouseName = document.getElementById('spouseName');
+    // const marital = document.getElementById('marital');
+    //             const spouseField = document.getElementById('spouseField');
+    //             const spouseName = document.getElementById('spouseName');
 
-                marital.addEventListener('change', function () {
+    //             marital.addEventListener('change', function () {
 
-                  if (this.value === 'Married') {
-                    spouseField.style.display = 'block';
-                    spouseName.required = true;
-                  } else {
-                    spouseField.style.display = 'none';
-                    spouseName.required = false;
-                    spouseName.value = '';
-                  }
+    //               if (this.value === 'Married') {
+    //                 spouseField.style.display = 'block';
+    //                 spouseName.required = true;
+    //               } else {
+    //                 spouseField.style.display = 'none';
+    //                 spouseName.required = false;
+    //                 spouseName.value = '';
+    //               }
 
-                });
+    //             });
 /* ════════════════════════════════════════
    STEP NAVIGATION
 ════════════════════════════════════════ */

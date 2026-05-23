@@ -26,7 +26,21 @@
         position: relative;
         }
 
-      
+      /* Default (desktop) */
+    .logo-icon1 {
+        max-width: 140px;
+        height: auto;
+        margin-bottom: 70px;
+        border-radius: 10%;
+    }
+
+    /* Small devices (phones) */
+    @media (max-width: 576px) {
+        .logo-icon1 {
+            max-width: 90px;
+            margin-bottom: 30px;
+        }
+    }
 
     /* ── Animated background blobs ── */
     body::before, body::after {
@@ -204,9 +218,10 @@
   }
 
   .photo-upload-card {
-    flex-direction: column;
+    flex-direction: row !important;
     align-items: flex-start !important;
     gap: 16px !important;
+    width: auto;
   }
 }
 

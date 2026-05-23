@@ -16,21 +16,17 @@ class PatientRegistrationController extends Controller
             'full_name'         => 'required|string|max:255',
             'mother_name'       => 'required|string|max:255',
             'father_name'       => 'required|string|max:255',
-
             'religion'          => 'required|string|max:100',
             'gender'            => 'required|string|max:20',
-
             'marital_status'    => 'required|string',
-
-            'spouse_name'       => 'nullable|string|max:255',
-
-            'mobile'            => 'required|string|max:20',
-            'email'             => 'required|email|max:255',
-
+            // 'spouse_name'       => 'nullable|string|max:255',
+            'mobile'            => 'required|numeric|digits:11',
+            'email'             => 'nullable|email|max:255',
             'district'          => 'required|string|max:255',
             'thana'             => 'required|string|max:255',
             'address'           => 'required|string',
-
+            'ec_name'           => 'required|string|max:255',
+            'ec_mobile'         => 'required|numeric|digits:11',
             'heard_about_us'    => 'required|string|max:255',
             'patient_category'  => 'required|string|max:255',
         ]);
@@ -38,15 +34,15 @@ class PatientRegistrationController extends Controller
 
 
         // spouse validation
-        if ($request->marital_status == 'Married' && empty($request->spouse_name)) {
+        // if ($request->marital_status == 'Married' && empty($request->spouse_name)) {
 
-            return response()->json([
-                'status' => false,
-                'errors' => [
-                    'spouse_name' => ['Spouse name is required for married patients.']
-                ]
-            ], 422);
-        }
+        //     return response()->json([
+        //         'status' => false,
+        //         'errors' => [
+        //             'spouse_name' => ['Spouse name is required for married patients.']
+        //         ]
+        //     ], 422);
+        // }
 
 
 
@@ -78,7 +74,7 @@ class PatientRegistrationController extends Controller
         $patient->dob              = $request->dob;
 
         $patient->marital_status   = $request->marital_status;
-        $patient->spouse_name      = $request->spouse_name;
+        // $patient->spouse_name      = $request->spouse_name;
 
         $patient->mobile           = $request->mobile;
         $patient->email            = $request->email;
@@ -86,15 +82,18 @@ class PatientRegistrationController extends Controller
         $patient->district         = $request->district;
         $patient->thana            = $request->thana;
         $patient->address          = $request->address;
+        $patient->ec_name          = $request->ec_name;
+        $patient->ec_mobile        = $request->ec_mobile;
 
         $patient->heard_about_us   = $request->heard_about_us;
         $patient->patient_category = $request->patient_category;
 
-        $patient->save();
+         $patient->save();
 
 
-        return view('PatientRegistration.index', [
-            'success' => 'Patient registration successful.'
+        return response()->json([
+            'message' => 'Patient registered successfully!',
+            'id' => $patient->id
         ]);
     }
 }

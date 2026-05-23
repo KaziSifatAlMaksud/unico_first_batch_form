@@ -24,16 +24,15 @@
               <img class="contact-header__bg" id="bgImage" src="{{ asset('assets/img/header-bg.webp') }}" alt="Header background" />
 
           <div class="contact-header__content col-12 col-md-7 col-lg-6">
-            <nav class="contact-header__breadcrumb">
-              <a href="#">Home</a>
-              <span class="sep">•</span>
-              <span class="active">Pat. Registration</span>
-            </nav>
-
+           
+           <img src="{{ asset('assets/img/unico_icon.jpg') }}"
+            alt="Unico Hospital Logo" class="logo-icon1"
+            />
+                
             <h1 class="contact-header__title">Patient Registration</h1>
             <p class="contact-header__desc">
-              Get in touch with Unico Hospital for all your healthcare needs.
-              We're here to assist you with any inquiries or support you may require.
+              Complete the temporary registration form before visiting Unico Hospital.
+Your information will be saved securely to help speed up the check-in process at the reception desk.
             </p>
           </div>
         </div> 
@@ -74,7 +73,7 @@
 
              <div class="col-md-6"> 
 
-              <div class="section-heading ">
+              <div class="section-heading">
                 <div class="section-icon" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);">
                   <i class="fa-solid fa-camera"></i>
                 </div>
@@ -84,28 +83,28 @@
                 </div>
               </div>
 
-              <div class="photo-upload-card d-flex align-items-center gap-4" id="photoUploadCard">
+              <div class="photo-upload-card d-flex align-items-center" id="photoUploadCard">
                 <!-- Circular preview -->
-                 <div class="row">
-                    <div class="col-12 ">
+                 <div class="row justify-content-center align-items-center">
+                    <div class="col-5">
                          <div class="photo-preview-ring" id="photoRing" onclick="document.getElementById('photoInput').click()">
                           <i class="fas fa-user placeholder-icon" id="photoPlaceholderIcon"></i>
                           <img id="photoPreviewImg" src="" alt="Patient photo preview" />
                           <div class="overlay-hover"><i class="fas fa-camera"></i></div>
                         </div>
                     </div>
-                      <div class="col-12 mt-3">
+                      <div class="col-7 ">
                         <!-- Info + buttons -->
                           <div class="photo-upload-body">
                             <h6>Upload Patient Photo <em class="text-danger">*</em></h6> 
                             <p>JPG, PNG or WEBP · Max 5 MB · Passport or ID style recommended</p>
                             <div class="d-flex align-items-center flex-wrap gap-2">
-                              <button class="upload-trigger-btn" onclick="document.getElementById('photoInput').click()">
+                              <a href="javascript:void(0);" style="text-decoration: none;" class="upload-trigger-btn" onclick="document.getElementById('photoInput').click()">
                                 <i class="fas fa-upload"></i> Choose Photo
-                              </button>
-                              <button class="remove-photo-btn" id="removePhotoBtn" onclick="removePhoto()">
+                              </a>
+                              <a href="javascript:void(0);" style="text-decoration: none;" class="remove-photo-btn" id="removePhotoBtn" onclick="removePhoto()">
                                 <i class="fas fa-trash-alt"></i> Remove
-                              </button>
+                              </a>
                             </div>
                             <div class="photo-file-name" id="photoFileName"></div>
                           </div>
@@ -180,6 +179,8 @@
                             class="form-control"
                             id="age_month"
                             name="age_month"
+                             min="0"
+                              max="12"
                             placeholder="MM">
 
                         <span class="input-group-text">D</span>
@@ -188,6 +189,8 @@
                             class="form-control"
                             id="age_day"
                             name="age_day"
+                            min="0"
+                            max="31"
                             placeholder="DD">
 
                      
@@ -209,18 +212,54 @@
 
     
                
-                <div class="col-md-4 col-lg-3">
+                <div class="col-md-7 col-lg-5">
                   <label class="form-label">Religion</label> <em class="text-danger">*</em>
-                  <select class="form-select" id="religion" name="religion">
+                    <div class="gender-group d-flex gap-3 flex-wrap">
+                      <div class="gender-card">
+                        <input type="radio" name="religion" id="rm" value="Islam">
+                        <label for="rm">
+                            <i class="fa-solid fa-star-and-crescent"></i> Islam
+                        </label>
+                      </div>
+
+                      <div class="gender-card">
+                          <input type="radio" name="religion" id="rh" value="Hindu">
+                          <label for="rh">
+                              <i class="fa-solid fa-om"></i> Hindu
+                          </label>
+                      </div>
+                      <div class="gender-card">
+                          <input type="radio" name="religion" id="rc" value="Christian">
+                          <label for="rc">
+                              <i class="fa-solid fa-cross"></i> Christian
+                          </label>
+                      </div>  
+                      <div class="gender-card">
+                          <input type="radio" name="religion" id="rb" value="Buddha">
+                          <label for="rb">
+                              <i class="fa-solid fa-dharmachakra"></i> Buddha
+                          </label>
+                      </div> 
+
+                      <div class="gender-card">
+                          <input type="radio" name="religion" id="ro" value="Other">
+                          <label for="ro">
+                              <i class="fa-solid fa-hands-praying"></i> Other
+                          </label>
+                      </div>
+                    <small class="text-danger error-text" id="religion_error"></small>
+                  </div>
+                  {{-- <select class="form-select" id="religion" name="religion">                    
                     <option value="">Select religion</option>
-                    <option>Muslim</option>
+                    <option>Islam</option>
                     <option>Hindu</option>
                     <option>Christian</option>
                     <option>Other</option>
-                  </select>
+                  </select> --}}
                 <small class="text-danger error-text" id="religion_error"></small>
                 </div>
-                <div class="col-md-8 col-lg-6">
+
+                <div class="col-md-5 col-lg-4">
                   <label class="form-label">Gender</label> <em class="text-danger">*</em>
                  <div class="gender-group d-flex gap-3 flex-wrap">
 
@@ -229,7 +268,7 @@
                         <label for="gm">
                             <i class="fa-solid fa-mars"></i> Male
                         </label>
-                    </div>
+                      </div>
 
                       <div class="gender-card">
                           <input type="radio" name="gender" id="gf" value="Female">
@@ -248,36 +287,69 @@
                   </div>
                 </div>
                
-              <div class="col-md-4 col-lg-3">
+              <div class="col-md-6 col-lg-6">
                 <label class="form-label">Marital Status</label>
                 <em class="text-danger">*</em> 
+                      <div class="gender-group d-flex gap-3 flex-wrap">
 
-                <select class="form-select" id="marital" name="marital_status">
+                          <div class="gender-card">
+                            <input type="radio" name="marital_status" id="ms1" value="Single">
+                            <label for="ms1">
+                              <i class="fa-solid fa-user"></i> Single
+                            </label>
+                          </div>
+
+                          <div class="gender-card">
+                            <input type="radio" name="marital_status" id="ms2" value="Married">
+                            <label for="ms2">
+                              <i class="fa-solid fa-ring"></i> Married
+                            </label>
+                          </div>
+
+                          <div class="gender-card">
+                            <input type="radio" name="marital_status" id="ms3" value="Divorced">
+                            <label for="ms3">
+                              {{-- <i class="fa-solid fa-heart-crack"></i> --}}
+                               Divorced
+                            </label>
+                          </div>
+
+                          <div class="gender-card">
+                            <input type="radio" name="marital_status" id="ms4" value="Widowed">
+                            <label for="ms4">
+                              {{-- <i class="fa-solid fa-cross"></i>  --}}
+                              Widowed
+                            </label>
+                          </div>
+
+                          <small class="text-danger error-text" id="marital_error"></small>
+                        </div>
+                {{-- <select class="form-select" id="marital" name="marital_status">
                   <option value="">Select status</option>
                   <option value="Single">Single</option>
                   <option value="Married">Married</option>
                   <option value="Others">Others</option>
-                </select>
-                <small class="text-danger error-text" id="marital_error"></small>
+                </select> --}}
+                {{-- <small class="text-danger error-text" id="marital_error"></small> --}}
               </div>
 
               <!-- Spouse Name Field -->
-              <div class="col-md-4 col-lg-3" id="spouseField" style="display: none;">
-                <label class="form-label">Spouse Name</label>
+                {{-- <div class="col-md-4 col-lg-3" id="spouseField" style="display: none;">
+                  <label class="form-label">Spouse Name</label>
 
-                <div class="input-group">
-                  <span class="input-group-text">
-                    <i class="fa-regular fa-user"></i>
-                  </span>
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="fa-regular fa-user"></i>
+                    </span>
 
-                  <input type="text"
-                        class="form-control"
-                        id="spouseName"
-                        name="spouse_name"
-                        placeholder="e.g. John Doe">
-                </div>
-                <small class="text-danger error-text" id="spouse_name_error"></small>
-              </div>
+                    <input type="text"
+                          class="form-control"
+                          id="spouseName"
+                          name="spouse_name"
+                          placeholder="e.g. John Doe">
+                  </div>
+                  <small class="text-danger error-text" id="spouse_name_error"></small>
+                </div> --}}
                 <div class="section-heading">
                 <div class="section1-icon"><i class="fa-solid fa-user"></i></div>
                 <div>
@@ -286,32 +358,16 @@
                 </div>
               </div>
 
-                <div class="col-md-4 col-lg-3">
-                  <label class="form-label">Mobile Number</label> <em class="text-danger">*</em> 
+               <div class="col-md-12 col-lg-12">
+                  <label class="form-label">Address</label> <em class="text-danger">*</em>
                   <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-phone"></i></span>
-                    <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="e.g. 01712345678">
+                    <span class="input-group-text"><i class="bi bi-house"></i></span>
+                    <textarea class="form-control" id="address" name="address" placeholder="e.g. 123 Main Street" ></textarea>
+                    <small class="text-danger error-text" id="address_error"></small>
                   </div>
-                  <small class="text-danger error-text" id="mobile_error"></small>
                 </div>
-                <!-- <div class="col-md-4 col-lg-3">
-                  <label class="form-label">Country</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="fa-regular fa-flag"></i></span>
-                    <input type="text" class="form-control" id="country" name="country" placeholder="e.g. Bangladesh" required>
-                  </div>
-                </div> -->
-              <!-- Email -->
-                <div class="col-md-4 col-lg-3">
-                <label class="form-label">Email</label> <em class="text-danger">*</em>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="e.g. john.doe@example.com">
-                </div>
-                <small class="text-danger error-text" id="email_error"></small>
-                </div>
-                
-                <div class="col-md-4 col-lg-3">
+
+                 <div class="col-md-4 col-lg-3">
                     <label class="form-label">District/City</label> <em class="text-danger">*</em>
 
                     <select class="form-select" id="district" name="district">
@@ -391,57 +447,59 @@
 
                 
                    
-
-                        <select class="form-select" id="thana" name="thana">
-                            <option value="">Select Thana</option>
-
-                            <!-- Dhaka Thanas -->
-                            <option value="Adabor">Adabor</option>
-                            <option value="Badda">Badda</option>
-                            <option value="Banani">Banani</option>
-                            <option value="Bangshal">Bangshal</option>
-                            <option value="Cantonment">Cantonment</option>
-                            <option value="Chawkbazar">Chawkbazar</option>
-                            <option value="Demra">Demra</option>
-                            <option value="Dhanmondi">Dhanmondi</option>
-                            <option value="Gendaria">Gendaria</option>
-                            <option value="Gulshan">Gulshan</option>
-                            <option value="Hazaribagh">Hazaribagh</option>
-                            <option value="Jatrabari">Jatrabari</option>
-                            <option value="Kadamtali">Kadamtali</option>
-                            <option value="Kafrul">Kafrul</option>
-                            <option value="Kamrangirchar">Kamrangirchar</option>
-                            <option value="Khilgaon">Khilgaon</option>
-                            <option value="Khilkhet">Khilkhet</option>
-                            <option value="Kotwali">Kotwali</option>
-                            <option value="Lalbagh">Lalbagh</option>
-                            <option value="Mirpur">Mirpur</option>
-                            <option value="Mohammadpur">Mohammadpur</option>
-                            <option value="Motijheel">Motijheel</option>
-                            <option value="New Market">New Market</option>
-                            <option value="Pallabi">Pallabi</option>
-                            <option value="Paltan">Paltan</option>
-                            <option value="Ramna">Ramna</option>
-                            <option value="Rampura">Rampura</option>
-                            <option value="Sabujbagh">Sabujbagh</option>
-                            <option value="Shah Ali">Shah Ali</option>
-                            <option value="Shahbagh">Shahbagh</option>
-                            <option value="Sher-e-Bangla Nagar">Sher-e-Bangla Nagar</option>
-                            <option value="Shyampur">Shyampur</option>
-                            <option value="Sutrapur">Sutrapur</option>
-                            <option value="Tejgaon">Tejgaon</option>
-                            <option value="Tejgaon Industrial Area">Tejgaon Industrial Area</option>
-                            <option value="Turag">Turag</option>
-                            <option value="Uttara East">Uttara East</option>
-                            <option value="Uttara West">Uttara West</option>
-                            <option value="Uttarkhan">Uttarkhan</option>
-                            <option value="Vatara">Vatara</option>
-                            <option value="Wari">Wari</option>
-                        </select>
+                  <select class="form-select" id="thana" name="thana">
+                      <option value="">Select Thana</option>
+                  </select>
                    
 
                     <small class="text-danger error-text" id="thana_error"></small>
                 </div>
+
+                <div class="col-md-4 col-lg-3">
+                  <label class="form-label">Mobile Number</label> <em class="text-danger">*</em> 
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-phone"></i></span>
+                    <input type="number" class="form-control" id="mobile" name="mobile" placeholder="e.g. 01712345678">
+                  </div>
+                  <small class="text-danger error-text" id="mobile_error"></small>
+                </div>
+                <!-- <div class="col-md-4 col-lg-3">
+                  <label class="form-label">Country</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa-regular fa-flag"></i></span>
+                    <input type="text" class="form-control" id="country" name="country" placeholder="e.g. Bangladesh" required>
+                  </div>
+                </div> -->
+              <!-- Email -->
+                <div class="col-md-4 col-lg-3">
+                  <label class="form-label">Email</label> 
+                  <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                      <input type="email" class="form-control" id="email" name="email" placeholder="e.g. john.doe@example.com">
+                  </div>
+                  <small class="text-danger error-text" id="email_error"></small>
+                </div>
+
+                <div class="col-md-4 col-lg-3">
+                  <label class="form-label">Emergency Contact Person Name</label>  <em class="text-danger">*</em> 
+                  <div class="input-group">
+                      <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                      <input type="text" class="form-control" id="ec_name" name="ec_name" placeholder="e.g. John Doe">
+                  </div>
+                  <small class="text-danger error-text" id="ec_name_error"></small>
+                </div>
+
+                <div class="col-md-4 col-lg-3">
+                  <label class="form-label">Emergency Contact Person Number</label>   <em class="text-danger">*</em> 
+                  <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-phone"></i></span>
+                      <input type="number" class="form-control" id="ec_mobile" name="ec_mobile" placeholder="e.g. 01712345678">
+                  </div>
+                  <small class="text-danger error-text" id="ec_mobile_error"></small>
+                </div>
+
+                
+               
 
                <div class="col-md-4 col-lg-4">
                   <label class="form-label">Where Your Heard About Us</label> <em class="text-danger">*</em>
@@ -459,14 +517,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-12 col-lg-8">
-                  <label class="form-label">Address</label> <em class="text-danger">*</em>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-house"></i></span>
-                    <textarea class="form-control" id="address" name="address" placeholder="e.g. 123 Main Street" ></textarea>
-                    <small class="text-danger error-text" id="address_error"></small>
-                  </div>
-                </div>
+               
                 <!-- <div class="col-md-4 col-lg-3">
                   <label class="form-label">Alt. Phone</label>
                     <input type="text" class="form-control" id="address" placeholder="e.g. 123 Main Street" required>
@@ -586,12 +637,11 @@
   </div>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 
     $(document).ready(function () {
-
     let isUpdating = false;
 
         // ====================================
@@ -732,6 +782,8 @@
                 );
             },
             success: function (response) {
+                  let name = $('#name').val();
+                  let phone = $('#phone').val();
                 // Show success alert at top
                 let msg = response.message ?? 'Patient registered successfully!';
                 $('#successMessage').text(msg);
@@ -752,6 +804,14 @@
                 $('#submitBtn').prop('disabled', false).html(
                     'Submit <i class="fa-solid fa-arrow-right"></i>'
                 );
+              setTimeout(function () {
+
+                let url = "/patientregistration/success"
+                    + "?patient_id=" + encodeURIComponent(response.id);
+
+                window.location.href = url;
+
+            }, 2000);
             },
             error: function (xhr) {
                 $('#submitBtn').prop('disabled', false).html(
@@ -766,7 +826,7 @@
                         // heard_about_us → heardAbout_error
                         let errorId = key + '_error';
                         if (key === 'heard_about_us') errorId = 'heardAbout_error';
-                        if (key === 'marital_status') errorId = 'marital_error';
+                        // if (key === 'marital_status') errorId = 'marital_error';
                         if (key === 'patient_photo') errorId = 'photoErrorMessage';
 
                         if (key === 'patient_photo') {
@@ -792,6 +852,37 @@
         });
     });
 
+});
+</script>
+
+<script>
+const thanaData = {
+    Dhaka: [
+        "Adabor","Badda","Banani","Bangshal","Cantonment","Chawkbazar",
+        "Demra","Dhanmondi","Gulshan","Jatrabari","Khilgaon","Mirpur",
+        "Mohammadpur","Motijheel","Pallabi","Ramna","Uttara East","Uttara West"
+    ],
+
+    Chattogram: [
+        "Pahartali","Panchlaish","Kotwali","Double Mooring","Chandgaon"
+    ]
+};
+
+document.getElementById("district").addEventListener("change", function () {
+    const district = this.value;
+    const thanaSelect = document.getElementById("thana");
+
+    // reset
+    thanaSelect.innerHTML = '<option value="">Select Thana</option>';
+
+    if (thanaData[district]) {
+        thanaData[district].forEach(function (thana) {
+            let option = document.createElement("option");
+            option.value = thana;
+            option.text = thana;
+            thanaSelect.appendChild(option);
+        });
+    }
 });
 </script>
 <script src="{{ asset('assets/js/patientRegistration.js') }}"></script>

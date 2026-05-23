@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DoctorController;
+use Illuminate\Http\Request;
+use App\Models\PatientRegistration;
 
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\FormController;
@@ -20,6 +22,23 @@ use App\Http\Controllers\PatientRegistrationController;
 
 
 Route::get('/patientregistration', function () { return view('PatientRegistration.index');})->name('patient_registration');
+
+// Route::get('/patientregistration/success', function () { return view('PatientRegistration.Success_page');})->name('patient_registration.success');
+
+
+Route::get('/patientregistration/success', function (Request $request) {
+
+    $patientId = $request->query('patient_id');
+
+    $latestEntry = PatientRegistration::find($patientId);
+
+    if (!$latestEntry) {
+        return redirect()->route('patient_registration')
+            ->with('error', 'Patient not found.');
+    }
+
+    return view('PatientRegistration.Success_page', compact('latestEntry'));
+});
 
 
 Route::post('/patient-registration/store', [PatientRegistrationController::class, 'store'])
