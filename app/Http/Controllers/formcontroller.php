@@ -15,6 +15,7 @@ use App\Models\PalliativeCareNote;
 use App\Models\CarePlan;
 use App\Models\AdmissionMedication;
 use App\Models\AdmissionNoteIcu;
+use App\Models\IsbarHandover;
 
 
 class FormController extends Controller
@@ -810,6 +811,77 @@ class FormController extends Controller
             'latestEntry' => NursingAdmission::with('carePlans')->latest()->first()
         ]);
     }
+
+
+    //     public function store5(Request $request)
+    // {
+    //     $request->validate([
+    //         'patient_name' => 'nullable|string',
+    //         'uhid' => 'nullable|string',
+    //     ]);
+
+    //     $data = $request->all();
+
+    //     // Convert checkbox arrays to comma string if needed
+    //     $arrayFields = [
+    //         'location',
+    //         'site',
+    //         'indication'
+    //     ];
+
+    //     foreach ($arrayFields as $field) {
+    //         if ($request->has($field)) {
+    //             $data[$field] = is_array($request->$field)
+    //                 ? implode(',', $request->$field)
+    //                 : $request->$field;
+    //         }
+    //     }
+
+    //     $assessment = PivcMonitoring::create($data);
+
+    //     return view('Form.form5.form_5_pdf', [
+    //         'latestEntry' => $assessment
+    //     ]);
+    // }
+
+
+
+        public function store11(Request $request)
+    {
+        $request->validate([
+            'patient_name' => 'nullable|string',
+            'uhid' => 'nullable|string',
+        ]);
+
+        $data = $request->all();
+
+        // Convert checkbox arrays to comma string if needed
+        $arrayFields = [
+            'patient_condition',
+            'vital_status',
+            'lines_devices',
+            'history',
+            'allergy',
+            'consciousness',
+            'action'
+        ];
+
+        foreach ($arrayFields as $field) {
+            if ($request->has($field)) {
+                $data[$field] = is_array($request->$field)
+                    ? implode(',', $request->$field)
+                    : $request->$field;
+            }
+        }
+
+        $assessment = IsbarHandover::create($data);
+
+        return view('Form.form11.form_11_pdf', [
+            'latestEntry' => $assessment
+        ]);
+    }
+
+
 
 
    

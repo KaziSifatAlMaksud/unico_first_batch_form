@@ -259,7 +259,6 @@
     </div>
     <div class="title-area">
       <h1>ISBAR Handover Communication Form</h1>
-      <div class="copy-badge">Office Copy</div>
     </div>
     <div class="patient-label-box">
       <div class="lb-title">PATIENT LABEL</div>
@@ -280,13 +279,13 @@
   <!-- ═══ INFO TABLE ═══ -->
   <table class="info-table" style="margin-bottom:3px;">
     <tr>
-      <td style="width:34%;"><strong>Ward / Bed:</strong> {{ $latestEntry->ward_bed ?? '-' }}</td>
+      {{-- <td style="width:34%;"><strong>Ward / Bed:</strong> {{ $latestEntry->ward_bed ?? '-' }}</td> --}}
       <td style="width:33%;"><strong>Date:</strong> {{ $latestEntry->handover_date ?? '-' }}</td>
       <td style="width:33%;"><strong>Time:</strong> {{ $latestEntry->handover_time ?? '-' }}</td>
     </tr>
-    <tr>
+    {{-- <tr>
       <td colspan="3"><strong>Handover From:</strong> {{ $latestEntry->handover_from ?? '-' }}</td>
-    </tr>
+    </tr> --}}
   </table>
 
   <!-- ═══ MAIN SECTIONS ═══ -->
@@ -519,7 +518,7 @@
   </table>
 
   <!-- ═══ SIGNATURE TABLE ═══ -->
-  <table class="sig-table" style="margin-bottom:4px;">
+  {{-- <table class="sig-table" style="margin-bottom:4px;">
     <thead>
       <tr>
         <th style="width:22%;">Role</th>
@@ -552,12 +551,12 @@
         <td>{{ $latestEntry->verified_time ?? '' }}</td>
       </tr>
     </tbody>
-  </table>
+  </table> --}}
 
   <!-- ═══ FOOTER ═══ -->
   <div class="footer">
     <span>AF/LES/ISBAR/v01/Jan2026 – ISBAR</span>
-    <span>OFFICE COPY</span>
+    {{-- <span>OFFICE COPY</span> --}}
     <span>Print By: {{ auth()->user()->name ?? 'N/A' }}, {{ auth()->user()->emp_id ?? '' }}, {{ auth()->user()->designation ?? '' }} | Printed on: {{ now()->format('Y-m-d H:i:s') }}</span>
   </div>
 

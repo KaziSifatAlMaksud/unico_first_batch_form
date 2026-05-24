@@ -324,9 +324,7 @@ textarea { height: auto; min-height: 60px; resize: vertical; padding: 5px 8px; }
 </head>
 <body>
 
-<form id="mainForm"
- {{-- action="{{ route('isbar.store') }}"  --}}
- method="POST" enctype="multipart/form-data">
+<form id="mainForm" action="{{ route('isbar.store') }}"  method="POST" enctype="multipart/form-data">
 @csrf
 
 <div class="form-card">
@@ -344,14 +342,14 @@ textarea { height: auto; min-height: 60px; resize: vertical; padding: 5px 8px; }
   <div class="patient-bar">
     <div class="pb-cell"><label>Patient Name:</label><input type="text" name="patient_name" placeholder="Full Name"></div>
     <div class="pb-cell"><label>UHID:</label><input type="text" name="uhid" placeholder="UHID"></div>
-    <div class="pb-cell"><label>Ward/Bed:</label><input type="text" name="ward_bed" placeholder="Ward / Bed No."></div>
+    {{-- <div class="pb-cell"><label>Ward/Bed:</label><input type="text" name="ward_bed" placeholder="Ward / Bed No."></div> --}}
   </div>
 
   <!-- Handover Meta -->
   <div class="handover-meta">
     <div class="hm-cell"><label>Date:</label><input type="date" name="handover_date" style="flex:1;"></div>
     <div class="hm-cell"><label>Time:</label><input type="time" name="handover_time" style="flex:1;"></div>
-    <div class="hm-cell"><label>Handover From:</label><input type="text" name="handover_from" placeholder="Staff name" style="flex:1;"></div>
+    {{-- <div class="hm-cell"><label>Handover From:</label><input type="text" name="handover_from" placeholder="Staff name" style="flex:1;"></div> --}}
   </div>
 
   <!-- ══════════════════════════════════════
