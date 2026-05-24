@@ -14,8 +14,8 @@ class PatientRegistrationController extends Controller
 
             // 'patient_photo'     => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
             'full_name'         => 'required|string|max:255',
-            'mother_name'       => 'required|string|max:255',
-            'father_name'       => 'required|string|max:255',
+            'mother_name'       => 'nullable|string|max:255',
+            'father_name'       => 'nullable|string|max:255',
             'religion'          => 'required|string|max:100',
             'gender'            => 'required|string|max:20',
             'marital_status'    => 'required|string',

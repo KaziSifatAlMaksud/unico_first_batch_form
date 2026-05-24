@@ -90,6 +90,12 @@ Route::get('/form_10', function () { return view('Form.form10.form_10');})->name
 Route::post('/form10/store', [FormController::class, 'store10'])->name('form10.store');
 Route::get('/form_10_pdf', [FormController::class, 'print_view10'])->name('print_view10');
 
+
+Route::get('/form_11', function () { return view('Form.form11.form_11');})->name('form11');
+Route::post('/form11/store', [FormController::class, 'store11'])->name('form11.store');
+// Route::get('/form_11_pdf', [FormController::class, 'print_view11'])->name('print_view11');
+
+Route::get('/form_11_pdf', function () { return view('Form.form11.form_11_pdf');})->name('form11_pdf');
 // Route::get('/form_1_pdf', function () { return 
 // view('Form.form_1_pdf');
 // })->name('form_1_pdf');

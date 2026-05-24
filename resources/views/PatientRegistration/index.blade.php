@@ -132,26 +132,26 @@ Your information will be saved securely to help speed up the check-in process at
                 <label class="form-label">Full Name</label> <em class="text-danger">*</em>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
-                    <input type="text" class="form-control" id="full_name" name="full_name" placeholder="e.g. Karim" >
+                    <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter Your Name" >
                 </div>
                 <small class="text-danger error-text" id="full_name_error"></small>
                 </div>
               <!-- Mother Name -->
                 <div class="col-md-4 col-lg-3">
-                <label class="form-label">Mother Name</label> <em class="text-danger">*</em>
+                <label class="form-label">Mother Name</label> 
                 <div class="input-group">
                     <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
-                    <input type="text" class="form-control" id="mother_name" name="mother_name" placeholder="e.g. Fatima" >
+                    <input type="text" class="form-control" id="mother_name" name="mother_name" placeholder="Enter Mother's Name" >
                 </div>
                 <small class="text-danger error-text" id="mother_name_error"></small>
                 </div>
 
                 <!-- Father Name -->
                 <div class="col-md-4 col-lg-3">
-                <label class="form-label">Father Name</label> <em class="text-danger">*</em>
+                <label class="form-label">Father Name</label> 
                 <div class="input-group">
                     <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
-                    <input type="text" class="form-control" id="father_name" name="father_name" placeholder="e.g. Hossain">
+                    <input type="text" class="form-control" id="father_name" name="father_name" placeholder="Enter Father's Name">
                 </div>
                 <small class="text-danger error-text" id="father_name_error"></small>
                 </div>
@@ -362,7 +362,7 @@ Your information will be saved securely to help speed up the check-in process at
                   <label class="form-label">Address</label> <em class="text-danger">*</em>
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-house"></i></span>
-                    <textarea class="form-control" id="address" name="address" placeholder="e.g. 123 Main Street" ></textarea>
+                    <textarea class="form-control" id="address" name="address" placeholder="Enter Address Name" ></textarea>
                     <small class="text-danger error-text" id="address_error"></small>
                   </div>
                 </div>
@@ -459,7 +459,7 @@ Your information will be saved securely to help speed up the check-in process at
                   <label class="form-label">Mobile Number</label> <em class="text-danger">*</em> 
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-phone"></i></span>
-                    <input type="number" class="form-control" id="mobile" name="mobile" placeholder="e.g. 01712345678">
+                    <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" >
                   </div>
                   <small class="text-danger error-text" id="mobile_error"></small>
                 </div>
@@ -475,7 +475,7 @@ Your information will be saved securely to help speed up the check-in process at
                   <label class="form-label">Email</label> 
                   <div class="input-group">
                       <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                      <input type="email" class="form-control" id="email" name="email" placeholder="e.g. john.doe@example.com">
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Address">
                   </div>
                   <small class="text-danger error-text" id="email_error"></small>
                 </div>
@@ -484,7 +484,7 @@ Your information will be saved securely to help speed up the check-in process at
                   <label class="form-label">Emergency Contact Person Name</label>  <em class="text-danger">*</em> 
                   <div class="input-group">
                       <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                      <input type="text" class="form-control" id="ec_name" name="ec_name" placeholder="e.g. John Doe">
+                      <input type="text" class="form-control" id="ec_name" name="ec_name" placeholder="Enter Emergency Contact Person Name">
                   </div>
                   <small class="text-danger error-text" id="ec_name_error"></small>
                 </div>
@@ -493,7 +493,7 @@ Your information will be saved securely to help speed up the check-in process at
                   <label class="form-label">Emergency Contact Person Number</label>   <em class="text-danger">*</em> 
                   <div class="input-group">
                       <span class="input-group-text"><i class="bi bi-phone"></i></span>
-                      <input type="number" class="form-control" id="ec_mobile" name="ec_mobile" placeholder="e.g. 01712345678">
+                      <input type="number" class="form-control" id="ec_mobile" name="ec_mobile" placeholder="Enter Emergency Contact Person Number">
                   </div>
                   <small class="text-danger error-text" id="ec_mobile_error"></small>
                 </div>
@@ -826,7 +826,7 @@ Your information will be saved securely to help speed up the check-in process at
                         // heard_about_us → heardAbout_error
                         let errorId = key + '_error';
                         if (key === 'heard_about_us') errorId = 'heardAbout_error';
-                        // if (key === 'marital_status') errorId = 'marital_error';
+                        if (key === 'marital_status') errorId = 'marital_error';
                         if (key === 'patient_photo') errorId = 'photoErrorMessage';
 
                         if (key === 'patient_photo') {
