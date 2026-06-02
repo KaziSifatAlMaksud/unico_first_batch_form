@@ -39,5 +39,6 @@ class PatientRegistration extends Model
         // Other Information
         'heard_about_us',
         'patient_category',
+        'status',
     ];
 }

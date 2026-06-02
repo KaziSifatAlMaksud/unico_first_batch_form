@@ -7,6 +7,147 @@ use App\Models\PatientRegistration;
 
 class PatientRegistrationController extends Controller
 {
+
+
+    public function register_status_update(Request $request, $id, $status)
+    {
+        $patient = PatientRegistration::find($id);
+
+        if (!$patient) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Patient not found'
+            ], 404);
+        }
+
+        $allowed = ['active', 'inactive', 'registered', 'blocked', 'nonregistered'];
+
+        if (!in_array($status, $allowed)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalid status'
+            ], 400);
+        }
+
+        $patient->status = $status;
+        $patient->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Status updated successfully',
+            'data' => $patient
+        ]);
+    }
+
+  public function search(Request $request)
+    {
+        try {
+
+            $term = trim($request->term);
+
+            if (empty($term)) {
+                return response()->json([
+                    'status'  => false,
+                    'message' => 'Search term is required.',
+                    'data'    => []
+                ], 400);
+            }
+
+            $results = PatientRegistration::where(function ($query) use ($term) {
+                $query->where('full_name', 'LIKE', "%{$term}%")
+                    ->orWhere('mobile', 'LIKE', "%{$term}%");
+            })
+            ->where('status', 'nonregistered')
+            ->limit(15)
+            ->get([
+                'id',
+                'full_name',
+                'mother_name',
+                'father_name',
+                'age',
+                'religion',
+                'gender',
+                'marital_status',
+                'email',
+                'district',
+                'thana',
+                'address',
+                'heard_about_us',
+                'patient_category',
+                'dob',
+                'ec_name',
+                'ec_mobile',
+                'mobile',
+                'status',
+            ]);
+
+            if ($results->isEmpty()) {
+                return response()->json([
+                    'status'  => false,
+                    'message' => 'No patient found.',
+                    'data'    => []
+                ], 404);
+            }
+
+            return response()->json([
+                'status'  => true,
+                'message' => 'Patients found successfully.',
+                'data'    => $results
+            ], 200);
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'status'  => false,
+                'message' => 'Something went wrong.',
+                'error'   => $e->getMessage()
+            ], 500);
+        }
+    }
+
+     public function search_all(Request $request)
+    {
+        try {
+
+            $term = trim($request->term);
+
+            if (empty($term)) {
+                return response()->json([
+                    'status'  => false,
+                    'message' => 'Search term is required.',
+                    'data'    => []
+                ], 400);
+            }
+
+            $results = PatientRegistration::where('full_name', 'LIKE', "%{$term}%")
+                ->orWhere('mobile', 'LIKE', "%{$term}%")
+                ->limit(15)
+                ->get(['id', 'full_name','mother_name','father_name','age','religion','gender', 'marital_status','email','district','thana','address','heard_about_us','patient_category', 'dob','ec_name','ec_mobile','mobile']);
+
+            if ($results->isEmpty()) {
+                return response()->json([
+                    'status'  => false,
+                    'message' => 'No patient found.',
+                    'data'    => []
+                ], 404);
+            }
+
+            return response()->json([
+                'status'  => true,
+                'message' => 'Patients found successfully.',
+                'data'    => $results
+            ], 200);
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'status'  => false,
+                'message' => 'Something went wrong.',
+                'error'   => $e->getMessage()
+            ], 500);
+        }
+    }
+
     public function store(Request $request)
     {
 
