@@ -79,6 +79,8 @@ class PatientRegistrationController extends Controller
                 'ec_mobile',
                 'mobile',
                 'status',
+                'created_at',
+                'updated_at',
             ]);
 
             if ($results->isEmpty()) {
@@ -122,7 +124,7 @@ class PatientRegistrationController extends Controller
             $results = PatientRegistration::where('full_name', 'LIKE', "%{$term}%")
                 ->orWhere('mobile', 'LIKE', "%{$term}%")
                 ->limit(15)
-                ->get(['id', 'full_name','mother_name','father_name','age','religion','gender', 'marital_status','email','district','thana','address','heard_about_us','patient_category', 'dob','ec_name','ec_mobile','mobile']);
+                ->get(['id', 'full_name','mother_name','father_name','age','religion','gender', 'marital_status','email','district','thana','address','heard_about_us','patient_category', 'dob','ec_name','ec_mobile','mobile', 'created_at', 'updated_at']);
 
             if ($results->isEmpty()) {
                 return response()->json([
