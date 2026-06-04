@@ -23,7 +23,7 @@ use App\Http\Controllers\PatientRegistrationController;
 
 Route::get('/patientregistration', function () { return view('PatientRegistration.index');})->name('patient_registration');
 
-// Route::get('/patientregistration/success', function () { return view('PatientRegistration.Success_page');})->name('patient_registration.success');
+//  Route::get('/patientregistration/success', function () { return view('PatientRegistration.Success_page');})->name('patient_registration.success');
 
 
 Route::get('/patientregistration/success', function (Request $request) {
@@ -43,6 +43,13 @@ Route::get('/patientregistration/success', function (Request $request) {
 
 Route::post('/patient-registration/store', [PatientRegistrationController::class, 'store'])
     ->name('patient.registration.store');
+
+Route::get('/patientregistration/{id}', function ($id) { 
+     $latestEntry = PatientRegistration::find($id);
+return view('PatientRegistration.vcard', compact('latestEntry'));
+
+})->name('patient_registration.vcard');
+
 
 Route::get('/form_1', function () { return view('Form.form_1');})->name('form1');
 Route::post('/form1/store', [FormController::class, 'store1'])->name('store_admission');

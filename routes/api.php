@@ -16,6 +16,7 @@ use App\Http\Controllers\PatientRegistrationController;
 
 Route::get('/search_tamp', [PatientRegistrationController::class, 'search']);
 Route::get('/search_all', [PatientRegistrationController::class, 'search_all'])->name('patient.search');
+Route::get('/search/{id}', [PatientRegistrationController::class, 'search_detail'])->name('patient.search.detail');
 
 Route::post('/patient-registration/status_update/{id}/{status}', [PatientRegistrationController::class, 'register_status_update'])
     ->name('patient-registration.status-update');

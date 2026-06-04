@@ -15,6 +15,7 @@ class PatientRegistration extends Model
 
         // Photo
         'patient_photo',
+        'patient_photo_type',
 
         // Personal Information
         'full_name',

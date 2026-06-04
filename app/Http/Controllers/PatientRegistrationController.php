@@ -39,6 +39,66 @@ class PatientRegistrationController extends Controller
         ]);
     }
 
+
+     public function search_detail($id)
+    {
+        try {
+
+            $patient = PatientRegistration::findOrFail($id);
+
+            $result = [
+                'id' => $patient->id,
+                'full_name' => $patient->full_name,
+                'mother_name' => $patient->mother_name,
+                'father_name' => $patient->father_name,
+                'age' => $patient->age,
+                'religion' => $patient->religion,
+                'gender' => $patient->gender,
+                'marital_status' => $patient->marital_status,
+                'email' => $patient->email,
+                'district' => $patient->district,
+                'thana' => $patient->thana,
+                'address' => $patient->address,
+                'heard_about_us' => $patient->heard_about_us,
+                'patient_category' => $patient->patient_category,
+                'dob' => $patient->dob,
+                'ec_name' => $patient->ec_name,
+                'ec_mobile' => $patient->ec_mobile,
+                'mobile' => $patient->mobile,
+                'status' => $patient->status,
+                'created_at' => $patient->created_at,
+                'updated_at' => $patient->updated_at,
+
+                'patient_photo' => $patient->patient_photo
+                    ? base64_encode($patient->patient_photo)
+                    : null,
+
+                'patient_photo_type' => $patient->patient_photo_type,
+            ];
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Patient found successfully.',
+                'data' => $result
+            ], 200);
+
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Patient not found.'
+            ], 404);
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Something went wrong.',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
   public function search(Request $request)
     {
         try {
@@ -53,35 +113,47 @@ class PatientRegistrationController extends Controller
                 ], 400);
             }
 
-            $results = PatientRegistration::where(function ($query) use ($term) {
+         $results = PatientRegistration::where(function ($query) use ($term) {
                 $query->where('full_name', 'LIKE', "%{$term}%")
                     ->orWhere('mobile', 'LIKE', "%{$term}%");
             })
             ->where('status', 'nonregistered')
             ->limit(15)
-            ->get([
-                'id',
-                'full_name',
-                'mother_name',
-                'father_name',
-                'age',
-                'religion',
-                'gender',
-                'marital_status',
-                'email',
-                'district',
-                'thana',
-                'address',
-                'heard_about_us',
-                'patient_category',
-                'dob',
-                'ec_name',
-                'ec_mobile',
-                'mobile',
-                'status',
-                'created_at',
-                'updated_at',
-            ]);
+            ->get();
+
+            $results = $results->map(function ($patient) {
+
+            return [
+                    'id' => $patient->id,
+                    'full_name' => $patient->full_name,
+                    'mother_name' => $patient->mother_name,
+                    'father_name' => $patient->father_name,
+                    'age' => $patient->age,
+                    'religion' => $patient->religion,
+                    'gender' => $patient->gender,
+                    'marital_status' => $patient->marital_status,
+                    'email' => $patient->email,
+                    'district' => $patient->district,
+                    'thana' => $patient->thana,
+                    'address' => $patient->address,
+                    'heard_about_us' => $patient->heard_about_us,
+                    'patient_category' => $patient->patient_category,
+                    'dob' => $patient->dob,
+                    'ec_name' => $patient->ec_name,
+                    'ec_mobile' => $patient->ec_mobile,
+                    'mobile' => $patient->mobile,
+                    'status' => $patient->status,
+                    'created_at' => $patient->created_at,
+                    'updated_at' => $patient->updated_at,
+
+                    // ✅ FIX IMAGE HERE
+                    'patient_photo' => $patient->patient_photo
+                        ? base64_encode($patient->patient_photo)
+                        : null,
+
+                    'patient_photo_type' => $patient->patient_photo_type,
+                ];
+            });
 
             if ($results->isEmpty()) {
                 return response()->json([
@@ -124,7 +196,7 @@ class PatientRegistrationController extends Controller
             $results = PatientRegistration::where('full_name', 'LIKE', "%{$term}%")
                 ->orWhere('mobile', 'LIKE', "%{$term}%")
                 ->limit(15)
-                ->get(['id', 'full_name','mother_name','father_name','age','religion','gender', 'marital_status','email','district','thana','address','heard_about_us','patient_category', 'dob','ec_name','ec_mobile','mobile', 'created_at', 'updated_at']);
+                ->get(['id', 'full_name','mother_name','father_name','age','religion','gender', 'marital_status','email','district','thana','address','heard_about_us','patient_category', 'dob','ec_name','ec_mobile','mobile', 'created_at', 'updated_at', 'patient_photo', 'patient_photo_type']);
 
             if ($results->isEmpty()) {
                 return response()->json([
@@ -150,7 +222,8 @@ class PatientRegistrationController extends Controller
         }
     }
 
-    public function store(Request $request)
+
+       public function store(Request $request)
     {
 
         $validated = $request->validate([
@@ -189,16 +262,16 @@ class PatientRegistrationController extends Controller
 
 
 
-        // upload image
-        $photoName = null;
+       // upload image as binary
+        $photoData = null;
+        $photoType = null;
 
         if ($request->hasFile('patient_photo')) {
 
             $photo = $request->file('patient_photo');
 
-            $photoName = time().'_'.$photo->getClientOriginalName();
-
-            $photo->move(public_path('uploads/patient'), $photoName);
+            $photoData = file_get_contents($photo->getRealPath());
+            $photoType = $photo->getMimeType();
         }
 
 
@@ -206,7 +279,8 @@ class PatientRegistrationController extends Controller
         // save data
         $patient = new PatientRegistration();
 
-        $patient->patient_photo    = $photoName;
+        $patient->patient_photo    = $photoData;
+        $patient->patient_photo_type = $photoType;
 
         $patient->full_name        = $request->full_name;
         $patient->mother_name      = $request->mother_name;
@@ -239,4 +313,94 @@ class PatientRegistrationController extends Controller
             'id' => $patient->id
         ]);
     }
+
+    // public function store(Request $request)
+    // {
+
+    //     $validated = $request->validate([
+
+    //         // 'patient_photo'     => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
+    //         'full_name'         => 'required|string|max:255',
+    //         'mother_name'       => 'nullable|string|max:255',
+    //         'father_name'       => 'nullable|string|max:255',
+    //         'religion'          => 'required|string|max:100',
+    //         'gender'            => 'required|string|max:20',
+    //         'marital_status'    => 'required|string',
+    //         // 'spouse_name'       => 'nullable|string|max:255',
+    //         'mobile'            => 'required|numeric|digits:11',
+    //         'email'             => 'nullable|email|max:255',
+    //         'district'          => 'required|string|max:255',
+    //         'thana'             => 'required|string|max:255',
+    //         'address'           => 'required|string',
+    //         'ec_name'           => 'required|string|max:255',
+    //         'ec_mobile'         => 'required|numeric|digits:11',
+    //         'heard_about_us'    => 'required|string|max:255',
+    //         'patient_category'  => 'required|string|max:255',
+    //     ]);
+
+
+
+    //     // spouse validation
+    //     // if ($request->marital_status == 'Married' && empty($request->spouse_name)) {
+
+    //     //     return response()->json([
+    //     //         'status' => false,
+    //     //         'errors' => [
+    //     //             'spouse_name' => ['Spouse name is required for married patients.']
+    //     //         ]
+    //     //     ], 422);
+    //     // }
+
+
+
+    //     // upload image
+    //     $photoName = null;
+
+    //     if ($request->hasFile('patient_photo')) {
+
+    //         $photo = $request->file('patient_photo');
+
+    //         $photoName = time().'_'.$photo->getClientOriginalName();
+
+    //         $photo->move(public_path('uploads/patient'), $photoName);
+    //     }
+
+
+
+    //     // save data
+    //     $patient = new PatientRegistration();
+
+    //     $patient->patient_photo    = $photoName;
+
+    //     $patient->full_name        = $request->full_name;
+    //     $patient->mother_name      = $request->mother_name;
+    //     $patient->father_name      = $request->father_name;
+    //     $patient->age = $request->age_year . '-' . $request->age_month . '-' . $request->age_day;
+    //     $patient->religion         = $request->religion;
+    //     $patient->gender           = $request->gender;
+    //     $patient->dob              = $request->dob;
+
+    //     $patient->marital_status   = $request->marital_status;
+    //     // $patient->spouse_name      = $request->spouse_name;
+
+    //     $patient->mobile           = $request->mobile;
+    //     $patient->email            = $request->email;
+
+    //     $patient->district         = $request->district;
+    //     $patient->thana            = $request->thana;
+    //     $patient->address          = $request->address;
+    //     $patient->ec_name          = $request->ec_name;
+    //     $patient->ec_mobile        = $request->ec_mobile;
+
+    //     $patient->heard_about_us   = $request->heard_about_us;
+    //     $patient->patient_category = $request->patient_category;
+
+    //      $patient->save();
+
+
+    //     return response()->json([
+    //         'message' => 'Patient registered successfully!',
+    //         'id' => $patient->id
+    //     ]);
+    // }
 }
