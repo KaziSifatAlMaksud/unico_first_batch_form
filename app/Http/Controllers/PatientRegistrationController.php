@@ -44,7 +44,7 @@ class PatientRegistrationController extends Controller
     {
         try {
 
-            $patient = PatientRegistration::findOrFail($id)->where('created_at', 'desc')->first();
+            $patient = PatientRegistration::findOrFail($id)->first();
 
             $result = [
                 'id' => $patient->id,
@@ -118,6 +118,7 @@ class PatientRegistrationController extends Controller
                     ->orWhere('mobile', 'LIKE', "%{$term}%");
             })
             ->where('status', 'nonregistered')
+            ->orderBy('id', 'desc')
             ->limit(15)
             ->get();
 
@@ -193,11 +194,36 @@ class PatientRegistrationController extends Controller
                 ], 400);
             }
 
-            $results = PatientRegistration::where('full_name', 'LIKE', "%{$term}%")
-                ->orWhere('mobile', 'LIKE', "%{$term}%")
+            $results = PatientRegistration::where(function ($query) use ($term) {
+                    $query->where('full_name', 'LIKE', "%{$term}%")
+                        ->orWhere('mobile', 'LIKE', "%{$term}%");
+                })
+                ->orderBy('id', 'desc')
                 ->limit(15)
-                ->get(['id', 'full_name','mother_name','father_name','age','religion','gender', 'marital_status','email','district','thana','address','heard_about_us','patient_category', 'dob','ec_name','ec_mobile','mobile', 'created_at', 'updated_at', 'patient_photo', 'patient_photo_type']);
-
+                ->get([
+                    'id',
+                    'full_name',
+                    'mother_name',
+                    'father_name',
+                    'age',
+                    'religion',
+                    'gender',
+                    'marital_status',
+                    'email',
+                    'district',
+                    'thana',
+                    'address',
+                    'heard_about_us',
+                    'patient_category',
+                    'dob',
+                    'ec_name',
+                    'ec_mobile',
+                    'mobile',
+                    'created_at',
+                    'updated_at',
+                    'patient_photo',
+                    'patient_photo_type'
+                ]);
             if ($results->isEmpty()) {
                 return response()->json([
                     'status'  => false,
