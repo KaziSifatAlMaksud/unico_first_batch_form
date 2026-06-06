@@ -418,9 +418,9 @@
           <div class="banner-divider d-none d-md-block"></div>
 
           <!-- Check icon -->
-          <div class="banner-check">
+          {{-- <div class="banner-check">
             <i class="ti ti-check"></i>
-          </div>
+          </div> --}}
 
           <!-- Text -->
           <div class="banner-text flex-grow-1">

@@ -321,7 +321,11 @@
          <div><b style="display:inline-block; width:50px;">Name</b>: {{ $latestEntry->full_name }}</div>
         <div><b style="display:inline-block; width:50px;">UHID</b>: {{ $latestEntry->uhid }}</div>
         <div><b style="display:inline-block; width:50px;">SEX</b>: {{ $latestEntry->gender }}</div>
-        <div><b style="display:inline-block; width:50px;">AGE</b>: {{ $latestEntry->age }} Years</div>
+        @php
+            $cleanAge = str_replace(' Years', '', $latestEntry->age ?? '');
+            $firstValue = explode('-', $cleanAge)[0];
+        @endphp
+        <div><b style="display:inline-block; width:50px;">AGE</b>: {{ $firstValue }} Years</div>
                   
           </div>
             <div class="patient-avatar" id="cardAvatar">  <img src="data:{{ $latestEntry->patient_photo_type }};base64,{{ base64_encode($latestEntry->patient_photo) }}"></div>
