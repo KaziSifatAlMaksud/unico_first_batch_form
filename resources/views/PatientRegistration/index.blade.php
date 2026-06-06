@@ -525,10 +525,10 @@ Your information will be saved securely to help speed up the check-in process at
                 </div>
 
 
-                <div class="form-check mb-3">
+                <div class="form-check m-2 mt-3">
                     <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
                     <label class="form-check-label" for="terms">
-                        I agree to the <a href="#" target="_blank">Terms & Conditions</a> and Privacy Policy
+                        I agree to the <a href="{{ route('terms.conditions') }}" target="_blank">Terms & Conditions</a> and Privacy Policy
                     </label>
                     <div class="text-danger small" id="terms_error"></div>
                 </div>

@@ -1,379 +1,584 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Terms & Conditions — Patient Consent</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Terms & Conditions – Unico Hospital PLC</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
+    :root {
+      --bg: #f0f4f8;
+      --white: #ffffff;
+      --accent: #0f766e;
+      --accent-light: #14b8a6;
+      --accent-blue: #1d4ed8;
+      --accent-red: #e84c6b;
+      --text-dark: #0f172a;
+      --text-mid: #334155;
+      --text-light: #64748b;
+      --text-dim: #94a3b8;
+      --border: #e2e8f0;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.10);
+      --shadow-lg: 0 24px 64px rgba(0,0,0,0.12);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --transition: 0.3s cubic-bezier(.4,0,.2,1);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --white: #ffffff;
-      --off-white: #fafaf8;
-      --paper: #f5f4f0;
-      --ink: #1a1a18;
-      --ink-light: #4a4a47;
-      --ink-muted: #8a8a85;
-      --rule: #d8d6cf;
-      --accent: #c8a96e;
-      --accent-light: #f0e8d6;
-      --red-soft: #b84040;
-    }
-
-    html { scroll-behavior: smooth; }
-
     body {
-      background: var(--off-white);
-      font-family: 'Source Serif 4', Georgia, serif;
-      color: var(--ink);
+      font-family: "Outfit", sans-serif;
+      background: var(--bg);
       min-height: 100vh;
-    }
-
-    /* ── HEADER ─────────────────────────────────────────── */
-    header {
-      background: var(--white);
-      border-bottom: 1px solid var(--rule);
-      padding: 40px 0 32px;
-      text-align: center;
+      overflow-x: hidden;
       position: relative;
     }
 
-    header::after {
+    body::before, body::after {
       content: '';
-      display: block;
-      width: 80px;
-      height: 2px;
-      background: var(--accent);
-      margin: 20px auto 0;
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    body::before {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(20,184,166,0.12) 0%, transparent 70%);
+      top: -200px; left: -200px;
+      animation: floatA 12s ease-in-out infinite alternate;
+    }
+    body::after {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(29,78,216,0.08) 0%, transparent 70%);
+      bottom: -150px; right: -150px;
+      animation: floatB 14s ease-in-out infinite alternate;
     }
 
-    .hospital-tag {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 12px;
+    @keyframes floatA { from { transform: translate(0,0); } to { transform: translate(60px,60px); } }
+    @keyframes floatB { from { transform: translate(0,0); } to { transform: translate(-50px,-50px); } }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes popIn  { from { transform:scale(0.6); opacity:0; } to { transform:scale(1); opacity:1; } }
+
+    .page-wrapper {
+      position: relative; z-index: 1; min-height: 100vh;
+    }
+    .page-wrapper::before {
+      content: "";
+      position: fixed;
+      top: 50%; left: 0;
+      transform: translateY(-50%);
+      width: 90%; height: 100%;
+      background: url("https://unicohospitals.com/images/static/shadow.svg") no-repeat left center;
+      background-size: contain;
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: 0;
+      filter: drop-shadow(10px 10px 40px rgba(0,0,0,0.3));
     }
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 4vw, 40px);
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.15;
+    .main-content {
+      padding: 40px 16px 70px;
+      position: relative; z-index: 1;
+      min-height: 100vh;
     }
 
-    h1 span {
-      display: block;
-      font-weight: 400;
-      font-style: italic;
-      font-size: 0.6em;
-      color: var(--ink-muted);
-      margin-top: 4px;
-    }
-
-    /* ── LAYOUT ─────────────────────────────────────────── */
-    .page {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
-    }
-
-    /* ── SECTION CARD ───────────────────────────────────── */
-    .card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      margin-bottom: 32px;
-      overflow: hidden;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    }
-
-    .card-header {
-      background: var(--paper);
-      border-bottom: 1px solid var(--rule);
-      padding: 18px 32px;
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-    }
-
-    .card-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .card-header .bn {
-      font-size: 13px;
-      color: var(--ink-muted);
-      font-style: italic;
-    }
-
-    .card-body {
+    /* ── Banner ── */
+    .success-banner {
+      max-width: 90%;
+      margin: 0 auto 28px;
       padding: 28px 32px;
+      background: linear-gradient(135deg, #0f766e 0%, #14b8a6 60%, #0ea5e9 100%);
+      border-radius: var(--radius);
+      color: #fff;
+      box-shadow: 0 12px 48px rgba(15,118,110,0.28);
+      animation: fadeUp 0.6s ease both;
+      position: relative; overflow: hidden;
     }
-
-    /* ── BILINGUAL PARAGRAPH ────────────────────────────── */
-    .bilingual {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      overflow: hidden;
+    .success-banner::before {
+      content: '';
+      position: absolute;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      top: -80px; right: -60px;
+      pointer-events: none;
     }
-
-    .lang-block {
-      padding: 24px 26px;
+    .success-banner::after {
+      content: '';
+      position: absolute;
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      bottom: -50px; right: 120px;
+      pointer-events: none;
     }
-
-    .lang-block:first-child {
-      border-right: 1px solid var(--rule);
+    .banner-inner { position: relative; z-index: 1; }
+    .banner-logo-wrap img {
+      width: 120px; height: 120px;
+      object-fit: contain; border-radius: 10%;
     }
-
-    .lang-label {
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 10px;
-    }
-
-    .lang-block p {
-      font-size: 14px;
-      line-height: 1.78;
-      color: var(--ink-light);
-      font-weight: 300;
-    }
-
-    .lang-block.bn-block p {
-      font-size: 13.5px;
-      line-height: 1.9;
-    }
-
-    /* ── PARTICIPATION SECTION ──────────────────────────── */
-    .choices {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .choice-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 18px 22px;
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      cursor: pointer;
-      transition: background 0.18s, border-color 0.18s;
-    }
-
-    .choice-item:hover {
-      background: var(--accent-light);
-      border-color: var(--accent);
-    }
-
-    .choice-item.selected {
-      background: var(--accent-light);
-      border-color: var(--accent);
-    }
-
-    .checkbox-visual {
-      width: 18px;
-      height: 18px;
-      border: 1.5px solid var(--rule);
-      border-radius: 2px;
+    .banner-icon {
+      width: 66px; height: 66px;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      animation: popIn 0.5s cubic-bezier(.22,1,.36,1) 0.3s both;
       flex-shrink: 0;
-      margin-top: 2px;
+    }
+    .banner-icon i { font-size: 30px; color: #fff; }
+    .banner-text h3 {
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+      font-weight: 800; margin-bottom: 2px; color: #fff;
+    }
+    .banner-text h4 {
+      font-size: 1rem; font-weight: 600;
+      color: rgba(255,255,255,0.82); margin-bottom: 10px;
+    }
+    .banner-text p {
+      font-size: .88rem; color: rgba(255,255,255,0.85);
+      line-height: 1.5; margin: 0;
+    }
+    .banner-text p + p { margin-top: 3px; }
+    .banner-text a { color: rgba(255,255,255,0.9); text-decoration: none; }
+    .banner-text a:hover { color: #fff; text-decoration: underline; }
+    .banner-text b { font-weight: 700; }
+    .banner-divider {
+      width: 1px; height: 60px;
+      background: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .success-banner { padding: 22px 20px; }
+      .banner-divider { display: none !important; }
+      .banner-text { text-align: center; }
+      .banner-icon { margin: 0 auto 12px; }
+    }
+
+    /* ── Form Card ── */
+    .form-card {
+      max-width: 90%;
+      margin: 0 auto;
+      background: transparent !important;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+
+    .card-header-strip {
+      padding: 20px 32px;
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition: border-color 0.18s, background 0.18s;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .card-header-strip .header-title {
+      font-size: .78rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-light);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .card-header-strip .header-title i { font-size: .9rem; color: var(--accent); }
+
+    .effective-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(15,118,110,0.08);
+      border: 1.5px solid rgba(15,118,110,0.2);
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-weight: 700; color: var(--accent);
+      font-size: .82rem; letter-spacing: .06em;
+    }
+    .effective-badge i { font-size: .8rem; opacity: .7; }
+
+    .card-inner { padding: 32px 32px 28px; }
+
+    /* ── Section heading ── */
+    .section-heading {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px;
+    }
+    .section-icon {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-icon i { color: #fff; font-size: 14px; }
+    .section-icon.blue { background: linear-gradient(135deg, var(--accent-blue) 0%, #60a5fa 100%); }
+    .section-icon.red  { background: linear-gradient(135deg, var(--accent-red) 0%, #fb7185 100%); }
+    .section-icon.amber { background: linear-gradient(135deg, #d97706 0%, #fbbf24 100%); }
+    .section-heading h6 {
+      font-size: .92rem; font-weight: 700;
+      color: var(--text-dark); margin: 0;
     }
 
-    .choice-item.selected .checkbox-visual {
+    /* ── Terms Section ── */
+    .terms-section {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      transition: border-color var(--transition);
+    }
+    .terms-section:hover { border-color: rgba(15,118,110,0.25); }
+
+    .terms-section ul {
+      list-style: none;
+      padding: 0; margin: 0;
+    }
+    .terms-section ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .875rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+      padding: 6px 0;
+      border-bottom: 1px dashed #e9eef4;
+    }
+    .terms-section ul li:last-child { border-bottom: none; }
+    .terms-section ul li::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
       background: var(--accent);
-      border-color: var(--accent);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+    .terms-section.blue ul li::before { background: var(--accent-blue); }
+    .terms-section.red  ul li::before { background: var(--accent-red); }
+    .terms-section.amber ul li::before { background: #d97706; }
+
+    /* ── Form Divider ── */
+    .form-divider {
+      border: none;
+      border-top: 1px dashed #e2e8f0;
+      margin: 0 0 24px;
     }
 
-    .checkbox-visual svg { display: none; }
-    .choice-item.selected .checkbox-visual svg { display: block; }
-
-    .choice-text strong {
-      display: block;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 3px;
+    /* ── Consent Block ── */
+    .consent-block {
+      background: linear-gradient(135deg, rgba(15,118,110,0.05), rgba(20,184,166,0.08));
+      border: 1.5px solid rgba(15,118,110,0.2);
+      border-radius: var(--radius-sm);
+      padding: 22px 24px;
+      margin-bottom: 24px;
     }
-
-    .choice-text span {
-      font-size: 13px;
-      color: var(--ink-muted);
-      font-style: italic;
+    .consent-block p {
+      font-size: .88rem; color: var(--text-mid);
+      line-height: 1.7; margin: 0;
     }
+    .consent-block strong { color: var(--text-dark); }
 
-    /* ── SIGNATURE AREA ─────────────────────────────────── */
-    .sig-grid {
+    /* ── Signature Row ── */
+    .signature-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 8px;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .sig-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+    }
+    .sig-box .sig-lbl {
+      font-size: .62rem; font-weight: 700;
+      color: var(--text-dim);
+      letter-spacing: .08em; text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .sig-box .sig-line {
+      border-top: 1.5px solid #cbd5e1;
+      padding-top: 6px;
+      font-size: .75rem; color: var(--text-dim);
+      font-style: italic;
+    }
+    @media (max-width: 575px) {
+      .signature-row { grid-template-columns: 1fr; }
     }
 
-    .sig-field label {
-      display: block;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 10px;
+    /* ── Action Buttons ── */
+    .btn-nav {
+      border-radius: 50px;
+      padding: 12px 28px;
+      font-family: "Outfit", sans-serif;
+      font-weight: 700; font-size: .88rem;
+      letter-spacing: .04em; border: none;
+      cursor: pointer; transition: var(--transition);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-download {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(15,118,110,0.28);
+    }
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(15,118,110,0.38);
+    }
+    .btn-new {
+      background: linear-gradient(135deg, var(--accent-blue), #132f5c);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(29,78,216,0.22);
+    }
+    .btn-new:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(29,78,216,0.34);
     }
 
-    .sig-line {
-      border: none;
-      border-bottom: 1px solid var(--ink);
-      width: 100%;
-      height: 36px;
-      background: transparent;
-      font-family: 'Source Serif 4', serif;
-      font-size: 15px;
-      color: var(--ink);
-      padding: 0 4px;
-      outline: none;
+    /* ── Notice box ── */
+    .notice-box {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: rgba(232,76,107,0.06);
+      border: 1.5px solid rgba(232,76,107,0.2);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      margin-bottom: 24px;
+    }
+    .notice-box i { color: var(--accent-red); font-size: 1.2rem; margin-top: 1px; }
+    .notice-box p { font-size: .82rem; color: var(--text-mid); line-height: 1.6; margin: 0; }
+
+    /* Print / PDF */
+    .pdf-mode button,
+    .pdf-mode .btn,
+    .pdf-mode .action-row { display: none !important; }
+
+    @media print {
+      @page { size: A4; margin: 15mm; }
+      body { background: #fff !important; }
+      .success-banner, .action-row, body::before, body::after { display: none !important; }
+      .main-content { padding: 0 !important; }
+      .form-card { background: transparent !important; box-shadow: none !important; max-width: 100% !important; margin: 0 !important; border-radius: 0 !important; }
+      .card-inner { padding: 10mm !important; }
+      .terms-section, .consent-block, .sig-box { page-break-inside: avoid; }
     }
 
-    .sig-line:focus {
-      border-bottom-color: var(--accent);
-    }
-
-    /* ── NOTE BOX ───────────────────────────────────────── */
-    .note-box {
-      border-left: 3px solid var(--accent);
-      background: var(--accent-light);
-      padding: 16px 20px;
-      margin-top: 24px;
-      font-size: 13px;
-      color: var(--ink-light);
-      line-height: 1.7;
-    }
-
-    .note-box strong { color: var(--ink); }
-
-    /* ── SUBMIT ─────────────────────────────────────────── */
-    .actions {
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    .btn-primary {
-      background: var(--ink);
-      color: var(--white);
-      border: none;
-      padding: 16px 56px;
-      font-family: 'Playfair Display', serif;
-      font-size: 15px;
-      letter-spacing: 0.06em;
-      cursor: pointer;
-      border-radius: 1px;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .btn-primary:hover {
-      background: #333;
-      transform: translateY(-1px);
-    }
-
-    .btn-sub {
-      display: block;
-      margin-top: 10px;
-      font-size: 12px;
-      color: var(--ink-muted);
-    }
-
-    /* ── FOOTER ─────────────────────────────────────────── */
-    footer {
-      text-align: center;
-      padding: 32px 24px;
-      border-top: 1px solid var(--rule);
-      font-size: 12px;
-      color: var(--ink-muted);
-      background: var(--white);
-    }
-
-    /* ── RESPONSIVE ─────────────────────────────────────── */
-    @media (max-width: 640px) {
-      .bilingual { grid-template-columns: 1fr; }
-      .lang-block:first-child { border-right: none; border-bottom: 1px solid var(--rule); }
-      .sig-grid { grid-template-columns: 1fr; }
-      .card-body { padding: 20px 18px; }
-      .card-header { padding: 14px 18px; }
+    @media (max-width: 575px) {
+      .card-inner { padding: 20px 16px; }
+      .card-header-strip { padding: 14px 16px; }
+      .action-row { flex-direction: column; }
+      .btn-nav { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <p class="hospital-tag">Patient Registration Form</p>
-  <h1>
-    Terms &amp; Conditions
-    <span>শর্তাবলী ও নিয়মনীতি</span>
-  </h1>
-</header>
+<div class="page-wrapper">
+  <div class="main-content">
 
-<div class="page">
+    <!-- ── Banner ── -->
+    <div class="success-banner">
+      <div class="banner-inner">
+        <div class="d-flex align-items-center gap-3 flex-wrap">
 
-  <!-- ── SECTION 1: General Consent ── -->
-  <div class="card">
-    <div class="card-header">
-      <h2>General Consent</h2>
-      <span class="bn">সাধারণ সম্মতি</span>
-    </div>
-    <div class="card-body">
-      <div class="bilingual">
-        <div class="lang-block">
-          <p class="lang-label">English</p>
-          <p>The undersigned patient and/or responsible relative or person hereby consent to authorize physicians and medical professionals to administer and perform medical examinations, routine investigation, medical treatments, outpatient procedures, vaccinations and immunizations during the patient's care, be deemed necessary.</p>
-          <p style="margin-top:14px;">I have been explained that in the event of need of specific tests/procedures, a separate consent will be obtained. The undersigned also gives consent to receive communication on treatment related information via text message or email or phone call as per the details provided at the time of registration.</p>
-          <p style="margin-top:14px;">The undersigned also gives consent to the hospital to use medical information for insurance coverage and to contact him or her by telephone, if needed, regarding appointments and follow-up needs.</p>
-        </div>
-        <div class="lang-block bn-block">
-          <p class="lang-label">বাংলা</p>
-          <p>আমি নিম্ন স্বাক্ষরকারী রোগী / রোগীর আত্মীয়, দায়িত্বপ্রাপ্ত স্বজন এই মর্মে সম্মতি প্রদান করলাম যে, চিকিৎসা চলাকালীন সময়ে চিকিৎসক এবং স্বাস্থ্যসেবা কর্মী চিকিৎসা প্রয়োজনীয় সকল চিকিৎসা সংক্রান্ত মেডিকেল টেস্ট, স্বাভাবিক পরীক্ষা নিরীক্ষা, বহির্বিভাগীয় কার্যপ্রণালী, টিকাদান করতে পারবে।</p>
-          <p style="margin-top:14px;">আমাকে ব্যাখ্যা করা হয়েছে যে, আরও নির্দিষ্ট কোন পরীক্ষা / কার্যপ্রণালীর প্রয়োজন হলে তার জন্য পৃথক সম্মতিপত্র নেয়া হতে পারে। আমি নিম্ন স্বাক্ষরকারী আরও সম্মতি প্রদান করলাম যে, রেজিস্ট্রেশনের সময় দেয়া মোবাইল নাম্বারে বা ইমেইলে চিকিৎসা সম্পর্কিত তথ্য এসএমএস / ফোন কল/ইমেইলের মাধ্যমে জানাতে পারবে।</p>
-          <p style="margin-top:14px;">আমি, নিম্ন স্বাক্ষরকারী আরও সম্মতি প্রদান করলাম যে, বীমা কভারেজের জন্য চিকিৎসা সংক্রান্ত তথ্য ব্যবহার এবং এপয়েন্টমেন্ট ও ফেলোআপের প্রয়োজনে টেলিফোনে যোগাযোগের দরকার হলে হাসপাতাল তা করতে পারবে।</p>
+          <div class="banner-logo-wrap">
+            <img src="{{ asset('assets/img/unico_icon.jpg') }}" alt="Unico Hospital Logo">
+          </div>
+
+          <div class="banner-divider d-none d-md-block"></div>
+
+          {{-- <div class="banner-icon">
+            <i class="ti ti-file-certificate"></i>
+          </div> --}}
+
+          <div class="banner-text flex-grow-1">
+            <h3>Patient Terms &amp; Conditions</h3>
+            <h4>Unico Hospital PLC</h4>
+            <p>Please read all terms carefully before signing. By registering at Unico Hospital you confirm your acceptance of these conditions.</p>
+            <p style="margin-top:8px;">
+              <b>Address:</b>
+              <a href="https://maps.app.goo.gl/mjN8w5R5cSYCwxc67" target="_blank">
+                23 Bir Uttam K. M. Shafiullah Sarak (Green Road), Dhaka-1205
+              </a>
+            </p>
+            <p><b>Contact:</b> 09677667766, 09677661166 &nbsp;|&nbsp; <b>Email:</b> info@unicohospitals.com</p>
+          </div>
+
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ── SECTION 2: Participation of Relatives ── -->
-  <div class="card">
-    <div class="card-header">
-      <h2>Participation of Relatives in Care Decisions</h2>
-      <span class="bn">চিকিৎসা-সম্পর্কিত সিদ্ধান্তে আত্মীয়দের অংশগ্রহণ</span>
-    </div>
-    <div class="card-body">
-      <p style="font-size:14px; color:var(--ink-muted); margin-bottom:20px; font-style:italic;">Please select one of the following options / নিচের যেকোনো একটি বিকল্প বেছে নিন</p>
+    <!-- ── Main Card ── -->
+    <div class="form-card">
 
-      <div class="choices">
-        <div class="choice-item" onclick="toggleChoice(this)">
-          
-          <div class="choice-text">
-            <strong>I do not permit participation of any person in my care decision.</strong>
-            <span>আমি আমার চিকিৎসা-সংক্রান্ত কোনো সিদ্ধান্তে অন্য কোনো ব্যক্তির অংশগ্রহণ অনুমোদন করি না।</span>
+      <div class="card-header-strip">
+        <span class="header-title">
+          <i class="ti ti-file-text"></i> Terms &amp; Conditions of Patient Registration
+        </span>
+        <span class="effective-badge">
+          <i class="ti ti-calendar"></i> Effective: January 2025
+        </span>
+      </div>
+
+      <div class="card-inner" id="printArea">
+
+        <!-- 1. Admission & Registration -->
+        <div class="section-heading">
+          <div class="section-icon"><i class="ti ti-door-enter"></i></div>
+          <h6>1. Admission &amp; Registration</h6>
+        </div>
+        <div class="terms-section mb-4">
+          <ul>
+            <li>Patients must provide accurate and complete personal information during registration. Any false information may result in refusal or termination of services.</li>
+            <li>Registration does not guarantee immediate admission. Bed availability, clinical assessment, and specialist availability determine admission priority.</li>
+            <li>A valid national ID, passport, or birth certificate must be presented upon request for identity verification.</li>
+            <li>A legal guardian or authorized representative must sign on behalf of minors (under 18) or incapacitated patients.</li>
+            <li>Unico Hospital reserves the right to refuse non-emergency services if registration requirements are not met.</li>
+          </ul>
+        </div>
+
+        <!-- 2. Medical Treatment & Consent -->
+        <div class="section-heading">
+          <div class="section-icon blue"><i class="ti ti-stethoscope"></i></div>
+          <h6>2. Medical Treatment &amp; Informed Consent</h6>
+        </div>
+        <div class="terms-section blue mb-4">
+          <ul>
+            <li>By registering, patients or their legal guardians consent to routine examinations, diagnostic procedures, and treatments deemed necessary by the attending physician.</li>
+            <li>For surgical procedures, anesthesia, or invasive interventions, a separate written informed consent form must be signed prior to the procedure.</li>
+            <li>Patients have the right to refuse treatment; however, the hospital shall not be liable for any adverse outcomes resulting from such refusal.</li>
+            <li>Unico Hospital physicians follow evidence-based clinical guidelines; however, medical outcomes cannot be guaranteed.</li>
+            <li>Patients are encouraged to disclose all current medications, allergies, and past medical history to facilitate safe treatment.</li>
+          </ul>
+        </div>
+
+        <!-- 3. Payment & Billing -->
+        <div class="section-heading">
+          <div class="section-icon amber"><i class="ti ti-receipt"></i></div>
+          <h6>3. Payment &amp; Billing Policy</h6>
+        </div>
+        <div class="terms-section amber mb-4">
+          <ul>
+            <li>Patients are financially responsible for all services rendered, including consultations, investigations, medications, procedures, and accommodation charges.</li>
+            <li>An initial deposit may be required at the time of admission. The hospital will provide a detailed estimate on request.</li>
+            <li>Final billing is generated upon discharge. Any outstanding balance must be settled before the patient leaves the facility.</li>
+            <li>Insurance claims require valid documentation and prior authorization from the insurer; the patient remains liable for any uncovered balance.</li>
+            <li>The hospital accepts cash, major debit/credit cards, and approved mobile banking methods (bKash, Nagad, Rocket).</li>
+            <li>Itemized bills may be requested within 30 days of discharge. Billing disputes must be reported to the Finance Department within 7 working days.</li>
+          </ul>
+        </div>
+
+        <!-- 4. Privacy & Data -->
+        <div class="section-heading">
+          <div class="section-icon"><i class="ti ti-lock"></i></div>
+          <h6>4. Privacy &amp; Data Protection</h6>
+        </div>
+        <div class="terms-section mb-4">
+          <ul>
+            <li>All patient information is treated as strictly confidential in accordance with applicable Bangladeshi health privacy regulations.</li>
+            <li>Medical records may be shared with referring physicians, specialists, or authorized parties solely for the purpose of continuing care.</li>
+            <li>Patient data will not be disclosed to third parties without written consent, except as required by law or court order.</li>
+            <li>Unico Hospital maintains electronic health records secured with industry-standard encryption and access controls.</li>
+            <li>Patients may request access to or copies of their medical records through the Medical Records Department, subject to applicable fees.</li>
+          </ul>
+        </div>
+
+        <!-- 5. Rights & Responsibilities -->
+        <div class="section-heading">
+          <div class="section-icon blue"><i class="ti ti-shield-check"></i></div>
+          <h6>5. Patient Rights &amp; Responsibilities</h6>
+        </div>
+        <div class="terms-section blue mb-4">
+          <ul>
+            <li>Patients have the right to receive dignified, respectful, and non-discriminatory care regardless of gender, religion, or socioeconomic status.</li>
+            <li>Patients have the right to be informed about their diagnosis, treatment options, and potential risks in a language they understand.</li>
+            <li>Patients are responsible for following prescribed treatment plans and notifying healthcare providers of any changes in their condition.</li>
+            <li>Disruptive, abusive, or threatening behavior toward staff, other patients, or visitors may result in discharge from the facility.</li>
+            <li>Patients are responsible for safeguarding their personal belongings. The hospital is not liable for lost or stolen items.</li>
+          </ul>
+        </div>
+
+        <!-- 6. Liability -->
+        <div class="section-heading">
+          <div class="section-icon red"><i class="ti ti-alert-triangle"></i></div>
+          <h6>6. Liability &amp; Limitations</h6>
+        </div>
+        <div class="terms-section red mb-4">
+          <ul>
+            <li>Unico Hospital shall not be held liable for complications arising from pre-existing conditions, undisclosed medical history, or patient non-compliance.</li>
+            <li>The hospital is not liable for delays in treatment caused by force majeure events including natural disasters, power failures, or civil unrest.</li>
+            <li>Any claim or grievance must be submitted in writing to the Patient Relations Office within 30 days of the incident.</li>
+            <li>Disputes shall be resolved in accordance with the laws of the People's Republic of Bangladesh; jurisdiction rests with courts in Dhaka.</li>
+          </ul>
+        </div>
+
+        <hr class="form-divider">
+
+        <!-- Important Notice -->
+        <div class="notice-box">
+          <i class="ti ti-info-circle"></i>
+          <p>These terms may be updated periodically. The version in effect at the time of your registration will apply. For any queries, please contact the Patient Relations Office at the reception or email <strong>info@unicohospitals.com</strong>.</p>
+        </div>
+
+        <!-- Consent Statement -->
+        <div class="consent-block mb-4">
+          <p>
+            <strong>Declaration:</strong> I, the undersigned patient / legal guardian / authorized representative, confirm that I have read, understood, and agree to all the Terms &amp; Conditions stated above. I acknowledge that the information I have provided during registration is true, complete, and accurate to the best of my knowledge. I consent to the collection, storage, and use of my personal and medical information by Unico Hospital PLC for the purpose of providing healthcare services.
+          </p>
+        </div>
+
+        <!-- Signature Section -->
+        <div class="signature-row">
+          <div class="sig-box">
+            <div class="sig-lbl">Patient / Guardian Signature</div>
+            <div class="sig-line">Signature &amp; Date</div>
+          </div>
+          <div class="sig-box">
+            <div class="sig-lbl">Patient Full Name (Print)</div>
+            <div class="sig-line">Name &amp; Relationship (if Guardian)</div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-</div>
+        <!-- Action Buttons -->
+        <div class="action-row d-flex justify-content-end gap-3 flex-wrap">
+          {{-- <button class="btn-nav btn-download" onclick="downloadPDF()">
+            <i class="ti ti-download"></i> Download PDF
+          </button> --}}
+          <button class="btn-nav btn-new" onclick="window.location.href='{{ route('patient_registration') }}'">
+            <i class="ti ti-arrow-left"></i> Back to Registration
+          </button>
+        </div>
 
+      </div><!-- /.card-inner -->
+    </div><!-- /.form-card -->
+
+  </div><!-- /.main-content -->
+</div><!-- /.page-wrapper -->
+
+<script>
+function downloadPDF() {
+  const element = document.getElementById('printArea');
+  element.classList.add('pdf-mode');
+
+  const opt = {
+    margin: [10, 10, 10, 10],
+    filename: 'unico-patient-terms-conditions.pdf',
+    image: { type: 'jpeg', quality: 1 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  html2pdf().set(opt).from(element).save().then(() => {
+    element.classList.remove('pdf-mode');
+  });
+}
+</script>
 </body>
 </html>
