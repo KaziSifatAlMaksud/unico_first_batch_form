@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Patient Terms & Conditions – Unico Hospital PLC</title>
+    <link rel="icon" href="{{ asset('img/favicon_icon.png') }}" type="image/png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -445,7 +446,7 @@
         </div>
 
         <!-- 2. Medical Treatment & Consent -->
-        <div class="section-heading">
+        {{-- <div class="section-heading">
           <div class="section-icon blue"><i class="ti ti-stethoscope"></i></div>
           <h6>2. Medical Treatment &amp; Informed Consent</h6>
         </div>
@@ -457,10 +458,10 @@
             <li>Unico Hospital physicians follow evidence-based clinical guidelines; however, medical outcomes cannot be guaranteed.</li>
             <li>Patients are encouraged to disclose all current medications, allergies, and past medical history to facilitate safe treatment.</li>
           </ul>
-        </div>
+        </div> --}}
 
         <!-- 3. Payment & Billing -->
-        <div class="section-heading">
+        {{-- <div class="section-heading">
           <div class="section-icon amber"><i class="ti ti-receipt"></i></div>
           <h6>3. Payment &amp; Billing Policy</h6>
         </div>
@@ -473,10 +474,10 @@
             <li>The hospital accepts cash, major debit/credit cards, and approved mobile banking methods (bKash, Nagad, Rocket).</li>
             <li>Itemized bills may be requested within 30 days of discharge. Billing disputes must be reported to the Finance Department within 7 working days.</li>
           </ul>
-        </div>
+        </div> --}}
 
         <!-- 4. Privacy & Data -->
-        <div class="section-heading">
+        {{-- <div class="section-heading">
           <div class="section-icon"><i class="ti ti-lock"></i></div>
           <h6>4. Privacy &amp; Data Protection</h6>
         </div>
@@ -488,10 +489,10 @@
             <li>Unico Hospital maintains electronic health records secured with industry-standard encryption and access controls.</li>
             <li>Patients may request access to or copies of their medical records through the Medical Records Department, subject to applicable fees.</li>
           </ul>
-        </div>
+        </div> --}}
 
         <!-- 5. Rights & Responsibilities -->
-        <div class="section-heading">
+        {{-- <div class="section-heading">
           <div class="section-icon blue"><i class="ti ti-shield-check"></i></div>
           <h6>5. Patient Rights &amp; Responsibilities</h6>
         </div>
@@ -503,10 +504,10 @@
             <li>Disruptive, abusive, or threatening behavior toward staff, other patients, or visitors may result in discharge from the facility.</li>
             <li>Patients are responsible for safeguarding their personal belongings. The hospital is not liable for lost or stolen items.</li>
           </ul>
-        </div>
+        </div> --}}
 
         <!-- 6. Liability -->
-        <div class="section-heading">
+        {{-- <div class="section-heading">
           <div class="section-icon red"><i class="ti ti-alert-triangle"></i></div>
           <h6>6. Liability &amp; Limitations</h6>
         </div>
@@ -519,7 +520,7 @@
           </ul>
         </div>
 
-        <hr class="form-divider">
+        <hr class="form-divider"> --}}
 
         <!-- Important Notice -->
         <div class="notice-box">

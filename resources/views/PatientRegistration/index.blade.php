@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Patient Registration | Unico Hospital</title>
+  <link rel="icon" href="{{ asset('img/favicon_icon.png') }}" type="image/png">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -463,7 +464,7 @@ Your information will be saved securely to help speed up the check-in process at
                 </div>
 
                 <div class="col-md-4 col-lg-3">
-                  <label class="form-label">Mobile Number</label> <em class="text-danger">*</em> 
+                  <label class="form-label">Mobile Number (মোবাইল নম্বর):</label> <em class="text-danger">*</em> 
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-phone"></i></span>
                     <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" >
@@ -479,7 +480,7 @@ Your information will be saved securely to help speed up the check-in process at
                 </div> -->
               <!-- Email -->
                 <div class="col-md-4 col-lg-3">
-                  <label class="form-label">Email</label> 
+                  <label class="form-label">Email (ইমেইল):</label> 
                   <div class="input-group">
                       <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                       <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Address">
