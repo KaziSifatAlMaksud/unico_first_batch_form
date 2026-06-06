@@ -44,7 +44,7 @@ class PatientRegistrationController extends Controller
     {
         try {
 
-            $patient = PatientRegistration::findOrFail($id);
+            $patient = PatientRegistration::findOrFail($id)->where('created_at', 'desc')->first();
 
             $result = [
                 'id' => $patient->id,
@@ -245,6 +245,7 @@ class PatientRegistrationController extends Controller
             'ec_mobile'         => 'required|numeric|digits:11',
             'heard_about_us'    => 'required|string|max:255',
             'patient_category'  => 'required|string|max:255',
+              'terms' => 'accepted',
         ]);
 
 
@@ -295,6 +296,7 @@ class PatientRegistrationController extends Controller
 
         $patient->mobile           = $request->mobile;
         $patient->email            = $request->email;
+        $patient->nid              = $request->nid;
 
         $patient->district         = $request->district;
         $patient->thana            = $request->thana;

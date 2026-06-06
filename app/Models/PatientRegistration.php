@@ -25,6 +25,7 @@ class PatientRegistration extends Model
         'religion',
         'gender',
          'dob',
+         'nid',
 
         // Marital Info
         'marital_status',

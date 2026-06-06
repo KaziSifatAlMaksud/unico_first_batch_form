@@ -25,6 +25,7 @@ Route::get('/patientregistration', function () { return view('PatientRegistratio
 
 //  Route::get('/patientregistration/success', function () { return view('PatientRegistration.Success_page');})->name('patient_registration.success');
 
+Route::get('/termsncondition', function () { return view('PatientRegistration.terms_n_condition');})->name('patient_registration.terms_n_condition');
 
 Route::get('/patientregistration/success', function (Request $request) {
 

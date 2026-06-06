@@ -23,7 +23,7 @@
    body {
         font-family: "Outfit", sans-serif;
         background: var(--bg);
-        /* min-height: 100vh; */
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -100,7 +100,6 @@
       position: relative; z-index: 1;
       perspective: 1200px;
       animation: fadeUp 0.8s ease 0.1s both;
-
     }
 
     /* ── The Card ── */
@@ -117,7 +116,6 @@
         0 4px 16px rgba(0,0,0,0.06);
       transition: transform 0.5s cubic-bezier(.22,1,.36,1), box-shadow 0.5s ease;
       cursor: default;
-            border-bottom: 25px solid #158dc9;
     }
     .patient-card:hover {
       transform: rotateY(-5deg) rotateX(3deg) scale(1.02);
@@ -131,9 +129,46 @@
     .card-stripe {
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 40px;
-      background: #158dc9;
+      height: 90px;
+      background: linear-gradient(135deg, #0f766e 0%, #14b8a6 60%, #0ea5e9 100%);
       z-index: 0;
+    }
+    .card-stripe::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Decorative circle on stripe */
+    .stripe-circle {
+      position: absolute;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      top: -60px; right: -30px;
+      z-index: 1; pointer-events: none;
+    }
+    .stripe-circle2 {
+      position: absolute;
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      top: -20px; right: 80px;
+      z-index: 1; pointer-events: none;
+    }
+
+    /* Shimmer */
+    .card-shimmer {
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%);
+      background-size: 200% 100%;
+      animation: shimmer 3.5s ease-in-out infinite;
+      z-index: 10; pointer-events: none;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
 
     /* Card content */
@@ -150,8 +185,7 @@
     .card-top {
       display: flex;
       align-items: center;
-      width: 100%;
-      margin-top: -8px;
+      justify-content: space-between;
     }
     .hospital-brand {
       display: flex; align-items: center; gap: 20px;
@@ -175,17 +209,30 @@
       font-size: .58rem; color: rgba(255,255,255,0.7);
       font-weight: 400; letter-spacing: .06em; text-transform: uppercase;
     }
+    /* Chip */
+    /* .card-chip {
+      width: 36px; height: 26px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #d4a843, #f5c842, #b8902d);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 6px rgba(0,0,0,0.2);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 2px; padding: 4px;
+    } */
     .chip-cell { background: rgba(0,0,0,0.15); border-radius: 1px; }
 
     /* Avatar floats over the stripe/white divide */
     .card-mid {
       display: flex;
-      align-items: flex-start;
+      align-items: flex-end;
+      gap: 14px;
+      margin-top: 4px;
     }
     .patient-avatar {
-      width: 90px; height: 90px;
+      width: 58px; height: 58px;
       border-radius: 14px;
-      border: 2px solid #000;
+      border: 3px solid #fff;
       box-shadow: 0 4px 16px rgba(0,0,0,0.15);
       background: linear-gradient(135deg, #e0f2f1, #b2dfdb);
       display: flex; align-items: center; justify-content: center;
@@ -214,7 +261,8 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      padding-top: 35px;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 10px;
     }
     .patient-id-section .id-label {
       font-size: .52rem; font-weight: 700;
@@ -235,6 +283,41 @@
     }
     .card-qr i { font-size: 20px; color: #94a3b8; }
 
+    /* ── Details Panel ── */
+    .details-panel {
+      position: relative; z-index: 1;
+      width: var(--card-w);
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 20px;
+      padding: 24px 26px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      animation: fadeUp 0.9s ease 0.2s both;
+    }
+    .panel-header {
+      font-size: .62rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .panel-header::after {
+      content: ''; flex: 1;
+      height: 1px; background: #e2e8f0;
+    }
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .detail-item .d-label {
+      font-size: .58rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: #94a3b8; margin-bottom: 3px;
+    }
+    .detail-item .d-val {
+      font-size: .85rem; font-weight: 600; color: #1e293b;
+    }
+    .detail-item.wide { grid-column: 1 / -1; }
 
     /* ── Download Button ── */
     .download-btn {
@@ -292,6 +375,17 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    @media (max-width: 480px) {
+      :root { --card-w: 340px; --card-h: 215px; }
+      .details-panel { width: 340px; }
+      .card-body { padding: 14px 16px 16px; }
+      .patient-name { font-size: .92rem; }
+      .card-stripe { height: 78px; }
+    }
+    @media (max-width: 360px) {
+      :root { --card-w: 300px; --card-h: 195px; }
+      .details-panel { width: 300px; }
+    }
   </style>
 </head>
 <body>
@@ -306,34 +400,95 @@
   <div class="card-stage">
     <div class="patient-card" id="patientCard">
       <div class="card-stripe">
+        <div class="stripe-circle"></div>
+        <div class="stripe-circle2"></div>
       </div>
+      <div class="card-shimmer"></div>
       
 
       <div class="card-body">
         <!-- Top -->
-      <div class="card-top text-center">
-          <h3 class="fw-bold" style=" width: 100%; padding: 0; text-align: center; margin-top: 0; color: #fff; letter-spacing: .04em;">PATIENT REGISTRATION CARD</h3>
-      </div>
+        <div class="card-top">
+          <div class="hospital-brand">
+            <div class="hospital-name">
+              <div class="name">Unico Hospital</div>
+              <div class="sub">Patient Identity Card</div>
+            </div>
+          </div>
+        </div>
+
         <!-- Mid -->
         <div class="card-mid">
         
           <div class="patient-details">
-         <div><b style="display:inline-block; width:50px;">Name</b>: {{ $latestEntry->full_name }}</div>
-        <div><b style="display:inline-block; width:50px;">UHID</b>: {{ $latestEntry->uhid }}</div>
-        <div><b style="display:inline-block; width:50px;">SEX</b>: {{ $latestEntry->gender }}</div>
-        <div><b style="display:inline-block; width:50px;">AGE</b>: {{ $latestEntry->age }} Years</div>
-                  
+            <div class="patient-name"><b>Name:</b>  {{ $latestEntry->full_name }}</div>
+            <div class="patient-meta">
+              <span class="meta-tag"><i class="ti ti-gender-{{ strtolower($latestEntry->gender) }}"></i> {{ $latestEntry->gender }}</span>
+              <span class="meta-tag" style="color:#cbd5e1">•</span>
+              <span class="meta-tag"><i class="ti ti-cake"></i> {{ $latestEntry->age }} Years</span>
+              <span class="meta-tag" style="color:#cbd5e1">•</span>
+              <span class="meta-tag"><i class="ti ti-phone"></i> {{ $latestEntry->mobile }}</span>
+            </div>
           </div>
             <div class="patient-avatar" id="cardAvatar">  <img src="data:{{ $latestEntry->patient_photo_type }};base64,{{ base64_encode($latestEntry->patient_photo) }}"></div>
         </div>
 
         <!-- Bottom -->
-        <div class="card-bottom" >
+        <div class="card-bottom">
+          <div class="patient-id-section">
+            <div class="id-label">Patient ID</div>
+            <div class="id-number">UNH-2025-00842</div>
+          </div>
+          {{-- <div class="card-qr">
+            <i class="ti ti-qrcode"></i>
+          </div> --}}
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ── Details Panel ── -->
+  <div class="details-panel">
+    <div class="panel-header"><i class="ti ti-id"></i> Registration Details</div>
+    <div class="details-grid">
+      <div class="detail-item">
+        <div class="d-label">Full Name</div>
+        <div class="d-val">{{ $latestEntry->full_name ?? '' }}</div>
+      </div>
+      <div class="detail-item">
+        <div class="d-label">Date of Birth</div>
+        <div class="d-val">{{ $latestEntry->dob ?? '' }}</div>
+      </div>
+      <div class="detail-item">
+        <div class="d-label">Gender</div>
+        <div class="d-val">{{ $latestEntry->gender ?? '' }}</div>
+      </div>
+      <div class="detail-item">
+        <div class="d-label">Age</div>
+        <div class="d-val">{{ $latestEntry->age ?? '' }} Years</div>
+      </div>
+      <div class="detail-item">
+        <div class="d-label">Mobile</div>
+        <div class="d-val">{{ $latestEntry->mobile ?? '' }}</div>
+      </div>
+      <div class="detail-item">
+        <div class="d-label">Religion</div>
+        <div class="d-val">{{ $latestEntry->religion ?? '' }}</div>
+      </div>
+      <div class="detail-item wide">
+        <div class="d-label">Address</div>
+        <div class="d-val">{{ $latestEntry->address ?? '' }}</div>
+      </div>
+      <div class="detail-item">
+        <div class="d-label">Reg. Date</div>
+        <div class="d-val">{{ $latestEntry->created_at->format('d M Y') ?? '' }}</div>
+      </div>
+      <div class="detail-item">
+        <div class="d-label">Category</div>
+        <div class="d-val" style="color:#0f766e; font-weight:700;">● {{ $latestEntry->patient_category ?? ''}}</div>
+      </div>
+    </div>
+  </div>
 
   <!-- ── Download Button ── -->
   <button class="download-btn" onclick="downloadCard()" id="dlBtn">
