@@ -508,7 +508,7 @@ Your information will be saved securely to help speed up the check-in process at
                 
                
 
-               <div class="col-md-4 col-lg-4">
+               <div class="col-md-3 col-lg-3">
                   <label class="form-label">Where Your Heard About Us (আপনি কোথা থেকে আমাদের সম্পর্কে জানেন):</label> <em class="text-danger">*</em>
                   <div class="input-group">
                      <select class="form-select" id="heardAbout" name="heard_about_us">

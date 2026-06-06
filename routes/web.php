@@ -46,8 +46,14 @@ Route::post('/patient-registration/store', [PatientRegistrationController::class
     ->name('patient.registration.store');
 
 Route::get('/patientregistration/{id}', function ($id) { 
-     $latestEntry = PatientRegistration::find($id);
-return view('PatientRegistration.vcard', compact('latestEntry'));
+         $latestEntry = PatientRegistration::find($id);
+         $barcode = \Milon\Barcode\Facades\DNS1DFacade::getBarcodePNG(
+        (string)$latestEntry->id,
+        'C128'
+    );
+
+    return view('PatientRegistration.vcard', compact('latestEntry', 'barcode'));
+// return view('PatientRegistration.vcard', compact('latestEntry'));
 
 })->name('patient_registration.vcard');
 

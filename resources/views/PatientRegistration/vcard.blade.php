@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Patient Virtual Card</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -19,7 +21,10 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    .barcode svg text {
+        display: none !important;
+        visibility: hidden !important;
+    }
    body {
         font-family: "Outfit", sans-serif;
         background: var(--bg);
@@ -69,6 +74,12 @@
             );
         pointer-events: none;
         z-index: 0;
+    }
+
+
+    .card-top h3 {
+      font-size: clamp(1.0rem, 2.5vw, 1.45rem);
+      font-weight: 300; margin-bottom: 2px; color: #fff;
     }
 
     /* ── Page Title ── */
@@ -214,7 +225,7 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      padding-top: 35px;
+      padding-top: 15px;
     }
     .patient-id-section .id-label {
       font-size: .52rem; font-weight: 700;
@@ -234,6 +245,97 @@
       display: flex; align-items: center; justify-content: center;
     }
     .card-qr i { font-size: 20px; color: #94a3b8; }
+
+
+     /* ── Success Banner ── */
+    .success-banner {
+      width: 90%;
+      /* margin: 0 auto 28px; */
+      padding: 28px 32px;
+      background: linear-gradient(135deg, #0f766e 0%, #14b8a6 60%, #0ea5e9 100%);
+      border-radius: var(--radius);
+      color: #fff;
+      box-shadow: 0 12px 48px rgba(15,118,110,0.28);
+      animation: fadeUp 0.6s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+    /* decorative circles inside banner */
+    .success-banner::before {
+      content: '';
+      position: absolute;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      top: -80px; right: -60px;
+      pointer-events: none;
+    }
+    .success-banner::after {
+      content: '';
+      position: absolute;
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      bottom: -50px; right: 120px;
+      pointer-events: none;
+    }
+
+    .banner-inner { position: relative; z-index: 1; }
+
+    /* .banner-logo-wrap {
+      width: 120px; height: 120px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+    } */
+    .banner-logo-wrap img {
+      width: 120px; height: 120px;
+      object-fit: contain; border-radius: 10%;
+    }
+    .banner-check {
+      width: 66px; height: 66px;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      animation: popIn 0.5s cubic-bezier(.22,1,.36,1) 0.3s both;
+    }
+    .banner-check i { font-size: 30px; color: #fff; }
+
+    .banner-text h3 {
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+      font-weight: 800; margin-bottom: 2px; color: #fff;
+    }
+    .banner-text h4 {
+      font-size: 1rem; font-weight: 600;
+      color: rgba(255,255,255,0.82); margin-bottom: 10px;
+    }
+    .banner-text p {
+      font-size: .88rem; color: rgba(255,255,255,0.85);
+      line-height: 1.5; margin: 0;
+    }
+    .banner-text p + p { margin-top: 3px; }
+    .banner-text a { color: rgba(255,255,255,0.9); text-decoration: none; }
+    .banner-text a:hover { color: #fff; text-decoration: underline; }
+    .banner-text b { font-weight: 700; }
+
+    .banner-divider {
+      width: 1px; height: 60px;
+      background: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .success-banner { padding: 22px 20px; }
+      .banner-divider { display: none !important; }
+      .banner-logo-wrap { margin: 0 auto 16px; }
+      .banner-text { text-align: center; }
+      .banner-check { margin: 0 auto 12px; }
+    }
+
 
 
     /* ── Download Button ── */
@@ -296,11 +398,43 @@
 </head>
 <body>
 
-  <div class="page-title">
-    {{-- <span class="pill">Patient Card</span> --}}
+  {{-- <div class="page-title">
+    <span class="pill">Patient Card</span>
     <h1>Your Medical Identity</h1>
     <p>Unico Hospital PLC — Digital Patient Record</p>
-  </div>
+  </div> --}}
+
+      <!-- ── Success Banner ── -->
+    <div class="success-banner">
+      <div class="banner-inner">
+        <div class="d-flex align-items-center gap-3 flex-wrap">
+
+          <div class="banner-logo-wrap">
+            <img src="{{ asset('assets/img/unico_icon.jpg') }}" alt="Unico Hospital Logo">
+          </div>
+
+          <div class="banner-divider d-none d-md-block"></div>
+
+          {{-- <div class="banner-icon">
+            <i class="ti ti-file-certificate"></i>
+          </div> --}}
+
+          <div class="banner-text flex-grow-1">
+            <h3> Download Your Patient Registration Card </h3>
+            <h4>Unico Hospital PLC</h4>
+            <p>Please read all terms carefully before signing. By registering at Unico Hospital you confirm your acceptance of these conditions.</p>
+            <p style="margin-top:8px;">
+              <b>Address:</b>
+              <a href="https://maps.app.goo.gl/mjN8w5R5cSYCwxc67" target="_blank">
+                23 Bir Uttam K. M. Shafiullah Sarak (Green Road), Dhaka-1205
+              </a>
+            </p>
+            <p><b>Contact:</b> 09677667766, 09677661166 &nbsp;|&nbsp; <b>Email:</b> info@unicohospitals.com</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
   <!-- ── Virtual Card ── -->
   <div class="card-stage">
@@ -312,10 +446,10 @@
       <div class="card-body">
         <!-- Top -->
       <div class="card-top text-center">
-          <h3 class="fw-bold" style=" width: 100%; padding: 0; text-align: center; margin-top: 0; color: #fff; letter-spacing: .04em;">PATIENT REGISTRATION CARD</h3>
+          <h3 class="fw-bold" style=" width: 100%; padding: 0; text-align: center; margin-top: 0; color: #fff; letter-spacing: .01em;">PATIENT REGISTRATION CARD</h3>
       </div>
         <!-- Mid -->
-        <div class="card-mid">
+        <div class="card-mid mt-3">
         
           <div class="patient-details">
          <div><b style="display:inline-block; width:50px;">Name</b>: {{ $latestEntry->full_name }}</div>
@@ -330,10 +464,14 @@
           </div>
             <div class="patient-avatar" id="cardAvatar">  <img src="data:{{ $latestEntry->patient_photo_type }};base64,{{ base64_encode($latestEntry->patient_photo) }}"></div>
         </div>
-
+      {{-- @php  dd($barcode); @endphp --}}
+     
         <!-- Bottom -->
-        <div class="card-bottom" >
-        </div>
+       <div class="card-bottom d-flex justify-content-center mt-3">
+          <div class="barcode">
+              {!! \DNS1D::getBarcodeSVG((string)$latestEntry->id, 'C128', 4, 50) !!}
+          </div>
+      </div>
       </div>
     </div>
   </div>
