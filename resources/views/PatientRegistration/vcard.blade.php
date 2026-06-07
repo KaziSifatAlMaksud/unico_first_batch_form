@@ -133,6 +133,92 @@
 
     }
 
+    /* backside card */
+
+    .card-back{
+    width: 420px;
+    height: 260px;
+    background:#218ac8!important;
+    border-radius:22px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    text-align:center;
+}
+
+/* Logo */
+.back-logo{
+    margin-top:25px;
+}
+
+.back-logo img{
+    width:220px;
+    max-width:90%;
+}
+
+/* Divider Line */
+.back-divider{
+    width:100%;
+    height:2px;
+    background:rgba(255,255,255,.8);
+    margin:35px 0 25px;
+}
+
+/* Content */
+.back-content{
+    padding:0 10px;
+    line-height:0.6;
+}
+
+.return-text{
+    font-size:15px;
+    font-weight:400;
+    margin-bottom:10px;
+}
+
+.address{
+    font-size:15px;
+    font-weight:400;
+    margin-bottom:15px;
+    line-height:1;
+}
+
+.helpline{
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:.5px;
+    margin-bottom:0 !important;
+}
+
+/* Mobile */
+@media(max-width:576px){
+
+    .card-back{
+        width:100%;
+        max-width:420px;
+    }
+
+    .back-logo img{
+        width:190px;
+    }
+
+    .return-text{
+        font-size:16px;
+    }
+
+    .address{
+        font-size:14px;
+    }
+
+    .helpline{
+        font-size:15px;
+    }
+}
+
     /* ── The Card ── */
     .patient-card {
       width: var(--card-w);
@@ -502,13 +588,38 @@
         <!-- Bottom -->
        <div class="card-bottom d-flex justify-content-center mt-3">
           <div class="barcode">
-              {!! \DNS1D::getBarcodeSVG((string)$latestEntry->id, 'C128', 4, 50) !!}
+              {!! \DNS1D::getBarcodeSVG((string)$latestEntry->uhid, 'C128', 4, 50) !!}
           </div>
       </div>
     </div>
         <div class="card-stripe-bottom"></div>
     </div>
   </div>
+
+    <!-- ── Backside Virtual Card ── -->
+  <div class="card-stage">
+    <div class="patient-card card-back">
+
+        <div class="back-logo">
+            <img src="{{ asset('assets/img/logo-white.svg') }}" alt="Unico Hospital">
+        </div>
+
+        <div class="back-divider"></div>
+
+        <div class="back-content">
+            <p class="return-text">If found please return to</p>
+
+            <p class="address">
+                23 Green Road, Dhaka-1205, Bangladesh
+            </p>
+
+            <p class="helpline">
+                Helpline: 096 77 66 77 66 &nbsp; | &nbsp; 096 77 66 11 66
+            </p>
+        </div>
+
+    </div>
+</div>
 
 
   <!-- ── Download Button ── -->
