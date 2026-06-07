@@ -555,7 +555,7 @@ body {
   background: var(--surface);
   color: var(--text);
 }
-.form-label { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.form-label { font-size: 10px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
 .input-group-text { font-size: 12px; background: var(--bg); border-color: var(--border); color: var(--muted); }
 
 /* ============================================

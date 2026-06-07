@@ -129,7 +129,7 @@
         0 4px 16px rgba(0,0,0,0.06);
       transition: transform 0.5s cubic-bezier(.22,1,.36,1), box-shadow 0.5s ease;
       cursor: default;
-            border-bottom: 25px solid #158dc9;
+      
     }
     .patient-card:hover {
       transform: rotateY(-5deg) rotateX(3deg) scale(1.02);
@@ -147,6 +147,22 @@
       height: 40px;
       background: #158dc9;
       z-index: 0;
+    }
+    .card-stripe-bottom {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 23px;
+        background: #158dc9;
+        z-index: 0;
+    }
+
+    .card-stripe-top {
+        top: 0;
+    }
+
+    .card-stripe-bottom {
+        bottom: 0;
     }
 
     /* Card content */
@@ -465,16 +481,14 @@
           </div>
             <div class="patient-avatar" id="cardAvatar">  <img src="data:{{ $latestEntry->patient_photo_type }};base64,{{ base64_encode($latestEntry->patient_photo) }}"></div>
         </div>
-      {{-- @php  dd($barcode); @endphp --}}
-     
         <!-- Bottom -->
        <div class="card-bottom d-flex justify-content-center mt-3">
           <div class="barcode">
               {!! \DNS1D::getBarcodeSVG((string)$latestEntry->id, 'C128', 4, 50) !!}
           </div>
       </div>
-      </div>
-       <div class="card-stripe"></div>
+    </div>
+        <div class="card-stripe-bottom"></div>
     </div>
   </div>
 

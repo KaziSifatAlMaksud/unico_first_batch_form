@@ -433,15 +433,19 @@
         <!-- 1. Admission & Registration -->
         <div class="section-heading">
           <div class="section-icon"><i class="ti ti-door-enter"></i></div>
-          <h6>1. Admission &amp; Registration</h6>
+          <h6>General Consent / সাধারণ সম্মতি</h6>
         </div>
         <div class="terms-section mb-4">
           <ul>
-            <li>Patients must provide accurate and complete personal information during registration. Any false information may result in refusal or termination of services.</li>
-            <li>Registration does not guarantee immediate admission. Bed availability, clinical assessment, and specialist availability determine admission priority.</li>
-            <li>A valid national ID, passport, or birth certificate must be presented upon request for identity verification.</li>
-            <li>A legal guardian or authorized representative must sign on behalf of minors (under 18) or incapacitated patients.</li>
-            <li>Unico Hospital reserves the right to refuse non-emergency services if registration requirements are not met.</li>
+            <li>English: <Br>
+            The undersigned patient and/or responsible relative or person hereby consent to authorize physicians and medical professionals to administer and perform medical examinations, routine investigation, medical treatments, outpatient procedures, vaccinations and immunizations during the patient's care, be deemed necessary. I have been explained that in the event of need of specific tests/procedures, a separate consent will be obtained. The undersigned also gives consent to receive communication on treatment related information via text message or email or phone call as per the details provided at the time of registration. The undersigned also gives consent to the hospital to use medical information for insurance coverage and to contact him or her by telephone, if needed, regarding appointments and follow-up needs.</li>
+          </ul>
+        </div>
+
+        <div class="terms-section blue mb-4">
+          <ul>
+            <li>বাংলা: <br>
+            আমি নিম্ন স্বাক্ষরকারী রোগী/রোগীর আত্মীয়, দায়িত্বপ্রাপ্ত ব্যক্তি এই মর্মে সম্মতি প্রদান করলাম যে, চিকিৎসা চলাকালীন সময়ে চিকিৎসক এবং স্বাস্থ্যসেবা কর্মী চিকিৎসা প্রয়োজনীয় সকল চিকিৎসা সংক্রান্ত মেডিকেল টেস্ট, স্বাভাবিক পরীক্ষা-নিরীক্ষা, বহির্বিভাগীয় কার্যাবলী, টিকাদান করতে পারবেন। আমাকে ব্যাখ্যা করা হয়েছে যে, আরও নির্দিষ্ট কোন পরীক্ষা/কার্যপ্রণালীর প্রয়োজন হলে তার জন্য পৃথক সম্মতিপত্র নেওয়া হতে পারে। আমি নিম্ন স্বাক্ষরকারী আরও সম্মতি প্রদান করলাম যে, রেজিস্ট্রেশনের সময় দেওয়া মোবাইল নাম্বারে বা ইমেইলে চিকিৎসা সম্পর্কিত তথ্য এসএমএস/ফোন কল/ইমেইলের মাধ্যমে জানাতে পারবে। আমি, নিম্ন স্বাক্ষরকারী আরও সম্মতি প্রদান করলাম যে, বীমা কভারেজের জন্য চিকিৎসা সংক্রান্ত তথ্য ব্যবহার এবং অ্যাপয়েন্টমেন্ট ও ফলোআপের প্রয়োজনে টেলিফোনে যোগাযোগের দরকার হলে হাসপাতাল তা করতে পারবে।</li>
           </ul>
         </div>
 

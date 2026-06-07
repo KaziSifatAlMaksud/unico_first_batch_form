@@ -139,7 +139,7 @@ Your information will be saved securely to help speed up the check-in process at
                 </div>
               <!-- Mother Name -->
                 <div class="col-md-4 col-lg-3">
-                <label class="form-label">Mother Name (মাতার নাম):</label> 
+                <label class="form-label">Mother Name (মাতার নাম): </label> 
                 <div class="input-group">
                     <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
                     <input type="text" class="form-control" id="mother_name" name="mother_name" placeholder="Enter Mother's Name" >
@@ -160,7 +160,7 @@ Your information will be saved securely to help speed up the check-in process at
                 <!-- Age -->
 
                 <div class="col-md-6 col-lg-3">
-                    <label class="form-label">Age (বয়স):</label>
+                    <label class="form-label">Age (বয়স): <em class="text-danger">*</em></label>
 
                     <div class="input-group age-group">
 
@@ -201,7 +201,7 @@ Your information will be saved securely to help speed up the check-in process at
                 
            
                 <div class="col-md-4 col-lg-3">
-                    <label class="form-label">Date of Birth (জন্ম তারিখ):</label> <em class="text-danger">*</em>
+                    <label class="form-label">Date of Birth (জন্ম তারিখ):<em class="text-danger">*</em></label> 
                     <div class="input-group">
                         <span class="input-group-text"><i class="fa-regular fa-calendar-days"></i></span>
                        <input type="date" id="dob" name="dob" class="form-control">
@@ -212,7 +212,7 @@ Your information will be saved securely to help speed up the check-in process at
 
 
                 <div class="col-md-4 col-lg-3">
-                    <label class="form-label">NID No. (জাতীয় পরিচিতি নম্বর):</label> 
+                    <label class="form-label">NID No. (জাতীয় পরিচিতি নম্বর):<em class="text-danger">*</em></label> 
                     <div class="input-group">
                        <span class="input-group-text"><i class="fa-regular fa-id-card"></i></span>
                        <input type="number" id="nid" name="nid" class="form-control" placeholder="Enter NID No.">
@@ -221,7 +221,7 @@ Your information will be saved securely to help speed up the check-in process at
                 </div>   
                
                 <div class="col-md-7 col-lg-5">
-                  <label class="form-label">Religion (ধর্ম):</label> <em class="text-danger">*</em>
+                  <label class="form-label">Religion (ধর্ম): <em class="text-danger">*</em> </label>
                     <div class="gender-group d-flex gap-3 flex-wrap">
                       <div class="gender-card">
                         <input type="radio" name="religion" id="rm" value="Islam">
@@ -268,7 +268,7 @@ Your information will be saved securely to help speed up the check-in process at
                 </div>
 
                 <div class="col-md-5 col-lg-4">
-                  <label class="form-label">Gender (লিঙ্গ):</label> <em class="text-danger">*</em>
+                  <label class="form-label">Gender (লিঙ্গ):<em class="text-danger">*</em></label> 
                  <div class="gender-group d-flex gap-3 flex-wrap">
 
                       <div class="gender-card">
@@ -296,8 +296,8 @@ Your information will be saved securely to help speed up the check-in process at
                 </div>
                
               <div class="col-md-6 col-lg-6">
-                <label class="form-label">Marital Status (বৈবাহিক অবস্থা):</label>
-                <em class="text-danger">*</em> 
+                <label class="form-label">Marital Status (বৈবাহিক অবস্থা):   <em class="text-danger">*</em> </label>
+              
                       <div class="gender-group d-flex gap-3 flex-wrap">
 
                           <div class="gender-card">
@@ -367,7 +367,7 @@ Your information will be saved securely to help speed up the check-in process at
               </div>
 
                <div class="col-md-12 col-lg-12">
-                  <label class="form-label">Present Address (বর্তমান ঠিকানা):</label> <em class="text-danger">*</em>
+                  <label class="form-label">Present Address (বর্তমান ঠিকানা): <em class="text-danger">*</em></label> 
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-house"></i></span>
                     <textarea class="form-control" id="address" name="address" placeholder="Enter Address Name" ></textarea>
@@ -376,7 +376,7 @@ Your information will be saved securely to help speed up the check-in process at
                 </div>
 
                  <div class="col-md-4 col-lg-3">
-                    <label class="form-label">District/City (জেলা/শহর):</label> <em class="text-danger">*</em>
+                    <label class="form-label">District/City (জেলা/শহর):  <em class="text-danger">*</em></label>
 
                     <select class="form-select" id="district" name="district">
                         <option value="">Select District</option>
@@ -450,11 +450,7 @@ Your information will be saved securely to help speed up the check-in process at
                     </div>
           <!-- Thana -->
                 <div class="col-md-4 col-lg-3">
-                    <label class="form-label">Thana / P.S (থানা / পৌরসভা):</label>
-                    <em class="text-danger">*</em>
-
-                
-                   
+                    <label class="form-label">Thana / P.S (থানা / পৌরসভা):  <em class="text-danger">*</em> </label>                 
                   <select class="form-select" id="thana" name="thana">
                       <option value="">Select Thana</option>
                   </select>
@@ -464,7 +460,7 @@ Your information will be saved securely to help speed up the check-in process at
                 </div>
 
                 <div class="col-md-4 col-lg-3">
-                  <label class="form-label">Mobile Number (মোবাইল নম্বর):</label> <em class="text-danger">*</em> 
+                  <label class="form-label">Mobile Number (মোবাইল নম্বর): <em class="text-danger">*</em> </label> 
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-phone"></i></span>
                     <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" >
@@ -489,7 +485,7 @@ Your information will be saved securely to help speed up the check-in process at
                 </div>
 
                 <div class="col-md-4 col-lg-3">
-                  <label class="form-label">Emergency Contact Person Name (অ্যাক্সেস কন্টাক্ট ব্যক্তির নাম):</label>  <em class="text-danger">*</em> 
+                  <label class="form-label">Emergency Contact Person Name (অ্যাক্সেস কন্টাক্ট ব্যক্তির নাম): <em class="text-danger">*</em> </label>  
                   <div class="input-group">
                       <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
                       <input type="text" class="form-control" id="ec_name" name="ec_name" placeholder="Enter Emergency Contact Person Name">
@@ -498,7 +494,7 @@ Your information will be saved securely to help speed up the check-in process at
                 </div>
 
                 <div class="col-md-4 col-lg-3">
-                  <label class="form-label">Emergency Contact Person Number (অ্যাক্সেস কন্টাক্ট ব্যক্তির নম্বর):</label>   <em class="text-danger">*</em> 
+                  <label class="form-label">Emergency Contact Person Number (অ্যাক্সেস কন্টাক্ট ব্যক্তির নম্বর): <em class="text-danger">*</em> </label>   
                   <div class="input-group">
                       <span class="input-group-text"><i class="bi bi-phone"></i></span>
                       <input type="number" class="form-control" id="ec_mobile" name="ec_mobile" placeholder="Enter Emergency Contact Person Number">
@@ -510,7 +506,7 @@ Your information will be saved securely to help speed up the check-in process at
                
 
                <div class="col-md-3 col-lg-3">
-                  <label class="form-label">Where Your Heard About Us (আপনি কোথা থেকে আমাদের সম্পর্কে জানেন):</label> <em class="text-danger">*</em>
+                  <label class="form-label">Where Your Heard About Us (আপনি কোথা থেকে আমাদের সম্পর্কে জানেন): <em class="text-danger">*</em></label> 
                   <div class="input-group">
                      <select class="form-select" id="heardAbout" name="heard_about_us">
                         <option value="">Select Option</option>
