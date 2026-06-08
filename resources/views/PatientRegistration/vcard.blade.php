@@ -560,6 +560,9 @@
       </div>
     </div>
 
+@if (!empty($latestEntry->uhid))
+     
+ 
 <div id="downloadArea">
   <!-- ── Virtual Card ── -->
   <div class="card-stage mb-3">
@@ -630,6 +633,13 @@
     <span class="btn-loading"><div class="spinner"></div> Generating...</span>
   </button>
 
+  @else
+  <div class="alert alert-warning" role="alert">
+    No patient registration data found. Please complete the registration form first.
+  </div>
+  @endif
+
+
   <div class="toast" id="toast">
     <i class="ti ti-circle-check"></i> Card downloaded successfully!
   </div>
@@ -649,10 +659,29 @@ async function downloadCard() {
 
     document.body.appendChild(clone);
 
-    const canvas = await html2canvas(clone,{
-        scale:3,
-        useCORS:true,
-        backgroundColor:'#ffffff'
+    // Wait for all images in the cloned element
+    const images = clone.querySelectorAll('img');
+
+    await Promise.all(
+        Array.from(images).map(img => {
+            if (img.complete) {
+                return Promise.resolve();
+            }
+
+            return new Promise(resolve => {
+                img.onload = resolve;
+                img.onerror = resolve;
+            });
+        })
+    );
+
+    // Small extra delay for rendering
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    const canvas = await html2canvas(clone, {
+        scale: 3,
+        useCORS: true,
+        backgroundColor: '#fff'
     });
 
     document.body.removeChild(clone);
