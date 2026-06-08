@@ -30,6 +30,7 @@ class PatientRegistrationController extends Controller
         }
 
         $patient->status = $status;
+        $patient->uhid  = $request->uhid;
         $patient->save();
 
         return response()->json([

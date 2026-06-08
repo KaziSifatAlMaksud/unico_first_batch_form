@@ -52,7 +52,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 36px;
+        gap: 20px;
         padding: 40px 16px;
         overflow-x: hidden;
         position: relative;
@@ -133,6 +133,8 @@
 
     }
 
+
+    
     /* backside card */
 
     .card-back{
@@ -558,12 +560,11 @@
       </div>
     </div>
 
+<div id="downloadArea">
   <!-- ── Virtual Card ── -->
-  <div class="card-stage">
+  <div class="card-stage mb-3">
     <div class="patient-card" id="patientCard">
       <div class="card-stripe"></div>
-      
-
       <div class="card-body">
         <!-- Top -->
       <div class="card-top text-center">
@@ -598,29 +599,30 @@
 
     <!-- ── Backside Virtual Card ── -->
   <div class="card-stage">
-    <div class="patient-card card-back">
+      <div class="patient-card card-back">
 
-        <div class="back-logo">
-            <img src="{{ asset('assets/img/logo-white.svg') }}" alt="Unico Hospital">
-        </div>
+          <div class="back-logo">
+              <img src="{{ asset('assets/img/logo-white.svg') }}" alt="Unico Hospital">
+          </div>
 
-        <div class="back-divider"></div>
+          <div class="back-divider"></div>
 
-        <div class="back-content">
-            <p class="return-text">If found please return to</p>
+          <div class="back-content">
+              <p class="return-text">If found please return to</p>
 
-            <p class="address">
-                23 Green Road, Dhaka-1205, Bangladesh
-            </p>
+              <p class="address">
+                  23 Green Road, Dhaka-1205, Bangladesh
+              </p>
 
-            <p class="helpline">
-                Helpline: 096 77 66 77 66 &nbsp; | &nbsp; 096 77 66 11 66
-            </p>
-        </div>
+              <p class="helpline">
+                  Helpline: 096 77 66 77 66 &nbsp; | &nbsp; 096 77 66 11 66
+              </p>
+          </div>
 
-    </div>
+      </div>
+  </div>
+
 </div>
-
 
   <!-- ── Download Button ── -->
   <button class="download-btn" onclick="downloadCard()" id="dlBtn">
@@ -634,32 +636,36 @@
 
 <script>
 async function downloadCard() {
-  const btn = document.getElementById('dlBtn');
-  btn.classList.add('loading');
-  try {
-    const card = document.getElementById('patientCard');
-    card.style.transform = 'none';
-    const canvas = await html2canvas(card, {
-      scale: 3,
-      useCORS: true,
-      backgroundColor: '#ffffff',
-      logging: false,
+
+    const source = document.getElementById('downloadArea');
+
+    const clone = source.cloneNode(true);
+
+    clone.style.position = 'fixed';
+    clone.style.left = '0';
+    clone.style.top = '0';
+    clone.style.zIndex = '9999999';
+    clone.style.background = '#fff';
+
+    document.body.appendChild(clone);
+
+    const canvas = await html2canvas(clone,{
+        scale:3,
+        useCORS:true,
+        backgroundColor:'#ffffff'
     });
+
+    document.body.removeChild(clone);
+
     const link = document.createElement('a');
     link.download = 'unico-patient-card.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
-    btn.classList.remove('loading');
-    showToast();
-  } catch (e) {
-    btn.classList.remove('loading');
-    alert('Download failed. Please try again.');
-  }
 }
 function showToast() {
   const t = document.getElementById('toast');
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3500);
+  setTimeout(() => t.classList.remove('show'), 4500);
 }
 </script>
 </body>
