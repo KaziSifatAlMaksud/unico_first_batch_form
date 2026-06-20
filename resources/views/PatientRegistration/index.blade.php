@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Patient Registration | Unico Hospital</title>
-   <link rel="apple-touch-icon" sizes="57x57" href="{{asset('assets/img/favicon/android-icon-144x144.png')}}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{asset('assets/img/favicon/apple-icon-60x60.png')}}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('assets/img/favicon/apple-icon-72x72.png')}}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/favicon/apple-icon-76x76.png')}}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('assets/img/favicon/apple-icon-114x114.png')}}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{asset('assets/img/favicon/apple-icon-120x120.png')}}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{asset('assets/img/favicon/apple-icon-144x144.png')}}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{asset('assets/img/favicon/apple-icon-152x152.png')}}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/img/favicon/apple-icon-180x180.png')}}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{asset('assets/img/favicon/android-icon-192x192.png')}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/img/favicon/favicon-32x32.png')}}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('assets/img/favicon/favicon-96x96.png')}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/img/favicon/favicon-16x16.png')}}">
-    <link rel="manifest" href="{{asset('assets/img/favicon/manifest.json')}}">
+  <title>Patient Registration | Unico Hospitals</title>
+   <link rel="apple-touch-icon" sizes="57x57" src="{{asset('assets/img/favicon/android-icon-144x144.png')}}">
+    <link rel="apple-touch-icon" sizes="60x60" src="{{asset('assets/img/favicon/apple-icon-60x60.png')}}">
+    <link rel="apple-touch-icon" sizes="72x72" src="{{asset('assets/img/favicon/apple-icon-72x72.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" src="{{asset('assets/img/favicon/apple-icon-76x76.png')}}">
+    <link rel="apple-touch-icon" sizes="114x114" src="{{asset('assets/img/favicon/apple-icon-114x114.png')}}">
+    <link rel="apple-touch-icon" sizes="120x120" src="{{asset('assets/img/favicon/apple-icon-120x120.png')}}">
+    <link rel="apple-touch-icon" sizes="144x144" src="{{asset('assets/img/favicon/apple-icon-144x144.png')}}">
+    <link rel="apple-touch-icon" sizes="152x152" src="{{asset('assets/img/favicon/apple-icon-152x152.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" src="{{asset('assets/img/favicon/apple-icon-180x180.png')}}">
+    <link rel="icon" type="image/png" sizes="192x192"  src="{{asset('assssets/img/favicon/android-icon-192x192.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" src="{{asset('assets/img/favicon/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="96x96" src="{{asset('assets/img/favicon/favicon-96x96.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" src="{{asset('assets/img/favicon/favicon-16x16.png')}}">
+    <link rel="manifest" src="{{asset('assets/img/favicon/manifest.json')}}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{asset('assets/img/favicon/ms-icon-144x144.png')}}">
     <meta name="theme-color" content="#ffffff">
@@ -146,7 +146,7 @@ Your information will be saved securely to help speed up the check-in process at
               <div class="row g-3">
                 <!-- Full Name -->
                 <div class="col-md-4 col-lg-3">
-                <label class="form-label">Full Name (পুরো নাম):</label> <em class="text-danger">*</em>
+                <label class="form-label">Full Name (সম্পূর্ণ নাম):</label> <em class="text-danger">*</em>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
                     <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Enter Your Name" >
@@ -886,6 +886,44 @@ Your information will be saved securely to help speed up the check-in process at
 
 <script>
 const thanaData = {
+      Bagerhat: [
+        "Bagerhat Sadar","Chitalmari","Fakirhat","Kachua",
+        "Mollahat","Mongla","Morrelganj","Rampal","Sarankhola"
+    ],
+
+    Bandarban: [
+        "Bandarban Sadar","Alikadam","Lama","Naikhongchhari",
+        "Rowangchhari","Ruma","Thanchi"
+    ],
+
+    Barguna: [
+        "Barguna Sadar","Amtali","Bamna","Betagi","Patharghata","Taltali"
+    ],
+
+    Bhola: [
+        "Bhola Sadar","Borhanuddin","Char Fasson","Daulatkhan",
+        "Lalmohan","Manpura","Tazumuddin"
+    ],
+
+    Bogura: [
+        "Bogura Sadar","Adamdighi","Dhunat","Dhupchanchia",
+        "Gabtali","Kahaloo","Nandigram","Sariakandi","Shajahanpur","Sherpur","Shibganj","Sonatala"
+    ],
+
+    Brahmanbaria: [
+        "Brahmanbaria Sadar","Akhaura","Ashuganj","Bancharampur",
+        "Bijoynagar","Kasba","Nabinagar","Nasirnagar","Sarail"
+    ],
+
+    Chandpur: [
+        "Chandpur Sadar","Faridganj","Haimchar","Haziganj",
+        "Kachua","Matlab North","Matlab South","Shahrasti"
+    ],
+
+    Chuadanga: [
+        "Chuadanga Sadar","Alamdanga","Damurhuda","Jibannagar"
+    ],
+
     Dhaka: [
         "Adabor","Badda","Banani","Bangshal","Cantonment","Chawkbazar",
         "Demra","Dhanmondi","Gulshan","Jatrabari","Khilgaon","Mirpur",
@@ -893,8 +931,104 @@ const thanaData = {
     ],
 
     Chattogram: [
-        "Pahartali","Panchlaish","Kotwali","Double Mooring","Chandgaon"
+        "Pahartali","Panchlaish","Kotwali","Double Mooring","Chandgaon",
+        "Patenga","Bakalia","Halishahar","Bandar"
+    ],
+
+    Barishal: [
+        "Kotwali","Bakerganj","Babuganj","Banaripara","Gaurnadi","Mehendiganj"
+    ],
+
+    Khulna: [
+        "Sonadanga","Khalishpur","Daulatpur","Kotwali","Khan Jahan Ali",
+        "Dighalia","Paikgacha","Batiaghata"
+    ],
+
+    Rajshahi: [
+        "Boalia","Motihar","Rajpara","Shah Makhdum","Paba","Bagha","Godagari"
+    ],
+
+    Sylhet: [
+        "Kotwali","Beanibazar","Golapganj","Fenchuganj","Balaganj","Zakiganj"
+    ],
+
+    Rangpur: [
+        "Kotwali","Gangachara","Mithapukur","Pirgachha","Badarganj","Taraganj"
+    ],
+
+    Mymensingh: [
+        "Kotwali","Muktagachha","Trishal","Bhaluka","Gafargaon","Ishwarganj"
+    ],
+
+    Comilla: [
+        "Kotwali","Daudkandi","Muradnagar","Debidwar","Barura","Laksam"
+    ],
+
+    Gazipur: [
+        "Gazipur Sadar","Kaliakair","Kapasia","Sreepur","Tongi"
+    ],
+
+    Narayanganj: [
+        "Fatullah","Siddirganj","Bandar","Araihazar","Rupganj","Sonargaon"
+    ],
+
+
+    Faridpur: [
+        "Faridpur Sadar","Alfadanga","Bhanga","Boalmari",
+        "Charbhadrasan","Madhukhali","Nagarkanda","Sadarpur","Saltha"
+    ],
+
+    Feni: [
+        "Feni Sadar","Chhagalnaiya","Daganbhuiyan","Fulgazi",
+        "Parshuram","Sonagazi"
+    ],
+
+    Gaibandha: [
+        "Gaibandha Sadar","Fulchhari","Gobindaganj","Palashbari",
+        "Sadullapur","Saghata","Sundarganj"
+    ],
+
+    Gopalganj: [
+        "Gopalganj Sadar","Kashiani","Kotalipara","Muksudpur","Tungipara"
+    ],
+
+    Habiganj: [
+        "Habiganj Sadar","Ajmiriganj","Bahubal","Baniachong",
+        "Chunarughat","Lakhai","Madhabpur","Nabiganj","Shayestaganj"
+    ],
+
+    Jashore: [
+        "Jashore Sadar","Abhaynagar","Bagherpara","Chaugachha",
+        "Jhikargachha","Keshabpur","Manirampur","Sharsha"
+    ],
+
+    Jamalpur: [
+        "Jamalpur Sadar","Baksiganj","Dewanganj","Islampur",
+        "Madarganj","Melandaha","Sarishabari"
+    ],
+
+    Kushtia: [
+        "Kushtia Sadar","Bheramara","Daulatpur","Khoksa",
+        "Kumarkhali","Mirpur"
+    ],
+
+    Noakhali: [
+        "Noakhali Sadar","Begumganj","Chatkhil","Companiganj",
+        "Hatiya","Kabirhat","Senbagh","Subarnachar"
+    ],
+
+    Pabna: [
+        "Pabna Sadar","Atgharia","Bera","Bhangura",
+        "Chatmohar","Faridpur","Ishwardi","Santhia","Sujanagar"
+    ],
+
+    Tangail: [
+        "Tangail Sadar","Basail","Bhuapur","Delduar",
+        "Ghatail","Gopalpur","Kalihati","Madhupur",
+        "Mirzapur","Nagarpur","Sakhipur","Dhanbari"
     ]
+
+
 };
 
 document.getElementById("district").addEventListener("change", function () {
