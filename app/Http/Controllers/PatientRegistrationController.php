@@ -298,8 +298,19 @@ class PatientRegistrationController extends Controller
 
             $photo = $request->file('patient_photo');
 
-            $photoData = file_get_contents($photo->getRealPath());
-            $photoType = $photo->getMimeType();
+            $imageContent = file_get_contents($photo->getRealPath());
+
+            $image = imagecreatefromstring($imageContent);
+
+            if ($image !== false) {
+
+                ob_start();
+                imagejpeg($image, null, 60); // compress to 60% quality
+                $photoData = ob_get_clean();
+
+                imagedestroy($image); // free memory
+                $photoType = 'image/jpeg'; // because you converted to jpeg
+            }
         }
 
 
@@ -313,7 +324,7 @@ class PatientRegistrationController extends Controller
         $patient->full_name        = $request->full_name;
         $patient->mother_name      = $request->mother_name;
         $patient->father_name      = $request->father_name;
-        $patient->age = $request->age_year . '-' . $request->age_month . '-' . $request->age_day;
+        $patient->age              = $request->age_year . '-' . $request->age_month . '-' . $request->age_day;
         $patient->religion         = $request->religion;
         $patient->gender           = $request->gender;
         $patient->dob              = $request->dob;

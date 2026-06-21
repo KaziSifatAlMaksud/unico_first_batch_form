@@ -114,7 +114,7 @@ Your information will be saved securely to help speed up the check-in process at
                         <!-- Info + buttons -->
                           <div class="photo-upload-body">
                             <h6>Upload Patient Photo <em class="text-danger">*</em></h6> 
-                            <p>JPG, PNG or WEBP · Max 5 MB · Passport or ID style recommended</p>
+                            <p>JPG, PNG or WEBP · Passport or ID style recommended</p>
                             <div class="d-flex align-items-center flex-wrap gap-2">
                               <a href="javascript:void(0);" style="text-decoration: none;" class="upload-trigger-btn" onclick="document.getElementById('photoInput').click()">
                                 <i class="fas fa-upload"></i> Choose Photo
