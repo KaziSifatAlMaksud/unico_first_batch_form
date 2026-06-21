@@ -20,6 +20,10 @@ use App\Http\Controllers\PatientRegistrationController;
 |
 */
 
+Route::fallback(function () {
+    return redirect()->route('patient_registration');
+});
+
 
 Route::get('/patientregistration', function () { return view('PatientRegistration.index');})->name('patient_registration');
 

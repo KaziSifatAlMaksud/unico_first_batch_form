@@ -228,7 +228,7 @@ Your information will be saved securely to help speed up the check-in process at
 
 
                 <div class="col-md-4 col-lg-3">
-                    <label class="form-label">NID No. (জাতীয় পরিচিতি নম্বর):<em class="text-danger">*</em></label> 
+                    <label class="form-label">NID No. (জাতীয় পরিচিতি নম্বর):</label> 
                     <div class="input-group">
                        <span class="input-group-text"><i class="fa-regular fa-id-card"></i></span>
                        <input type="number" id="nid" name="nid" class="form-control" placeholder="Enter NID No.">

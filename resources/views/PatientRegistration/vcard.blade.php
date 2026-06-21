@@ -646,55 +646,57 @@
 
 <script>
 async function downloadCard() {
+    const btn = document.getElementById('dlBtn');
+    btn.classList.add('loading');
 
-    const source = document.getElementById('downloadArea');
+    // Capture both cards individually
+    const cards = document.querySelectorAll('#downloadArea .patient-card');
 
-    const clone = source.cloneNode(true);
-
-    clone.style.position = 'fixed';
-    clone.style.left = '0';
-    clone.style.top = '0';
-    clone.style.zIndex = '9999999';
-    clone.style.background = '#fff';
-
-    document.body.appendChild(clone);
-
-    // Wait for all images in the cloned element
-    const images = clone.querySelectorAll('img');
-
-    await Promise.all(
-        Array.from(images).map(img => {
-            if (img.complete) {
-                return Promise.resolve();
+    const canvases = await Promise.all([...cards].map(card => {
+        return html2canvas(card, {
+            scale: 5,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: "#ffffff",
+            logging: false,
+            ignoreElements: (el) => {
+                // Ignore body pseudo-elements and background noise
+                return el.classList && (
+                    el.classList.contains('toast') ||
+                    el.classList.contains('download-btn')
+                );
             }
+        });
+    }));
 
-            return new Promise(resolve => {
-                img.onload = resolve;
-                img.onerror = resolve;
-            });
-        })
-    );
+    // Merge both card canvases vertically into one image
+    const gap = 40;
+    const merged = document.createElement('canvas');
+    merged.width = canvases[0].width;
+    merged.height = canvases.reduce((sum, c) => sum + c.height, 0) + gap * (canvases.length - 1) * 5;
 
-    // Small extra delay for rendering
-    await new Promise(resolve => setTimeout(resolve, 100));
+    const ctx = merged.getContext('2d');
+    ctx.fillStyle = '#f0f4f8';
+    ctx.fillRect(0, 0, merged.width, merged.height);
 
-    const canvas = await html2canvas(clone, {
-        scale: 3,
-        useCORS: true,
-        backgroundColor: '#fff'
+    let y = 0;
+    canvases.forEach((c, i) => {
+        ctx.drawImage(c, 0, y);
+        y += c.height + gap * 5;
     });
-
-    document.body.removeChild(clone);
 
     const link = document.createElement('a');
     link.download = 'unico-patient-card.png';
-    link.href = canvas.toDataURL('image/png');
+    link.href = merged.toDataURL('image/png', 1.0);
     link.click();
+
+    btn.classList.remove('loading');
+    showToast();
 }
 function showToast() {
-  const t = document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 4500);
+    const t = document.getElementById("toast");
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 4500);
 }
 </script>
 </body>
