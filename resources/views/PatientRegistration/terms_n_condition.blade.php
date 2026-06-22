@@ -556,7 +556,7 @@
         </div>
 
         <!-- Signature Section -->
-        <div class="signature-row">
+        {{-- <div class="signature-row">
           <div class="sig-box">
             <div class="sig-lbl">Patient / Guardian Signature</div>
             <div class="sig-line">Signature &amp; Date</div>
@@ -565,7 +565,7 @@
             <div class="sig-lbl">Patient Full Name (Print)</div>
             <div class="sig-line">Name &amp; Relationship (if Guardian)</div>
           </div>
-        </div>
+        </div> --}}
 
         <!-- Action Buttons -->
         <div class="action-row d-flex justify-content-end gap-3 flex-wrap">

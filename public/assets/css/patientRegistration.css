@@ -201,6 +201,12 @@
     padding:0.15rem 0.5rem;
 }
 
+
+@media (max-width: 768px) {
+    .contact-header__desc {
+        display: none;
+    }
+}
 /* ── Tablet (max 991px) ── */
 @media (max-width: 991px) {
   .form-card {
@@ -864,13 +870,13 @@
         }
 
         .contact-header {
-            height: 300px;
+            height: 280px;
         }
         }
 
         @media (max-width: 480px) {
         .contact-header {
-            height: 280px;
+            height: 200px;
         }
 
         .contact-header__desc {
